@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ចំណងដៃអាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Suwannaphum:wght@400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -15,7 +15,7 @@
             text-align: center;
         }
         h1, h2, h3 {
-            font-family: 'Moul', cursive;
+            font-family: 'Khmer OS Bokor', cursive;
             color: #722f37;
         }
         .hero {
@@ -171,6 +171,74 @@
                 opacity: 0.5; /* ពេលជិតដល់ក្រោមឲ្យវារាងរលប់បន្តិច */
             }
         }
+        /* ------------------------------------- */
+        /* បន្ថែមការរចនាពណ៌មាស (Gold Theme) ដើម្បីភាពថ្លៃថ្នូរ */
+        /* ------------------------------------- */
+        
+        /* ពណ៌មាសសម្រាប់ចំណងជើង (កម្មវិធីលម្អិត, អានុស្សាវរីយ៍...) */
+        h2 {
+            color: #d4af37 !important; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* ថែមគែមពណ៌មាស និងស្រមោលមាសឲ្យប្រអប់កាត */
+        .card {
+            border: 2px solid #d4af37; 
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15) !important;
+        }
+        
+        /* កែប្រអប់រាប់ថយក្រោយ ឲ្យចេញជាគែមមាស និងលេខមាស */
+        .time-box {
+            background: #fffdf5 !important;
+            border: 2px solid #d4af37;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+        }
+        .time-box span {
+            color: #d4af37 !important; /* លេខពណ៌មាស */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* ប្តូរប៊ូតុងបញ្ជូន (RSVP) ទៅជាពណ៌មាសរលោង */
+        button {
+            background: linear-gradient(135deg, #e6c25e, #c59b27) !important;
+            color: #ffffff !important;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+            border-radius: 8px !important;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #c59b27, #9c7816) !important;
+            transform: translateY(-2px); /* លោតឡើងលើបន្តិចពេលដាក់ Mouse ពីលើ */
+        }
+
+        /* ថែមគែមមាសឲ្យរូបភាព Pre-wedding ទាំងអស់ */
+        .portrait-row img, .landscape-row img {
+            border: 2px solid #d4af37;
+            padding: 3px; /* ទុកចន្លោះពណ៌សមើលទៅដូចស៊ុមរូបថត */
+            background: white;
+        }
+        /* ------------------------------------- */
+        /* ប្តូរហ្វុនអក្សរឈ្មោះអង់គ្លេស (បែបផ្ចង់រ៉ូមែនទិក) */
+        /* ------------------------------------- */
+        
+        /* ចំណាំ៖ ខ្ញុំសន្មត់ថាបងដាក់ឈ្មោះអង់គ្លេសក្នុង Tag <h2> នៅក្នុងផ្នែក Hero */
+        .hero h2 {
+            font-family: 'Forte', cursive !important; /* ប្រើហ្វុនអក្សរផ្ចង់ */
+            font-size: 3.5rem !important; /* ទំហំអក្សររាងធំបន្តិចទើបស្អាត ព្រោះជាអក្សរផ្ចង់ */
+            color: #800020 !important; /* ពណ៌ក្រហមឈាមជ្រូក ឲ្យស៊ីគ្នាជាមួយឈ្មោះខ្មែរ */
+            font-weight: normal !important;
+            
+            /* គែមពណ៌ស និងស្រមោល ដើម្បីឲ្យផុសច្បាស់ */
+            text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0 5px 10px rgba(0,0,0,0.3) !important;
+            margin-top: 5px;
+        }
+        
+        /* សម្រួលទំហំពេលបើកលើទូរស័ព្ទដៃកុំឲ្យវាធំពេក */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem !important; 
+            }
+        }
     </style>
     
 </head>
@@ -181,7 +249,7 @@
         <p>សូមគោរពអញ្ជើញចូលរួមពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</p>
         <p>You are cordially invited to attend the wedding ceremony.</p>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
-         <h2>VAN CHANKRISNA & MIN SREY LAK</h2>
+         <h2>VAN CHANKRISNA & MIN SREYLAK</h2>
         <p>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p>
         <p>Date: 21-22 November-2026 5:00pm</p>
         
@@ -215,12 +283,12 @@
         <h2>អានុស្សាវរីយ៍របស់យើង / Our Memories</h2>
         <div class="gallery">
             <!-- សូមប្តូរឈ្មោះ photo1.jpg ទៅតាមឈ្មោះរូបភាពដែលបងបានដាក់ក្នុង Folder -->
-            <img src="71.jpg" alt="Pre-wedding Photo 1">
-            <img src="72.jpg" alt="Pre-wedding Photo 2">
-            <img src="73.jpg" alt="Pre-wedding Photo 3">
             <img src="61.jpg" alt="Pre-wedding Photo 4">
             <img src="62.jpg" alt="Pre-wedding Photo 3">
             <img src="63.jpg" alt="Pre-wedding Photo 4">
+            <img src="71.jpg" alt="Pre-wedding Photo 1">
+            <img src="72.jpg" alt="Pre-wedding Photo 2">
+            <img src="73.jpg" alt="Pre-wedding Photo 3">
         </div>
     </section>
 
@@ -247,7 +315,7 @@
                     <option value="លក្ខណៈគ្រួសារ">ចូលរួមជាលក្ខណៈគ្រួសារ / Participate as a family </option>
                 </select>
                 
-                <button type="submit" id="submitBtn">បញ្ជូនការបញ្ជាក់ / Submit confirmation</button>
+                <button type="submit" id="submitBtn">បញ្ជូនការបញ្ជាក់ / confirmation</button>
             </form>
 
             <script>
