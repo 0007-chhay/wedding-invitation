@@ -116,7 +116,63 @@
         .gallery img:hover {
             transform: scale(1.05); /* រីកធំជាងមុនបន្តិច */
         }
+        /* ------------------------------------- */
+        /* សម្រួលទំហំអក្សរពេលបើកលើទូរស័ព្ទដៃ (Mobile Responsive) */
+        /* ------------------------------------- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 10px; /* បន្ថយគម្លាតផ្ទៃខាងលើ និងខាងក្រោម */
+            }
+            .hero h1 {
+                font-size: 1.8rem; /* បន្ថយទំហំឈ្មោះជាភាសាខ្មែរ */
+                line-height: 1.4; 
+                margin-bottom: 5px;
+            }
+            .hero h2, .hero h3 {
+                font-size: 1.2rem; /* បន្ថយទំហំឈ្មោះជាភាសាអង់គ្លេស */
+                line-height: 1.4;
+            }
+            .hero p {
+                font-size: 1rem; /* បន្ថយទំហំអក្សរធម្មតាបន្តិច */
+            }
+            
+            /* សម្រួលប្រអប់រាប់ថយក្រោយកុំឲ្យធំពេក */
+            .countdown {
+                gap: 10px; 
+            }
+            .time-box {
+                min-width: 55px;
+                padding: 10px;
+            }
+            .time-box span {
+                font-size: 1.5rem;
+            }
+        }
+        /* ------------------------------------- */
+        /* បែបផែនបេះដូងធ្លាក់ចុះមក (Falling Hearts) */
+        /* ------------------------------------- */
+        .falling-heart {
+            position: fixed;
+            top: -10vh; /* ចាប់ផ្តើមធ្លាក់ពីខាងលើផុតអេក្រង់ */
+            font-size: 1.5rem; /* ទំហំបេះដូង */
+            z-index: 9999; /* ឲ្យវាធ្លាក់ពីលើគេបង្អស់ */
+            pointer-events: none; /* ការពារកុំឲ្យវារាំងខ្ទប់ពេលភ្ញៀវចុចលើប៊ូតុង ឬបំពេញ Form */
+            animation: fall linear forwards;
+        }
+
+        /* ចលនាធ្លាក់និងវិលតិចៗ */
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.5; /* ពេលជិតដល់ក្រោមឲ្យវារាងរលប់បន្តិច */
+            }
+        }
     </style>
+    
 </head>
 <body>
 
@@ -253,6 +309,44 @@
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }, 1000);
+
+        // ------------------------------------- 
+        // កូដបង្កើតចលនាបេះដូងធ្លាក់
+        // ------------------------------------- 
+        // ------------------------------------- 
+        // កូដបង្កើតចលនាបេះដូង និងផ្កាកុលាបធ្លាក់
+        // ------------------------------------- 
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('falling-heart');
+            
+            // បញ្ជីរូបភាព (បេះដូង និង ផ្កាកុលាប) បងអាចថែមរូបផ្សេងទៀតបាននៅទីនេះ
+            const symbols = ['💖', '🌹', '💕', '🌷', '✨']; 
+            
+            // ប្រាប់កូដឲ្យរើសយករូបណាមួយក្នុងបញ្ជីខាងលើដោយចៃដន្យ
+            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.innerText = randomSymbol; 
+            
+            // កំណត់ទីតាំងធ្លាក់ឲ្យខុសៗគ្នា
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // ល្បឿនធ្លាក់ (ចន្លោះពី ៣ ទៅ ៦ វិនាទី)
+            const fallDuration = Math.random() * 3 + 3;
+            heart.style.animationDuration = fallDuration + 's';
+            
+            // កំណត់ទំហំរូបឲ្យតូចធំខុសៗគ្នាបន្តិចបន្តួច
+            heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; 
+            
+            document.body.appendChild(heart);
+            
+            // លុបវាចោលវិញពេលវាធ្លាក់ដល់ក្រោម ដើម្បីកុំឲ្យគាំងទូរស័ព្ទ
+            setTimeout(() => {
+                heart.remove();
+            }, fallDuration * 1000);
+        }
+
+        // បង្កើតរូបថ្មីរៀងរាល់ ៤០០ មីលីវិនាទី
+        setInterval(createHeart, 400);
     </script>
 </body>
 </html>
