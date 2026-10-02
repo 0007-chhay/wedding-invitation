@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ចំណងដៃអាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Battambang', sans-serif;
+            background-color: #fcf9f9;
+            color: #5a4b4b;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-family: 'Moul', cursive;
+            color: #722f37;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('1I9A3256.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        /* ការរចនាកន្លែងរាប់ថយក្រោយ */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .time-box {
+            background: #ffcdb2;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+        .time-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d53a3a;
+        }
+        /* ការរចនា Card និង Form */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: 'Battambang', sans-serif;
+        }
+        button {
+            background-color: #1e9c0e;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #e5989b;
+        }
+        .map-btn {
+            display: inline-block;
+            background-color: #6d6875;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        /* ------------------------------------- */
+        /* ការរចនា កន្លែងវិចិត្រសាលរូបភាពថ្មី (Gallery) */
+        /* ------------------------------------- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover; /* ជួយអោយរូបភាពមិនខូចទ្រង់ទ្រាយពេលកាត់ */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease; /* ពេលដាក់ Mouse ពីលើអោយវាលោតយឺតៗ */
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.05); /* រីកធំជាងមុនបន្តិច */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ផ្នែកខាងលើ (Hero Section) -->
+    <header class="hero">
+        <p>សូមគោរពអញ្ជើញចូលរួមពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</p>
+        <p>You are cordially invited to attend the wedding ceremony.</p>
+        <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
+         <h2>VAN CHANKRISNA & MIN SREY LAK</h2>
+        <p>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p>
+        <p>Date: 21-22 November-2026 5:00pm</p>
+        
+        <!-- កន្លែងរាប់ថយក្រោយ -->
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="days">00</span> ថ្ងៃ</div>
+            <div class="time-box"><span id="hours">00</span> ម៉ោង</div>
+            <div class="time-box"><span id="minutes">00</span> នាទី</div>
+            <div class="time-box"><span id="seconds">00</span> វិនាទី</div>
+        </div>
+    </header>
+
+    <!-- ផ្នែកកម្មវិធីលម្អិត -->
+    <section class="section">
+        <h2>កម្មវិធីលម្អិត / Detailed Program</h2>
+        <div class="card">
+            <h3>ថ្ងៃសិរីមង្គល / An Auspicious Day </h3>
+            <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២១ ខែវិច្ឆិកា ឆ្នាំ២០២៦​ ម៉ោង២ រសៀល ចាប់ផ្ដើមកម្មវិធី</p>
+            <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦ <strong>ម៉ោង ០៥:០០ ល្ងាច:</strong> ពិធីទទួលភ្ញៀវពិសារភោជនាអារហារ </p>
+            <!-- <p><strong>ម៉ោង ០៥:០០ ល្ងាច:</strong> ពិធីទទួលភ្ញៀវពិសារភោជនាអារហារ</p> -->
+            <p><strong>Date:</strong> November 21, 2026; program starts at 2:00 PM.</p>
+            <p><strong>Date:</strong> November 22, 2026; Reception and Banquet at 5:00 PM.</p>
+            <hr style="border: 0.5px solid #eee; margin: 20px 0;">
+            <p><strong>ទីតាំង:</strong> ក្រុងបាត់ដំបង ផ្លូវចំការដូង ( Battambang City, Chamkar Dong Road)</p>
+            <a href="https://maps.app.goo.gl/trofWD7W4vPz9mzH9" class="map-btn" target="_blank">📍 មើលផែនទី (Google Maps)</a>
+        </div>
+    </section>
+
+    <!-- ផ្នែកវិចិត្រសាលរូបភាព (ថ្មី) -->
+    <section class="section">
+        <h2>អានុស្សាវរីយ៍របស់យើង / Our Memories</h2>
+        <div class="gallery">
+            <!-- សូមប្តូរឈ្មោះ photo1.jpg ទៅតាមឈ្មោះរូបភាពដែលបងបានដាក់ក្នុង Folder -->
+            <img src="71.jpg" alt="Pre-wedding Photo 1">
+            <img src="72.jpg" alt="Pre-wedding Photo 2">
+            <img src="73.jpg" alt="Pre-wedding Photo 3">
+            <img src="61.jpg" alt="Pre-wedding Photo 4">
+            <img src="62.jpg" alt="Pre-wedding Photo 3">
+            <img src="63.jpg" alt="Pre-wedding Photo 4">
+        </div>
+    </section>
+
+    <!-- ផ្នែកទម្រង់ចុះឈ្មោះ (RSVP) -->
+    <section class="section">
+        <h2>បញ្ជាក់ការចូលរួម / Confirm participation </h2>
+        <div class="card">
+            <p>សូមមេត្តាបំពេញព័ត៌មានខាងក្រោមដើម្បីងាយស្រួលដល់យើងខ្ញុំក្នុងការរៀបចំកន្លែងទទួល</p>
+            <p>Please fill out the information below to make it easier for us to arrange a pick-up location.</p>
+    
+            <form id="rsvpForm">
+                <!-- ចំណាំ: ត្រូវតែមាន name="name" ឱ្យដូចក្នុង Apps Script -->
+                <input type="text" name="name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក... write your name here.." required>
+                
+                <select name="attendance" required>
+                    <option value="">តើអ្នកនឹងចូលរួមដែរឬទេ? / Will you be joining too? </option>
+                    <option value="ចូលរួម">បាទ/ចាស ខ្ញុំនឹងចូលរួម / Yes, I will participate. </option>
+                    <option value="មិនចូលរួម">សុំទោស ខ្ញុំមិនអាចចូលរួមបានទេ / I'm sorry, I cannot attend.</option>
+                </select>
+                
+                <select name="guest">
+                    <option value="១ នាក់">ចូលរួមម្នាក់ឯង / Participate alone </option>
+                    <option value="២ នាក់">ចូលរួម ២ នាក់ / Participate as a pair (2 people)</option>
+                    <option value="លក្ខណៈគ្រួសារ">ចូលរួមជាលក្ខណៈគ្រួសារ / Participate as a family </option>
+                </select>
+                
+                <button type="submit" id="submitBtn">បញ្ជូនការបញ្ជាក់ / Submit confirmation</button>
+            </form>
+
+            <script>
+                document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+                    e.preventDefault(); // ការពារកុំឱ្យវេបសាយលោត Refresh ពេលចុចបញ្ជូន
+                    
+                    var form = e.target;
+                    var data = new FormData(form);
+                    var btn = document.getElementById("submitBtn");
+                    
+                    btn.innerText = "កំពុងបញ្ជូន..."; // ដូរអក្សរប៊ូតុងពេលកំពុងដំណើរការ
+                    
+                    // សូមលុបអក្សរខ្មែរខាងក្រោម ហើយ Paste នូវ Link URL ពី Google Apps Script របស់បងចូលត្រង់នេះ
+                    fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
+                        method: "POST",
+                        body: data
+                    })
+                    .then(response => {
+                        alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! យើងខ្ញុំរង់ចាំស្វាគមន៍ដោយក្តីរីករាយ។");
+                        form.reset(); // លុបទិន្នន័យក្នុងប្រអប់ចោលវិញពេលផ្ញើជោគជ័យ
+                        btn.innerText = "បញ្ជូនការបញ្ជាក់";
+                    })
+                    .catch(error => {
+                        alert("សុំទោស មានបញ្ហាបន្តិចបន្តួច សូមសាកល្បងម្ដងទៀត។");
+                        btn.innerText = "បញ្ជូនការបញ្ជាក់";
+                    });
+                });
+            </script>
+        </div>
+    </section>
+
+    <footer style="padding: 20px; background: #6d6875; color: white;">
+        <p>រង់ចាំស្វាគមន៍ដោយក្ដីសោមនស្សរីករាយ!</p>
+        <p style="font-size: 0.8rem;">បង្កើតដោយក្តីស្រឡាញ់ 💖</p>
+         <p style="font-size: 0.8rem;">We look forward to welcoming you with great pleasure! 💖</p>
+    </footer>
+
+    <!-- កូដរាប់ថយក្រោយ -->
+    <script>
+        const weddingDate = new Date(2026, 10, 21, 17, 0, 0).getTime();
+
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "<h3>ដល់ថ្ងៃមង្គលហើយ!</h3>";
+                return; 
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
