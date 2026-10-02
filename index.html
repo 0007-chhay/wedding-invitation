@@ -302,6 +302,39 @@
                 font-size: 1rem;
             }
         }
+
+        /* ------------------------------------- */
+        /* រចនាប៊ូតុងតន្ត្រីពណ៌មាសនៅជ្រុងខាងក្រោម */
+        /* ------------------------------------- */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e6c25e, #c59b27); /* ពណ៌មាស */
+            border: 2px solid #fff;
+            border-radius: 50%;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+            padding-bottom: 2px; /* តម្រឹមអក្សរឲ្យចំកណ្តាល */
+        }
+        
+        /* បង្កើតចលនាវិលពេលកំពុងចាក់ចម្រៀង */
+        .music-btn.playing {
+            animation: spinMusic 3s linear infinite;
+        }
+        
+        @keyframes spinMusic {
+            100% { transform: rotate(360deg); }
+        }
     </style>
     
 </head>
@@ -505,9 +538,9 @@
             (function frame() {
                 // កាំជ្រួចបាញ់ពីជ្រុងខាងឆ្វេង
                 confetti({
-                    particleCount: 10,
+                    particleCount: 5,
                     angle: 60,
-                    spread: 50,
+                    spread: 55,
                     origin: { x: 0, y: 0.9 },
                     colors: ['#d4af37', '#800020', '#ffffff'], // ពណ៌មាស, ក្រហមឈាមជ្រូក, ស
                     zIndex: 9999
@@ -533,6 +566,41 @@
         
         // បាញ់ម្ដងទៀតជារៀងរាល់ ៧ វិនាទី (ដើម្បីកុំឲ្យរញ៉េរញ៉ៃភ្នែកភ្ញៀវពេក)
         setInterval(launchFireworks, 7000);
+    </script>
+
+    <!-- ------------------------------------- -->
+    <!-- ប្រព័ន្ធចាក់តន្ត្រី (Background Music) -->
+    <!-- ------------------------------------- -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
+        🎵
+    </button>
+    
+    <script>
+        var music = document.getElementById("bgMusic");
+        var musicBtn = document.getElementById("musicBtn");
+        
+        // មុខងារសម្រាប់ចុចបើក/បិទ តន្ត្រី
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.classList.add("playing"); // ធ្វើឲ្យប៊ូតុងវិល
+            } else {
+                music.pause();
+                musicBtn.classList.remove("playing"); // បញ្ឈប់ការវិល
+            }
+        }
+        
+        // ជម្រើសពិសេស៖ ចាក់ស្វ័យប្រវត្តិពេលភ្ញៀវចុចប៉ះអេក្រង់លើកដំបូង
+        document.body.addEventListener('click', function() {
+            if(music.paused) {
+                music.play();
+                musicBtn.classList.add("playing");
+            }
+        }, { once: true }); // once: true មានន័យថាដំណើរការតែម្តងគត់ពេលចុចដំបូង
     </script>
 </body>
 </html>
