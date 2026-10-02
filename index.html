@@ -357,7 +357,7 @@
 
     <!-- ផ្នែកទម្រង់ចុះឈ្មោះ (RSVP) -->
     <section class="section">
-        <h2>💖បញ្ជាក់ការចូលរួម / Confirm participation 💖</h2>
+        <h2>💖បញ្ជាក់ការចូលរួម 💖<br> Confirm participation </h2>
         <div class="card">
             <p>សូមមេត្តាបំពេញព័ត៌មានខាងក្រោមដើម្បីងាយស្រួលដល់យើងខ្ញុំក្នុងការរៀបចំកន្លែងទទួល</p>
             <p>Please fill out the information below to make it easier for us to arrange a pick-up location.</p>
@@ -505,22 +505,22 @@
             (function frame() {
                 // កាំជ្រួចបាញ់ពីជ្រុងខាងឆ្វេង
                 confetti({
-                    particleCount: 5,
+                    particleCount: 10,
                     angle: 60,
-                    spread: 55,
+                    spread: 50,
                     origin: { x: 0, y: 0.9 },
                     colors: ['#d4af37', '#800020', '#ffffff'], // ពណ៌មាស, ក្រហមឈាមជ្រូក, ស
                     zIndex: 9999
                 });
                 // កាំជ្រួចបាញ់ពីជ្រុងខាងស្តាំ
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.9 },
-                    colors: ['#d4af37', '#800020', '#ffffff'],
-                    zIndex: 9999
-                });
+                // confetti({
+                //     particleCount: 10,
+                //     angle: 100,
+                //     spread: 50,
+                //     origin: { x: 1, y: 0.9 },
+                //     colors: ['#d4af37', '#800020', '#ffffff'],
+                //     zIndex: 9999
+                // });
 
                 if (Date.now() < end) {
                     requestAnimationFrame(frame);
