@@ -335,6 +335,65 @@
         @keyframes spinMusic {
             100% { transform: rotate(360deg); }
         }
+        /* ------------------------------------- */
+        /* បន្ថែមរូបភាព Background ស្រាលសម្រាប់ទំព័រទាំងមូល */
+        /* ------------------------------------- */
+        body {
+            /* ដាក់រូបភាព Background ថ្មីនៅទីនេះ */
+            background-image: url('bg-light.jpg') !important; 
+            background-size: cover !important; /* ឲ្យរូបភាពគ្របពេញអេក្រង់ */
+            background-attachment: fixed !important; /* ធ្វើឲ្យរូបភាពនៅនឹងថ្កល់ពេលភ្ញៀវអូសចុះក្រោម (ឡូយខ្លាំង) */
+            background-position: center !important;
+        }
+
+        /* ធ្វើឲ្យប្រអប់អត្ថបទ (Section) មានផ្ទៃពណ៌សព្រិលៗ ដើម្បីងាយស្រួលអានអក្សរ */
+        .section {
+            background-color: rgba(255, 255, 255, 0.85) !important; /* ពណ៌សថ្លា ៨៥% (ឃើញរូបពីក្រោយព្រាលៗ) */
+            backdrop-filter: blur(8px); /* ធ្វើឲ្យផ្ទៃខាងក្រោយព្រិលស្រទន់ */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+            margin: 30px auto;
+        }
+
+        /* ------------------------------------- */
+        /* អក្សរលោតៗពីលើប៊ូតុងតន្ត្រី */
+        /* ------------------------------------- */
+        .music-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column; /* តម្រៀបអក្សរឲ្យនៅពីលើប៊ូតុង */
+            align-items: center;
+        }
+        
+        .music-text {
+            background-color: #fffdf5;
+            color: #800020; /* ពណ៌ក្រហមឈាមជ្រូក */
+            padding: 5px 15px;
+            border: 1px solid #d4af37; /* គែមពណ៌មាស */
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: bounceText 1.5s infinite; /* ចលនាលោតចុះឡើង */
+            white-space: nowrap;
+        }
+        
+        /* កូដបង្កើតចលនាលោត */
+        @keyframes bounceText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ជាន់កូដទីតាំងប៊ូតុងចាស់ កុំឲ្យវាខុសទម្រង់ */
+        .music-btn {
+            position: relative !important;
+            bottom: auto !important;
+            right: auto !important;
+        }
     </style>
     
 </head>
@@ -575,32 +634,39 @@
         <source src="music.mp3" type="audio/mpeg">
     </audio>
     
-    <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
-        🎵
-    </button>
+    <!-- ប្រអប់ថ្មីមានទាំងអក្សរ និងប៊ូតុង -->
+    <div class="music-wrapper">
+        <div id="musicText" class="music-text">ចុចស្ដាប់តន្ត្រី 🎶</div>
+        <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
+            🎵
+        </button>
+    </div>
     
     <script>
         var music = document.getElementById("bgMusic");
         var musicBtn = document.getElementById("musicBtn");
+        var musicText = document.getElementById("musicText"); // ហៅអក្សរមកប្រើ
         
-        // មុខងារសម្រាប់ចុចបើក/បិទ តន្ត្រី
         function toggleMusic() {
             if (music.paused) {
                 music.play();
-                musicBtn.classList.add("playing"); // ធ្វើឲ្យប៊ូតុងវិល
+                musicBtn.classList.add("playing");
+                musicText.style.display = "none"; // លាក់អក្សរពេលចម្រៀងកំពុងចាក់
             } else {
                 music.pause();
-                musicBtn.classList.remove("playing"); // បញ្ឈប់ការវិល
+                musicBtn.classList.remove("playing");
+                musicText.style.display = "block"; // បង្ហាញអក្សរវិញពេលបិទចម្រៀង
             }
         }
         
-        // ជម្រើសពិសេស៖ ចាក់ស្វ័យប្រវត្តិពេលភ្ញៀវចុចប៉ះអេក្រង់លើកដំបូង
+        // ចាក់ស្វ័យប្រវត្តិពេលភ្ញៀវចុចប៉ះអេក្រង់លើកដំបូង
         document.body.addEventListener('click', function() {
             if(music.paused) {
                 music.play();
                 musicBtn.classList.add("playing");
+                musicText.style.display = "none"; // លាក់អក្សរពេលចាក់
             }
-        }, { once: true }); // once: true មានន័យថាដំណើរការតែម្តងគត់ពេលចុចដំបូង
+        }, { once: true });
     </script>
 </body>
 </html>
