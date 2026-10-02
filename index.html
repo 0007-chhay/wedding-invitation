@@ -281,6 +281,27 @@
             color: #800020; /* លេខគណនីពណ៌ក្រហមឈាមជ្រូក */
             font-size: 1.2rem;
         }
+
+        /* ------------------------------------- */
+        /* រចនាអក្សរ p5 ឲ្យច្បាស់ ងាយអាន និងផុសចេញពីរូបភាព */
+        /* ------------------------------------- */
+        p5 {
+            display: block; /* ប្រាប់ឲ្យវាចុះបន្ទាត់ស្អាត */
+            color: #111111 !important; /* ពណ៌ខ្មៅដិត ងាយអាន (បងអាចដូរទៅ #800020 បើចង់បានពណ៌ឈាមជ្រូក) */
+            font-size: 1.1rem; /* ទំហំអក្សរល្មម */
+            font-weight: bold; /* ធ្វើឲ្យអក្សរដិត */
+            margin: 10px 0; /* គម្លាតលើក្រោម */
+            
+            /* បង្កើតពន្លឺ និងគែមពណ៌សជុំវិញអក្សរ ដើម្បីឲ្យវាផុសច្បាស់ទោះផ្ទៃខាងក្រោយពណ៌អ្វីក៏ដោយ */
+            text-shadow: 2px 2px 3px #ffffff, -2px -2px 3px #ffffff, 2px -2px 3px #ffffff, -2px 2px 3px #ffffff, 0 0 10px #ffffff !important;
+        }
+
+        /* ពេលបើកលើទូរស័ព្ទដៃឲ្យវាបន្ថយទំហំបន្តិចកុំឲ្យធំពេក */
+        @media (max-width: 768px) {
+            p5 {
+                font-size: 1rem;
+            }
+        }
     </style>
     
 </head>
@@ -288,12 +309,12 @@
 
     <!-- ផ្នែកខាងលើ (Hero Section) -->
     <header class="hero">
-        <p>សូមគោរពអញ្ជើញចូលរួមពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</p>
+        <p5>សូមគោរពអញ្ជើញចូលរួមពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</p5>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
-        <p>You are cordially invited to attend the wedding ceremony.</p>
+        <p5>You are cordially invited to attend the wedding ceremony.</p5>
          <h2>VAN CHANKRISNA  <br>💕 <br> MIN SREYLAK</h2>
-        <p>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p>
-        <p>Date: 21-22 November-2026 5:00 PM</p>
+        <p5>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p5>
+        <p5>Date: 21-22 November-2026 5:00 PM</p5>
         
         <!-- កន្លែងរាប់ថយក្រោយ -->
         <div class="countdown" id="countdown">
@@ -322,7 +343,7 @@
 
     <!-- ផ្នែកវិចិត្រសាលរូបភាព (ថ្មី) -->
     <section class="section">
-        <h2>💖អានុស្សាវរីយ៍របស់យើង / Our Memories💖</h2>
+        <h2>💖អានុស្សាវរីយ៍របស់យើង 💖<br>Our Memories</h2>
         <div class="gallery">
             <!-- សូមប្តូរឈ្មោះ photo1.jpg ទៅតាមឈ្មោះរូបភាពដែលបងបានដាក់ក្នុង Folder -->
             <img src="61.jpg" alt="Pre-wedding Photo 4">
@@ -390,7 +411,7 @@
     </section>
     <!-- ផ្នែកចំណងដៃ QR Code -->
     <div class="section gift-section">
-        <h2>💖ចំណងដៃ / Wedding gift / Gift given at a celebration 💖</h2>
+        <h2>💖ចំណងដៃ 💖 <br>Gift given at a celebration</h2>
         <p style="text-align: center; margin-bottom: 20px;">
             សម្រាប់ញាតិមិត្តដែលមិនអាចអញ្ជើញចូលរួមបាន ប៉ុន្តែមានបំណងផ្ញើជាចំណងដៃដល់ពួកយើង សូមប្រើប្រាស់ QR Code ខាងក្រោមដោយក្ដីអនុគ្រោះ៖ / For friends and family who are unable to attend but wish to send a gift, please kindly use the QR code below:
         </p>
@@ -472,6 +493,46 @@
         // បង្កើតរូបថ្មីរៀងរាល់ ៤០០ មីលីវិនាទី
         setInterval(createHeart, 400);
     </script>
-    
+    <!-- ------------------------------------- -->
+    <!-- កូដកាំជ្រួចអបអរសាទរ (Fireworks) -->
+    <!-- ------------------------------------- -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
+        function launchFireworks() {
+            var duration = 3000; // រយៈពេលបាញ់ ៣ វិនាទី
+            var end = Date.now() + duration;
+
+            (function frame() {
+                // កាំជ្រួចបាញ់ពីជ្រុងខាងឆ្វេង
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.9 },
+                    colors: ['#d4af37', '#800020', '#ffffff'], // ពណ៌មាស, ក្រហមឈាមជ្រូក, ស
+                    zIndex: 9999
+                });
+                // កាំជ្រួចបាញ់ពីជ្រុងខាងស្តាំ
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.9 },
+                    colors: ['#d4af37', '#800020', '#ffffff'],
+                    zIndex: 9999
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+        
+        // បាញ់ភ្លាមៗពេលភ្ញៀវទើបបើកចូលវេបសាយ
+        launchFireworks();
+        
+        // បាញ់ម្ដងទៀតជារៀងរាល់ ៧ វិនាទី (ដើម្បីកុំឲ្យរញ៉េរញ៉ៃភ្នែកភ្ញៀវពេក)
+        setInterval(launchFireworks, 7000);
+    </script>
 </body>
 </html>
