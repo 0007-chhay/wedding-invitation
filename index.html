@@ -19,7 +19,7 @@
             color: #722f37;
         }
         .hero {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('1I9A3256.jpg');
+            background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('1I9A3256.jpg');
             background-size: cover;
             background-position: center;
             padding: 100px 20px;
@@ -239,6 +239,43 @@
                 font-size: 2.5rem !important; 
             }
         }
+
+        /* ------------------------------------- */
+        /* រចនាប្រអប់ QR Code ចំណងដៃ */
+        /* ------------------------------------- */
+        .gift-section {
+            background: #fffdf5; /* ពណ៌ផ្ទៃពណ៌មាសស្រាល */
+            padding: 40px 20px;
+            border-radius: 15px;
+            border: 2px dashed #d4af37; /* គែមចំណុចៗពណ៌មាស */
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+        }
+        .qr-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .qr-code-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .qr-container p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .qr-container strong {
+            color: #800020; /* លេខគណនីពណ៌ក្រហមឈាមជ្រូក */
+            font-size: 1.2rem;
+        }
     </style>
     
 </head>
@@ -249,7 +286,7 @@
         <p>សូមគោរពអញ្ជើញចូលរួមពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</p>
         <p>You are cordially invited to attend the wedding ceremony.</p>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
-         <h2>VAN CHANKRISNA & MIN SREYLAK</h2>
+         <h2>VAN CHANKRISNA 💕 MIN SREYLAK</h2>
         <p>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p>
         <p>Date: 21-22 November-2026 5:00 PM</p>
         
@@ -264,7 +301,7 @@
 
     <!-- ផ្នែកកម្មវិធីលម្អិត -->
     <section class="section">
-        <h2>កម្មវិធីលម្អិត / Detailed Program</h2>
+        <h2>✨កម្មវិធីលម្អិត / Detailed Program✨</h2>
         <div class="card">
             <h3>ថ្ងៃសិរីមង្គល / An Auspicious Day </h3>
             <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២១ ខែវិច្ឆិកា ឆ្នាំ២០២៦​ <br> ម៉ោង២ រសៀល ចាប់ផ្ដើមកម្មវិធី</p>
@@ -280,7 +317,7 @@
 
     <!-- ផ្នែកវិចិត្រសាលរូបភាព (ថ្មី) -->
     <section class="section">
-        <h2>អានុស្សាវរីយ៍របស់យើង / Our Memories</h2>
+        <h2>💖អានុស្សាវរីយ៍របស់យើង / Our Memories💖</h2>
         <div class="gallery">
             <!-- សូមប្តូរឈ្មោះ photo1.jpg ទៅតាមឈ្មោះរូបភាពដែលបងបានដាក់ក្នុង Folder -->
             <img src="61.jpg" alt="Pre-wedding Photo 4">
@@ -294,7 +331,7 @@
 
     <!-- ផ្នែកទម្រង់ចុះឈ្មោះ (RSVP) -->
     <section class="section">
-        <h2>បញ្ជាក់ការចូលរួម / Confirm participation </h2>
+        <h2>💖បញ្ជាក់ការចូលរួម / Confirm participation 💖</h2>
         <div class="card">
             <p>សូមមេត្តាបំពេញព័ត៌មានខាងក្រោមដើម្បីងាយស្រួលដល់យើងខ្ញុំក្នុងការរៀបចំកន្លែងទទួល</p>
             <p>Please fill out the information below to make it easier for us to arrange a pick-up location.</p>
@@ -346,6 +383,20 @@
             </script>
         </div>
     </section>
+    <!-- ផ្នែកចំណងដៃ QR Code -->
+    <div class="section gift-section">
+        <h2>💖ចំណងដៃ / Wedding gift / Gift given at a celebration 💖</h2>
+        <p style="text-align: center; margin-bottom: 20px;">
+            សម្រាប់ញាតិមិត្តដែលមិនអាចអញ្ជើញចូលរួមបាន ប៉ុន្តែមានបំណងផ្ញើជាចំណងដៃដល់ពួកយើង សូមប្រើប្រាស់ QR Code ខាងក្រោមដោយក្ដីអនុគ្រោះ៖ / For friends and family who are unable to attend but wish to send a gift, please kindly use the QR code below:
+        </p>
+        
+        <div class="qr-container">
+            <!-- បើបងដាក់ឈ្មោះរូបភាពផ្សេង សូមដូរពាក្យ qr.jpg ខាងក្រោមនេះ -->
+            <img src="qr.jpg" alt="Bank QR Code" class="qr-code-img">
+            <!-- <p>ធនាគារ ABA: <strong>002857764</strong></p>
+            <p>ឈ្មោះគណនី: <strong>VAN CHANKRISNA</strong></p> -->
+        </div>
+    </div>
 
     <footer style="padding: 20px; background: #6d6875; color: white;">
         <p>រង់ចាំស្វាគមន៍ដោយក្ដីសោមនស្សរីករាយ!</p>
@@ -416,5 +467,6 @@
         // បង្កើតរូបថ្មីរៀងរាល់ ៤០០ មីលីវិនាទី
         setInterval(createHeart, 400);
     </script>
+    
 </body>
 </html>
