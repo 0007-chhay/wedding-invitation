@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ចំណងដៃអាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Suwannaphum:wght@400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -19,7 +19,7 @@
             color: #722f37;
         /* សម្រាប់ឈ្មោះខ្មែរ (h1) និងចំណងជើងផ្សេងៗ (h3) */
         h1{
-            font-family: 'Khmer OS Moul Light', cursive;
+            font-family: 'Moul', cursive;
             color: #722f37;
         }
         }
@@ -30,7 +30,7 @@
             padding: 100px 20px;
         }
         .hero h1 {
-            font-family: 'Khmer OS Moul Light', cursive;
+            font-family: 'Moul', cursive;
             color: #722f37;
             font-size: 3rem;
             margin-bottom: 10px;
@@ -360,7 +360,7 @@
 
         /* ប្រអប់អត្ថបទកញ្ចក់ថ្លា គាំទ្រគ្រប់ទូរស័ព្ទ */
         .section {
-            background-color: rgba(255, 255, 255, 0.20) !important;
+            background-color: rgba(255, 255, 255, 0.5) !important;
             -webkit-backdrop-filter: blur(8px); /* ថែមបន្ទាត់នេះសម្រាប់ iPhone (Safari) */
             backdrop-filter: blur(8px);
             border-radius: 15px;
@@ -410,38 +410,7 @@
             right: auto !important;
         }
 
-        /* ------------------------------------- */
-        /* រចនាសញ្ញាប្រាប់ឲ្យអូសចុះក្រោម (Scroll Indicator) */
-        /* ------------------------------------- */
-        .hero {
-            position: relative; /* បន្ថែមបន្ទាត់នេះ ដើម្បីឲ្យសញ្ញាព្រួញនៅចំកណ្តាលទំព័រទី១ */
-        }
         
-        .scroll-indicator {
-            position: absolute;
-            bottom: 25px; /* គម្លាតពីបាតខាងក្រោម */
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 100;
-            animation: bounceArrow 2s infinite; /* បញ្ជាឲ្យវាលោតចុះឡើងជារៀងរហូត */
-            cursor: pointer;
-        }
-        
-        .scroll-indicator p {
-            color: #ffffff !important; /* អក្សរពណ៌ស */
-            font-size: 1rem;
-            margin-bottom: 5px;
-            font-weight: bold;
-            /* ស្រមោលខ្មៅក្រាស់ពីក្រោយអក្សរ ការពារកុំឲ្យជាន់ជាមួយ Background ស ឬភ្លឺ */
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8), -1px -1px 4px rgba(0,0,0,0.8) !important; 
-        }
-        
-        .scroll-indicator .arrow {
-            font-size: 2rem;
-            color: #d4af37; /* ព្រួញពណ៌មាស */
-            text-shadow: 0 4px 5px rgba(0,0,0,0.5);
-        }
         
         /* កូដបង្កើតចលនាលោតចុះឡើង (Bouncing Effect) */
         @keyframes bounceArrow {
@@ -500,6 +469,59 @@
             margin: 5px 0 0 0 !important;
             text-shadow: none !important; /* ដកស្រមោលចេញកុំឲ្យព្រិល */
         }
+
+        /* ------------------------------------- */
+        /* ប៊ូតុងអូសចុះក្រោម អណ្តែតនៅខាងឆ្វេង (ស្ទីលដូចប៊ូតុងតន្ត្រី) */
+        /* ------------------------------------- */
+        .scroll-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; /* ដាក់អណ្តែតខាងឆ្វេង */
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .scroll-text {
+            background-color: #fffdf5;
+            color: #800020;
+            padding: 5px 15px;
+            border: 1px solid #d4af37;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: bounceText 1.5s infinite; /* ចលនាលោតចុះឡើងដូចអក្សរតន្ត្រី */
+            white-space: nowrap;
+        }
+        
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e6c25e, #c59b27);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ------------------------------------- */
+        /* កែពណ៌ចំណងជើងគ្រប់ប្រអប់ឲ្យលេចច្បាស់ */
+        /* ------------------------------------- */
+        .section h2, 
+        .section h3, 
+        .section h4 {
+            color: #800020 !important; /* ប្តូរទៅពណ៌ក្រហមឈាមជ្រូកងាយអាន */
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9) !important; /* ស្រមោលសជួយរុញអក្សរឲ្យផុសចេញពីផ្ទៃ Background */
+            font-weight: bold;
+        }
     </style>
     
 </head>
@@ -513,12 +535,6 @@
          <h2>VAN CHANKRISNA  <br>💕 <br> MIN SREYLAK</h2>
         <p5>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p5>
         <p5>Date: 21-22 November-2026</p5>
-        
-        <!-- កូដសញ្ញាប្រាប់ឲ្យអូសចុះក្រោម (Scroll Indicator) -->
-        <div class="scroll-indicator">
-            <p>សូមអូសចុះក្រោម</p>
-            <div class="arrow">⬇️</div>
-        </div>
 
     </header>
 
@@ -795,6 +811,25 @@
                 musicText.style.display = "none"; // លាក់អក្សរពេលចាក់
             }
         }, { once: true });
+    </script>
+    <!-- ------------------------------------- -->
+    <!-- ប៊ូតុងអូសចុះក្រោម (អណ្តែតខាងឆ្វេង) -->
+    <!-- ------------------------------------- -->
+    <div class="scroll-wrapper" onclick="window.scrollBy({top: 600, behavior: 'smooth'})">
+        <div class="scroll-text">សូមអូសចុះក្រោម</div>
+        <div class="scroll-btn">⬇️</div>
+    </div>
+    
+    <script>
+        // លាក់ប៊ូតុងអូសចុះក្រោម ពេលភ្ញៀវអូសអេក្រង់ចុះរួចរាល់
+        window.addEventListener('scroll', function() {
+            var scrollWrap = document.querySelector('.scroll-wrapper');
+            if (window.scrollY > 150) {
+                scrollWrap.style.display = 'none'; // លាក់
+            } else {
+                scrollWrap.style.display = 'flex'; // បង្ហាញវិញបើអូសមកលើគេវិញ
+            }
+        });
     </script>
 </body>
 </html>
