@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ចំណងដៃអាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
-   <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- ទាញយកហ្វុនពី Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             margin: 0;
@@ -16,29 +20,32 @@
             text-align: center;
         }
         
+        /* បានកែកំហុស Syntax Error ត្រង់នេះ (បំបែក h1 ចេញពី h2, h3) */
         h2, h3 {
-            font-family: 'Khmer OS Moul', cursive;
-            color: #722f37;
-        /* សម្រាប់ឈ្មោះខ្មែរ (h1) និងចំណងជើងផ្សេងៗ (h3) */
-        h1{
-             font-family: 'Moul', serif;
+            font-family: 'Moul', serif;
             color: #722f37;
         }
+        
+        h1 {
+            font-family: 'Moul', serif;
+            color: #722f37;
         }
+        
         .hero {
             background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('1I9A3256.jpg');
             background-size: cover;
             background-position: center;
             padding: 100px 20px;
         }
-       /* ------------------------------------- */
+        
+        /* ------------------------------------- */
         /* រចនាឈ្មោះកូនកំលោះ & កូនក្រមុំ (អក្សរខ្មែរ h1) */
         /* ------------------------------------- */
         .hero h1 {
-            font-family: 'Moul', serif !important; /* បញ្ជាឲ្យចេញហ្វុនអក្សរមូលខ្មែរ */
-            color: #800020 !important; /* ពណ៌ក្រហមឈាមជ្រូក */
-            font-size: 2rem; /* ទំហំអក្សរសម្រាប់កុំព្យូទ័រ */
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.9) !important; /* ស្រមោលពណ៌សជួយរុញឲ្យអក្សរផុសច្បាស់ */
+            font-family: 'Moul', serif !important; 
+            color: #800020 !important; 
+            font-size: 2rem; 
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.9) !important; 
             margin: 15px 0;
             line-height: 1.6;
         }
@@ -46,24 +53,26 @@
         /* ------------------------------------- */
         /* សម្រាប់តម្រឹមលើទូរស័ព្ទដៃ (Mobile View) */
         /* ------------------------------------- */
-       @media (max-width: 600px) {
+        @media (max-width: 600px) {
             .hero h1 {
                 font-size: 1.3rem !important; 
             }
-            /* ថែមកូដនេះសម្រាប់ទំហំឈ្មោះអង់គ្លេសលើទូរស័ព្ទ */
             .hero h2 {
                 font-size: 2.2rem !important; 
             }
         }
+        
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
         }
+        
         .section {
             padding: 50px 20px;
             max-width: 800px;
             margin: auto;
         }
+        
         /* ការរចនាកន្លែងរាប់ថយក្រោយ */
         .countdown {
             display: flex;
@@ -84,6 +93,7 @@
             font-weight: bold;
             color: #d53a3a;
         }
+        
         /* ការរចនា Card និង Form */
         .card {
             background: white;
@@ -134,36 +144,36 @@
         .gallery img {
             width: 100%;
             height: 300px;
-            object-fit: cover; /* ជួយអោយរូបភាពមិនខូចទ្រង់ទ្រាយពេលកាត់ */
+            object-fit: cover; 
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease; /* ពេលដាក់ Mouse ពីលើអោយវាលោតយឺតៗ */
+            transition: transform 0.3s ease; 
             cursor: pointer;
         }
         .gallery img:hover {
-            transform: scale(1.05); /* រីកធំជាងមុនបន្តិច */
+            transform: scale(1.05); 
         }
+        
         /* ------------------------------------- */
         /* សម្រួលទំហំអក្សរពេលបើកលើទូរស័ព្ទដៃ (Mobile Responsive) */
         /* ------------------------------------- */
         @media (max-width: 768px) {
             .hero {
-                padding: 60px 10px; /* បន្ថយគម្លាតផ្ទៃខាងលើ និងខាងក្រោម */
+                padding: 60px 10px; 
             }
             .hero h1 {
-                font-size: 1.8rem; /* បន្ថយទំហំឈ្មោះជាភាសាខ្មែរ */
+                font-size: 1.8rem; 
                 line-height: 1.4; 
                 margin-bottom: 5px;
             }
             .hero h2, .hero h3 {
-                font-size: 1.2rem; /* បន្ថយទំហំឈ្មោះជាភាសាអង់គ្លេស */
+                font-size: 1.2rem; 
                 line-height: 1.4;
             }
             .hero p {
-                font-size: 1rem; /* បន្ថយទំហំអក្សរធម្មតាបន្តិច */
+                font-size: 1rem; 
             }
             
-            /* សម្រួលប្រអប់រាប់ថយក្រោយកុំឲ្យធំពេក */
             .countdown {
                 gap: 10px; 
             }
@@ -175,19 +185,19 @@
                 font-size: 1.5rem;
             }
         }
+        
         /* ------------------------------------- */
         /* បែបផែនបេះដូងធ្លាក់ចុះមក (Falling Hearts) */
         /* ------------------------------------- */
         .falling-heart {
             position: fixed;
-            top: -10vh; /* ចាប់ផ្តើមធ្លាក់ពីខាងលើផុតអេក្រង់ */
-            font-size: 1.5rem; /* ទំហំបេះដូង */
-            z-index: 9999; /* ឲ្យវាធ្លាក់ពីលើគេបង្អស់ */
-            pointer-events: none; /* ការពារកុំឲ្យវារាំងខ្ទប់ពេលភ្ញៀវចុចលើប៊ូតុង ឬបំពេញ Form */
+            top: -10vh; 
+            font-size: 1.5rem; 
+            z-index: 9999; 
+            pointer-events: none; 
             animation: fall linear forwards;
         }
 
-        /* ចលនាធ្លាក់និងវិលតិចៗ */
         @keyframes fall {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -195,37 +205,33 @@
             }
             100% {
                 transform: translateY(110vh) rotate(360deg);
-                opacity: 0.5; /* ពេលជិតដល់ក្រោមឲ្យវារាងរលប់បន្តិច */
+                opacity: 0.5; 
             }
         }
+        
         /* ------------------------------------- */
         /* បន្ថែមការរចនាពណ៌មាស (Gold Theme) ដើម្បីភាពថ្លៃថ្នូរ */
         /* ------------------------------------- */
-        
-        /* ពណ៌មាសសម្រាប់ចំណងជើង (កម្មវិធីលម្អិត, អានុស្សាវរីយ៍...) */
         h2 {
             color: #d4af37 !important; 
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         
-        /* ថែមគែមពណ៌មាស និងស្រមោលមាសឲ្យប្រអប់កាត */
         .card {
             border: 2px solid #d4af37; 
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15) !important;
         }
         
-        /* កែប្រអប់រាប់ថយក្រោយ ឲ្យចេញជាគែមមាស និងលេខមាស */
         .time-box {
             background: #fffdf5 !important;
             border: 2px solid #d4af37;
             box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
         }
         .time-box span {
-            color: #d4af37 !important; /* លេខពណ៌មាស */
+            color: #d4af37 !important; 
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         
-        /* ប្តូរប៊ូតុងបញ្ជូន (RSVP) ទៅជាពណ៌មាសរលោង */
         button {
             background: linear-gradient(135deg, #e6c25e, #c59b27) !important;
             color: #ffffff !important;
@@ -235,46 +241,23 @@
         }
         button:hover {
             background: linear-gradient(135deg, #c59b27, #9c7816) !important;
-            transform: translateY(-2px); /* លោតឡើងលើបន្តិចពេលដាក់ Mouse ពីលើ */
+            transform: translateY(-2px); 
         }
 
-        /* ថែមគែមមាសឲ្យរូបភាព Pre-wedding ទាំងអស់ */
         .portrait-row img, .landscape-row img {
             border: 2px solid #d4af37;
-            padding: 3px; /* ទុកចន្លោះពណ៌សមើលទៅដូចស៊ុមរូបថត */
+            padding: 3px; 
             background: white;
-        }
-        /* ------------------------------------- */
-        /* ប្តូរហ្វុនអក្សរឈ្មោះអង់គ្លេស (បែបផ្ចង់រ៉ូមែនទិក) */
-        /* ------------------------------------- */
-        
-        /* ចំណាំ៖ ខ្ញុំសន្មត់ថាបងដាក់ឈ្មោះអង់គ្លេសក្នុង Tag <h2> នៅក្នុងផ្នែក Hero */
-        .hero h2 {
-            font-family: 'Brush Script MT', cursive !important; /* ប្រើហ្វុនអក្សរផ្ចង់ */
-            font-size: 3.5rem !important; /* ទំហំអក្សររាងធំបន្តិចទើបស្អាត ព្រោះជាអក្សរផ្ចង់ */
-            color: #800020 !important; /* ពណ៌ក្រហមឈាមជ្រូក ឲ្យស៊ីគ្នាជាមួយឈ្មោះខ្មែរ */
-            font-weight: normal !important;
-            
-            /* គែមពណ៌ស និងស្រមោល ដើម្បីឲ្យផុសច្បាស់ */
-            text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0 5px 10px rgba(0,0,0,0.3) !important;
-            margin-top: 5px;
-        }
-        
-        /* សម្រួលទំហំពេលបើកលើទូរស័ព្ទដៃកុំឲ្យវាធំពេក */
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.5rem !important; 
-            }
         }
 
         /* ------------------------------------- */
         /* រចនាប្រអប់ QR Code ចំណងដៃ */
         /* ------------------------------------- */
         .gift-section {
-            background: #fffdf5; /* ពណ៌ផ្ទៃពណ៌មាសស្រាល */
+            background: #fffdf5; 
             padding: 40px 20px;
             border-radius: 15px;
-            border: 2px dashed #d4af37; /* គែមចំណុចៗពណ៌មាស */
+            border: 2px dashed #d4af37; 
             margin: 40px auto;
             max-width: 600px;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
@@ -300,41 +283,20 @@
             color: #333;
         }
         .qr-container strong {
-            color: #800020; /* លេខគណនីពណ៌ក្រហមឈាមជ្រូក */
+            color: #800020; 
             font-size: 1.2rem;
-        }
-
-        /* ------------------------------------- */
-        /* រចនាអក្សរ p5 ឲ្យច្បាស់ ងាយអាន និងផុសចេញពីរូបភាព */
-        /* ------------------------------------- */
-        p5 {
-            display: block; /* ប្រាប់ឲ្យវាចុះបន្ទាត់ស្អាត */
-            color: #111111 !important; /* ពណ៌ខ្មៅដិត ងាយអាន (បងអាចដូរទៅ #800020 បើចង់បានពណ៌ឈាមជ្រូក) */
-            font-size: 1.1rem; /* ទំហំអក្សរល្មម */
-            font-weight: bold; /* ធ្វើឲ្យអក្សរដិត */
-            margin: 10px 0; /* គម្លាតលើក្រោម */
-            
-            /* បង្កើតពន្លឺ និងគែមពណ៌សជុំវិញអក្សរ ដើម្បីឲ្យវាផុសច្បាស់ទោះផ្ទៃខាងក្រោយពណ៌អ្វីក៏ដោយ */
-            text-shadow: 2px 2px 3px #ffffff, -2px -2px 3px #ffffff, 2px -2px 3px #ffffff, -2px 2px 3px #ffffff, 0 0 10px #ffffff !important;
-        }
-
-        /* ពេលបើកលើទូរស័ព្ទដៃឲ្យវាបន្ថយទំហំបន្តិចកុំឲ្យធំពេក */
-        @media (max-width: 768px) {
-            p5 {
-                font-size: 1rem;
-            }
         }
 
         /* ------------------------------------- */
         /* រចនាប៊ូតុងតន្ត្រីពណ៌មាសនៅជ្រុងខាងក្រោម */
         /* ------------------------------------- */
         .music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+            position: relative !important;
+            bottom: auto !important;
+            right: auto !important;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #e6c25e, #c59b27); /* ពណ៌មាស */
+            background: linear-gradient(135deg, #e6c25e, #c59b27); 
             border: 2px solid #fff;
             border-radius: 50%;
             font-size: 24px;
@@ -346,10 +308,9 @@
             justify-content: center;
             align-items: center;
             outline: none;
-            padding-bottom: 2px; /* តម្រឹមអក្សរឲ្យចំកណ្តាល */
+            padding-bottom: 2px; 
         }
         
-        /* បង្កើតចលនាវិលពេលកំពុងចាក់ចម្រៀង */
         .music-btn.playing {
             animation: spinMusic 3s linear infinite;
         }
@@ -357,12 +318,13 @@
         @keyframes spinMusic {
             100% { transform: rotate(360deg); }
         }
+        
         /* ------------------------------------- */
         /* រូបភាព Background ស្រាល ដែលគាំទ្រទាំងលើ iPhone និង Android */
         /* ------------------------------------- */
         body {
-            position: relative; /* ចាំបាច់ត្រូវមាន */
-            background-color: #fffdf5; /* ពណ៌ផ្ទៃបម្រុងទុកបើរូបដើរយឺត */
+            position: relative; 
+            background-color: #fffdf5; 
         }
         
         body::before {
@@ -375,18 +337,17 @@
             background-image: url('bg-light.jpg'); 
             background-size: cover;
             background-position: center;
-            z-index: -1; /* ទាញរូបឲ្យទៅនៅខាងក្រោយគេបង្អស់ */
+            z-index: -1; 
         }
 
-        /* ប្រអប់អត្ថបទកញ្ចក់ថ្លា គាំទ្រគ្រប់ទូរស័ព្ទ */
         .section {
             background-color: rgba(255, 255, 255, 0.5) !important;
-            -webkit-backdrop-filter: blur(8px); /* ថែមបន្ទាត់នេះសម្រាប់ iPhone (Safari) */
+            -webkit-backdrop-filter: blur(8px); 
             backdrop-filter: blur(8px);
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
             margin: 30px auto;
-            position: relative; /* កុំឲ្យរូប Background លេចពីលើ */
+            position: relative; 
             z-index: 1;
         }
 
@@ -399,40 +360,29 @@
             right: 20px;
             z-index: 10000;
             display: flex;
-            flex-direction: column; /* តម្រៀបអក្សរឲ្យនៅពីលើប៊ូតុង */
+            flex-direction: column; 
             align-items: center;
         }
         
         .music-text {
             background-color: #fffdf5;
-            color: #800020; /* ពណ៌ក្រហមឈាមជ្រូក */
+            color: #800020; 
             padding: 5px 15px;
-            border: 1px solid #d4af37; /* គែមពណ៌មាស */
+            border: 1px solid #d4af37; 
             border-radius: 20px;
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            animation: bounceText 1.5s infinite; /* ចលនាលោតចុះឡើង */
+            animation: bounceText 1.5s infinite; 
             white-space: nowrap;
         }
         
-        /* កូដបង្កើតចលនាលោត */
         @keyframes bounceText {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
-
-        /* ជាន់កូដទីតាំងប៊ូតុងចាស់ កុំឲ្យវាខុសទម្រង់ */
-        .music-btn {
-            position: relative !important;
-            bottom: auto !important;
-            right: auto !important;
-        }
-
         
-        
-        /* កូដបង្កើតចលនាលោតចុះឡើង (Bouncing Effect) */
         @keyframes bounceArrow {
             0%, 20%, 50%, 80%, 100% { 
                 transform: translateX(-50%) translateY(0); 
@@ -451,13 +401,13 @@
         .thank-you-section {
             text-align: center;
             padding: 40px 20px;
-            margin-bottom: 80px; /* ទុកចន្លោះខាងក្រោមដើម្បីកុំឲ្យបាំងប៊ូតុងចម្រៀង */
+            margin-bottom: 80px; 
         }
         
         .thank-you-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #333333 !important; /* ពណ៌អក្សរខ្មៅស្រទន់ងាយអាន */
+            color: #333333 !important; 
             text-align: justify;
             text-align-last: center;
             margin: 0 auto 20px auto;
@@ -466,12 +416,11 @@
         }
         
         .thank-you-eng {
-            font-family: 'Great Vibes', cursive !important; /* ប្រើអក្សរផ្ចង់រ៉ូមែនទិក */
+            font-family: 'Great Vibes', cursive !important; 
             font-size: 2rem !important;
-            color: #800020 !important; /* ពណ៌ក្រហមឈាមជ្រូក */
+            color: #800020 !important; 
             margin-bottom: 15px;
         }
-        
         
         @keyframes pulseHeart {
             0% { transform: scale(1); }
@@ -480,23 +429,23 @@
         }
 
         /* ------------------------------------- */
-        /* កែពណ៌អក្សរ (ថ្ងៃ ម៉ោង នាទី វិនាទី) ឲ្យមើលឃើញច្បាស់ */
+        /* កែពណ៌អក្សរ (ថ្ងៃ ម៉ោង នាទី វិនាទី) */
         /* ------------------------------------- */
         .time-box p {
-            color: #333333 !important; /* ដូរទៅពណ៌ខ្មៅស្រទន់ (ឬបងអាចដូរទៅ #800020 ពណ៌ឈាមជ្រូកក៏បាន) */
-            font-size: 1rem !important; /* សម្រួលទំហំអក្សរ */
+            color: #333333 !important; 
+            font-size: 1rem !important; 
             font-weight: bold;
             margin: 5px 0 0 0 !important;
-            text-shadow: none !important; /* ដកស្រមោលចេញកុំឲ្យព្រិល */
+            text-shadow: none !important; 
         }
 
         /* ------------------------------------- */
-        /* ប៊ូតុងអូសចុះក្រោម អណ្តែតនៅខាងឆ្វេង (ស្ទីលដូចប៊ូតុងតន្ត្រី) */
+        /* កែតម្រូវទីតាំងប៊ូតុងទាំងពីរ */
         /* ------------------------------------- */
         .scroll-wrapper {
             position: fixed;
             bottom: 20px;
-            left: 20px; /* ដាក់អណ្តែតខាងឆ្វេង */
+            left: 20px; 
             z-index: 10000;
             display: flex;
             flex-direction: column;
@@ -514,7 +463,7 @@
             font-weight: bold;
             margin-bottom: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            animation: bounceText 1.5s infinite; /* ចលនាលោតចុះឡើងដូចអក្សរតន្ត្រី */
+            animation: bounceText 1.5s infinite; 
             white-space: nowrap;
         }
         
@@ -538,61 +487,30 @@
         .section h2, 
         .section h3, 
         .section h4 {
-            color: #800020 !important; /* ប្តូរទៅពណ៌ក្រហមឈាមជ្រូកងាយអាន */
-            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9) !important; /* ស្រមោលសជួយរុញអក្សរឲ្យផុសចេញពីផ្ទៃ Background */
+            color: #800020 !important; 
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9) !important; 
             font-weight: bold;
-        }
-        /* ឧទាហរណ៍នៃការបន្ថយទំហំអក្សរលើទូរស័ព្ទ */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem; /* បន្ថយទំហំអក្សរឈ្មោះ */
-    }
-}
-
-/* ------------------------------------- */
-        /* កែតម្រូវទីតាំងប៊ូតុងទាំងពីរ */
-        /* ------------------------------------- */
-        .scroll-wrapper {
-            position: fixed;
-            bottom: 20px;
-            left: 20px; /* នៅខាងឆ្វេង */
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .music-wrapper {
-            position: fixed;
-            bottom: 20px;
-            right: 20px; /* នៅខាងស្តាំ */
-            z-index: 10000;
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
         }
 
         /* ------------------------------------- */
         /* រចនាអក្សរ សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស */
         /* ------------------------------------- */
         .invite-text {
-            font-family: 'Moul', serif; /* ប្រើហ្វុនអក្សរមូល */
+            font-family: 'Moul', serif; 
             font-size: 1.1rem;
-            color: #ffffff; /* អក្សរពណ៌ស */
-            background: linear-gradient(135deg, #800020, #a02040); /* ផ្ទៃពណ៌ក្រហមឈាមជ្រូក */
+            color: #ffffff; 
+            background: linear-gradient(135deg, #800020, #a02040); 
             padding: 8px 25px;
-            border-radius: 25px; /* ធ្វើឲ្យរាងមូលសងខាង */
-            border: 1.5px solid #d4af37; /* គែមពណ៌មាស */
+            border-radius: 25px; 
+            border: 1.5px solid #d4af37; 
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* ស្រមោលអណ្តែតចេញពី Background */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
             margin-top: 15px;
             letter-spacing: 1px;
             text-shadow: none !important;
         }
 
     </style>
-    
 </head>
 <body>
 
@@ -600,20 +518,18 @@
     <header class="hero">
         <h3>ពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</h3>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
-       <p style="font-size: 1rem; color: #333; margin: 10px 0;">You are cordially invited to attend <br>the wedding ceremony.</p>
+        <p style="font-size: 1rem; color: #333; margin: 10px 0;">You are cordially invited to attend <br>the wedding ceremony.</p>
         
-        <!-- ឈ្មោះកូនកំលោះ -->
-        <h2 style="font-family: 'Brush Script MT', cursive; font-size: 3rem; text-transform: uppercase; margin: 10px 0; text-shadow: 2px 2px 5px rgba(255,255,255,0.9); color: #800020; font-weight: normal; letter-spacing: 2px;">VAN CHANKRISNA</h2>
+        <!-- ឈ្មោះកូនកំលោះ (បានដូរទៅ Dancing Script ដែលស្គាល់លើគ្រប់ទូរស័ព្ទ) -->
+        <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 10px 0; text-shadow: 2px 2px 5px rgba(255,255,255,0.9); color: #800020; font-weight: 700; letter-spacing: 2px;">Van Chankrisna</h2>
         
         <!-- រូបបេះដូង -->
         <div class="heart-icon">💞</div> 
         
         <!-- ឈ្មោះកូនក្រមុំ -->
-        <h2 style="font-family: 'Brush Script MT', cursive; font-size: 3rem; text-transform: uppercase; margin: 10px 0; text-shadow: 2px 2px 5px rgba(255,255,255,0.9); color: #800020; font-weight: normal; letter-spacing: 2px;">MIN SREYLAK</h2>
+        <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 10px 0; text-shadow: 2px 2px 5px rgba(255,255,255,0.9); color: #800020; font-weight: 700; letter-spacing: 2px;">Min Sreylak</h2>
         
         <p class="invite-text">សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស</p>
-       
-
     </header>
 
     <!-- ផ្នែកកម្មវិធីលម្អិត -->
@@ -623,7 +539,6 @@
             <h3>ថ្ងៃសិរីមង្គល / An Auspicious Day </h3>
             <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២១ ខែវិច្ឆិកា ឆ្នាំ២០២៦​ <br> ម៉ោង២ រសៀល ចាប់ផ្ដើមកម្មវិធី</p>
             <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦ <br>ម៉ោង ៥ ល្ងាច <strong>ពិធីទទួលភ្ញៀវពិសារភោជនាអារហារ </strong></p>
-            <!-- <p><strong>ម៉ោង ០៥:០០ ល្ងាច:</strong> ពិធីទទួលភ្ញៀវពិសារភោជនាអារហារ</p> -->
             <p><strong>Date:</strong> November 21, 2026; program starts at 2:00 PM.</p>
             <p><strong>Date:</strong> November 22, 2026; Reception and Banquet at 5:00 PM.</p>
             <hr style="border: 0.5px solid #eee; margin: 20px 0;">
@@ -636,7 +551,6 @@
     <section class="section">
         <h2>💖អានុស្សាវរីយ៍របស់យើង 💖<br>Our Memories</h2>
         <div class="gallery">
-            <!-- សូមប្តូរឈ្មោះ photo1.jpg ទៅតាមឈ្មោះរូបភាពដែលបងបានដាក់ក្នុង Folder -->
             <img src="61.jpg" alt="Pre-wedding Photo 4">
             <img src="62.jpg" alt="Pre-wedding Photo 3">
             <img src="63.jpg" alt="Pre-wedding Photo 4">
@@ -654,7 +568,6 @@
             <p>Please fill out the information below to make it easier for us to arrange a pick-up location.</p>
     
             <form id="rsvpForm">
-                <!-- ចំណាំ: ត្រូវតែមាន name="name" ឱ្យដូចក្នុង Apps Script -->
                 <input type="text" name="name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក... write your name here.." required>
                 
                 <select name="attendance" required>
@@ -674,22 +587,21 @@
 
             <script>
                 document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-                    e.preventDefault(); // ការពារកុំឱ្យវេបសាយលោត Refresh ពេលចុចបញ្ជូន
+                    e.preventDefault(); 
                     
                     var form = e.target;
                     var data = new FormData(form);
                     var btn = document.getElementById("submitBtn");
                     
-                    btn.innerText = "កំពុងបញ្ជូន..."; // ដូរអក្សរប៊ូតុងពេលកំពុងដំណើរការ
+                    btn.innerText = "កំពុងបញ្ជូន..."; 
                     
-                    // សូមលុបអក្សរខ្មែរខាងក្រោម ហើយ Paste នូវ Link URL ពី Google Apps Script របស់បងចូលត្រង់នេះ
                     fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
                         method: "POST",
                         body: data
                     })
                     .then(response => {
                         alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! យើងខ្ញុំរង់ចាំស្វាគមន៍ដោយក្តីរីករាយ។");
-                        form.reset(); // លុបទិន្នន័យក្នុងប្រអប់ចោលវិញពេលផ្ញើជោគជ័យ
+                        form.reset(); 
                         btn.innerText = "បញ្ជូនការបញ្ជាក់";
                     })
                     .catch(error => {
@@ -700,6 +612,7 @@
             </script>
         </div>
     </section>
+    
     <!-- ផ្នែកចំណងដៃ QR Code -->
     <div class="section gift-section">
         <h2>💖ចំណងដៃ 💖 <br>Gift given at a celebration</h2>
@@ -708,12 +621,10 @@
         </p>
         
         <div class="qr-container">
-            <!-- បើបងដាក់ឈ្មោះរូបភាពផ្សេង សូមដូរពាក្យ qr.jpg ខាងក្រោមនេះ -->
             <img src="qr.jpg" alt="Bank QR Code" class="qr-code-img">
-            <!-- <p>ធនាគារ ABA: <strong>002857764</strong></p>
-            <p>ឈ្មោះគណនី: <strong>VAN CHANKRISNA</strong></p> -->
         </div>
     </div>
+    
     <!-- ------------------------------------- -->
     <!-- ផ្នែកថ្លែងអំណរគុណ (Thank You Section) -->
     <!-- ------------------------------------- -->
@@ -731,9 +642,7 @@
     </div>
 
     <footer style="padding: 20px; background: #6d6875; color: white;">
-       <!-- ដាក់ប្រអប់រាប់ថយក្រោយនៅទីនេះ (ផ្នែក Footer) -->
     <div class="section footer-countdown" style="text-align: center; background: none; box-shadow: none; border: none;">
-        <!-- Paste កូដរាប់ថយក្រោយរបស់បងនៅត្រង់នេះ -->
          <p style="margin-top: 20px; font-size: 0.9rem;"> Van Chankrisna ❤️ Min Sreylak</p>
         <div class="countdown">
             <div class="time-box"><span id="days">00</span><p>ថ្ងៃ</p></div>
@@ -742,7 +651,6 @@
             <div class="time-box"><span id="seconds">00</span><p>វិនាទី</p></div>
         </div>
     </div>
-
     </footer>
 
     <!-- កូដរាប់ថយក្រោយ -->
@@ -770,72 +678,50 @@
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }, 1000);
 
-        // ------------------------------------- 
-        // កូដបង្កើតចលនាបេះដូងធ្លាក់
-        // ------------------------------------- 
-        // ------------------------------------- 
-        // កូដបង្កើតចលនាបេះដូង និងផ្កាកុលាបធ្លាក់
-        // ------------------------------------- 
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('falling-heart');
             
-            // បញ្ជីរូបភាព (បេះដូង និង ផ្កាកុលាប) បងអាចថែមរូបផ្សេងទៀតបាននៅទីនេះ
             const symbols = ['💖', '🌹', '💕', '🌷', '✨']; 
             
-            // ប្រាប់កូដឲ្យរើសយករូបណាមួយក្នុងបញ្ជីខាងលើដោយចៃដន្យ
             const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
             heart.innerText = randomSymbol; 
             
-            // កំណត់ទីតាំងធ្លាក់ឲ្យខុសៗគ្នា
             heart.style.left = Math.random() * 100 + 'vw';
             
-            // ល្បឿនធ្លាក់ (ចន្លោះពី ៣ ទៅ ៦ វិនាទី)
             const fallDuration = Math.random() * 3 + 3;
             heart.style.animationDuration = fallDuration + 's';
             
-            // កំណត់ទំហំរូបឲ្យតូចធំខុសៗគ្នាបន្តិចបន្តួច
             heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; 
             
             document.body.appendChild(heart);
             
-            // លុបវាចោលវិញពេលវាធ្លាក់ដល់ក្រោម ដើម្បីកុំឲ្យគាំងទូរស័ព្ទ
             setTimeout(() => {
                 heart.remove();
             }, fallDuration * 1000);
         }
 
-        // បង្កើតរូបថ្មីរៀងរាល់ ៤០០ មីលីវិនាទី
         setInterval(createHeart, 600);
     </script>
+    
     <!-- ------------------------------------- -->
     <!-- កូដកាំជ្រួចអបអរសាទរ (Fireworks) -->
     <!-- ------------------------------------- -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
         function launchFireworks() {
-            var duration = 2000; // រយៈពេលបាញ់ ៣ វិនាទី
+            var duration = 2000; 
             var end = Date.now() + duration;
 
             (function frame() {
-                // កាំជ្រួចបាញ់ពីជ្រុងខាងឆ្វេង
                 confetti({
                     particleCount: 5,
                     angle: 60,
                     spread: 55,
                     origin: { x: 0, y: 0.9 },
-                    colors: ['#d4af37', '#800020', '#ffffff'], // ពណ៌មាស, ក្រហមឈាមជ្រូក, ស
+                    colors: ['#d4af37', '#800020', '#ffffff'], 
                     zIndex: 9999
                 });
-                // កាំជ្រួចបាញ់ពីជ្រុងខាងស្តាំ
-                // confetti({
-                //     particleCount: 10,
-                //     angle: 100,
-                //     spread: 50,
-                //     origin: { x: 1, y: 0.9 },
-                //     colors: ['#d4af37', '#800020', '#ffffff'],
-                //     zIndex: 9999
-                // });
 
                 if (Date.now() < end) {
                     requestAnimationFrame(frame);
@@ -843,12 +729,10 @@
             }());
         }
         
-        // បាញ់ភ្លាមៗពេលភ្ញៀវទើបបើកចូលវេបសាយ
         launchFireworks();
-        
-        // បាញ់ម្ដងទៀតជារៀងរាល់ ៧ វិនាទី (ដើម្បីកុំឲ្យរញ៉េរញ៉ៃភ្នែកភ្ញៀវពេក)
         setInterval(launchFireworks, 9000);
     </script>
+    
     <!-- ------------------------------------- -->
     <!-- ប្រព័ន្ធចាក់តន្ត្រី (Background Music) -->
     <!-- ------------------------------------- -->
@@ -856,7 +740,6 @@
         <source src="music.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- ប្រអប់ថ្មីមានទាំងអក្សរ និងប៊ូតុង -->
     <div class="music-wrapper">
         <div id="musicText" class="music-text">ចុចស្ដាប់តន្ត្រី 🎶</div>
         <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
@@ -867,29 +750,29 @@
     <script>
         var music = document.getElementById("bgMusic");
         var musicBtn = document.getElementById("musicBtn");
-        var musicText = document.getElementById("musicText"); // ហៅអក្សរមកប្រើ
+        var musicText = document.getElementById("musicText"); 
         
         function toggleMusic() {
             if (music.paused) {
                 music.play();
                 musicBtn.classList.add("playing");
-                musicText.style.display = "none"; // លាក់អក្សរពេលចម្រៀងកំពុងចាក់
+                musicText.style.display = "none"; 
             } else {
                 music.pause();
                 musicBtn.classList.remove("playing");
-                musicText.style.display = "block"; // បង្ហាញអក្សរវិញពេលបិទចម្រៀង
+                musicText.style.display = "block"; 
             }
         }
         
-        // ចាក់ស្វ័យប្រវត្តិពេលភ្ញៀវចុចប៉ះអេក្រង់លើកដំបូង
         document.body.addEventListener('click', function() {
             if(music.paused) {
                 music.play();
                 musicBtn.classList.add("playing");
-                musicText.style.display = "none"; // លាក់អក្សរពេលចាក់
+                musicText.style.display = "none"; 
             }
         }, { once: true });
     </script>
+    
     <!-- ------------------------------------- -->
     <!-- ប៊ូតុងអូសចុះក្រោម (អណ្តែតខាងឆ្វេង) -->
     <!-- ------------------------------------- -->
@@ -899,13 +782,12 @@
     </div>
     
     <script>
-        // លាក់ប៊ូតុងអូសចុះក្រោម ពេលភ្ញៀវអូសអេក្រង់ចុះរួចរាល់
         window.addEventListener('scroll', function() {
             var scrollWrap = document.querySelector('.scroll-wrapper');
             if (window.scrollY > 150) {
-                scrollWrap.style.display = 'none'; // លាក់
+                scrollWrap.style.display = 'none'; 
             } else {
-                scrollWrap.style.display = 'flex'; // បង្ហាញវិញបើអូសមកលើគេវិញ
+                scrollWrap.style.display = 'flex'; 
             }
         });
     </script>
