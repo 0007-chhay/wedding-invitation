@@ -19,17 +19,19 @@
             color: #722f37;
         /* សម្រាប់ឈ្មោះខ្មែរ (h1) និងចំណងជើងផ្សេងៗ (h3) */
         h1{
-            font-family: 'Khmer OS Koulen', cursive;
+            font-family: 'Khmer OS Moul Light', cursive;
             color: #722f37;
         }
         }
         .hero {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('1I9A3256.jpg');
+            background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('1I9A3256.jpg');
             background-size: cover;
             background-position: center;
             padding: 100px 20px;
         }
         .hero h1 {
+            font-family: 'Khmer OS Moul Light', cursive;
+            color: #722f37;
             font-size: 3rem;
             margin-bottom: 10px;
         }
@@ -228,7 +230,7 @@
         
         /* ចំណាំ៖ ខ្ញុំសន្មត់ថាបងដាក់ឈ្មោះអង់គ្លេសក្នុង Tag <h2> នៅក្នុងផ្នែក Hero */
         .hero h2 {
-            font-family: 'Cooper Black', cursive !important; /* ប្រើហ្វុនអក្សរផ្ចង់ */
+            font-family: 'Brush Script MT', cursive !important; /* ប្រើហ្វុនអក្សរផ្ចង់ */
             font-size: 3.5rem !important; /* ទំហំអក្សររាងធំបន្តិចទើបស្អាត ព្រោះជាអក្សរផ្ចង់ */
             color: #800020 !important; /* ពណ៌ក្រហមឈាមជ្រូក ឲ្យស៊ីគ្នាជាមួយឈ្មោះខ្មែរ */
             font-weight: normal !important;
@@ -358,7 +360,7 @@
 
         /* ប្រអប់អត្ថបទកញ្ចក់ថ្លា គាំទ្រគ្រប់ទូរស័ព្ទ */
         .section {
-            background-color: rgba(255, 255, 255, 0.85) !important;
+            background-color: rgba(255, 255, 255, 0.20) !important;
             -webkit-backdrop-filter: blur(8px); /* ថែមបន្ទាត់នេះសម្រាប់ iPhone (Safari) */
             backdrop-filter: blur(8px);
             border-radius: 15px;
@@ -407,6 +409,97 @@
             bottom: auto !important;
             right: auto !important;
         }
+
+        /* ------------------------------------- */
+        /* រចនាសញ្ញាប្រាប់ឲ្យអូសចុះក្រោម (Scroll Indicator) */
+        /* ------------------------------------- */
+        .hero {
+            position: relative; /* បន្ថែមបន្ទាត់នេះ ដើម្បីឲ្យសញ្ញាព្រួញនៅចំកណ្តាលទំព័រទី១ */
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 25px; /* គម្លាតពីបាតខាងក្រោម */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 100;
+            animation: bounceArrow 2s infinite; /* បញ្ជាឲ្យវាលោតចុះឡើងជារៀងរហូត */
+            cursor: pointer;
+        }
+        
+        .scroll-indicator p {
+            color: #ffffff !important; /* អក្សរពណ៌ស */
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+            /* ស្រមោលខ្មៅក្រាស់ពីក្រោយអក្សរ ការពារកុំឲ្យជាន់ជាមួយ Background ស ឬភ្លឺ */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8), -1px -1px 4px rgba(0,0,0,0.8) !important; 
+        }
+        
+        .scroll-indicator .arrow {
+            font-size: 2rem;
+            color: #d4af37; /* ព្រួញពណ៌មាស */
+            text-shadow: 0 4px 5px rgba(0,0,0,0.5);
+        }
+        
+        /* កូដបង្កើតចលនាលោតចុះឡើង (Bouncing Effect) */
+        @keyframes bounceArrow {
+            0%, 20%, 50%, 80%, 100% { 
+                transform: translateX(-50%) translateY(0); 
+            }
+            40% { 
+                transform: translateX(-50%) translateY(-15px); 
+            }
+            60% { 
+                transform: translateX(-50%) translateY(-7px); 
+            }
+        }
+
+        /* ------------------------------------- */
+        /* រចនាផ្នែកថ្លែងអំណរគុណ */
+        /* ------------------------------------- */
+        .thank-you-section {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 80px; /* ទុកចន្លោះខាងក្រោមដើម្បីកុំឲ្យបាំងប៊ូតុងចម្រៀង */
+        }
+        
+        .thank-you-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333333 !important; /* ពណ៌អក្សរខ្មៅស្រទន់ងាយអាន */
+            text-align: justify;
+            text-align-last: center;
+            margin: 0 auto 20px auto;
+            max-width: 600px;
+            font-weight: bold;
+        }
+        
+        .thank-you-eng {
+            font-family: 'Great Vibes', cursive !important; /* ប្រើអក្សរផ្ចង់រ៉ូមែនទិក */
+            font-size: 2rem !important;
+            color: #800020 !important; /* ពណ៌ក្រហមឈាមជ្រូក */
+            margin-bottom: 15px;
+        }
+        
+        
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* ------------------------------------- */
+        /* កែពណ៌អក្សរ (ថ្ងៃ ម៉ោង នាទី វិនាទី) ឲ្យមើលឃើញច្បាស់ */
+        /* ------------------------------------- */
+        .time-box p {
+            color: #333333 !important; /* ដូរទៅពណ៌ខ្មៅស្រទន់ (ឬបងអាចដូរទៅ #800020 ពណ៌ឈាមជ្រូកក៏បាន) */
+            font-size: 1rem !important; /* សម្រួលទំហំអក្សរ */
+            font-weight: bold;
+            margin: 5px 0 0 0 !important;
+            text-shadow: none !important; /* ដកស្រមោលចេញកុំឲ្យព្រិល */
+        }
     </style>
     
 </head>
@@ -414,20 +507,19 @@
 
     <!-- ផ្នែកខាងលើ (Hero Section) -->
     <header class="hero">
-        <p5>សូមគោរពអញ្ជើញចូលរួមពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</p5>
+        <h3>ពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</h3>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
-        <p5>You are cordially invited to attend the wedding ceremony.</p5>
+        <p5>You are cordially invited to attend <br>the wedding ceremony.</p5>
          <h2>VAN CHANKRISNA  <br>💕 <br> MIN SREYLAK</h2>
         <p5>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p5>
-        <p5>Date: 21-22 November-2026 5:00 PM</p5>
+        <p5>Date: 21-22 November-2026</p5>
         
-        <!-- កន្លែងរាប់ថយក្រោយ -->
-        <div class="countdown" id="countdown">
-            <div class="time-box"><span id="days">00</span> ថ្ងៃ</div>
-            <div class="time-box"><span id="hours">00</span> ម៉ោង</div>
-            <div class="time-box"><span id="minutes">00</span> នាទី</div>
-            <div class="time-box"><span id="seconds">00</span> វិនាទី</div>
+        <!-- កូដសញ្ញាប្រាប់ឲ្យអូសចុះក្រោម (Scroll Indicator) -->
+        <div class="scroll-indicator">
+            <p>សូមអូសចុះក្រោម</p>
+            <div class="arrow">⬇️</div>
         </div>
+
     </header>
 
     <!-- ផ្នែកកម្មវិធីលម្អិត -->
@@ -528,11 +620,35 @@
             <p>ឈ្មោះគណនី: <strong>VAN CHANKRISNA</strong></p> -->
         </div>
     </div>
+    <!-- ------------------------------------- -->
+    <!-- ផ្នែកថ្លែងអំណរគុណ (Thank You Section) -->
+    <!-- ------------------------------------- -->
+    <div class="section thank-you-section">
+        <h2>❤️ថ្លែងអំណរគុណ❤️</h2>
+        <p class="thank-you-text">
+            យើងខ្ញុំទាំងពីរ សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះ ឯកឧត្តម លោកជំទាវ អស់លោក លោកស្រី អ្នកនាងកញ្ញា និងញាតិមិត្តជិតឆ្ងាយទាំងអស់ ដែលបានចំណាយពេលវេលាដ៏មានតម្លៃ អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយសក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ ព្រមទាំងបានផ្តល់នូវចំណងដៃដ៏មានតម្លៃ។
+            <br><br>
+            សូមគោរពជូនពរ ឯកឧត្តម លោកជំទាវ អស់លោក លោកស្រី អ្នកនាងកញ្ញា ជួបប្រទះតែពុទ្ធពរទាំង ៤ ប្រការគឺ អាយុ វណ្ណៈ សុខៈ និងពលៈ កុំបីឃ្លៀងឃ្លាតឡើយ។
+        </p>
+        <p class="thank-you-eng">
+            Thank you from the bottom of our hearts for joining us on our special day. Your presence and warm wishes mean the world to us.
+        </p>
+        <div class="thank-you-hearts">❤️❤️❤️</div>
+    </div>
 
     <footer style="padding: 20px; background: #6d6875; color: white;">
-        <p>រង់ចាំស្វាគមន៍ដោយក្ដីសោមនស្សរីករាយ!</p>
-        <p style="font-size: 0.8rem;">បង្កើតដោយក្តីស្រឡាញ់ 💖</p>
-         <p style="font-size: 0.8rem;">We look forward to welcoming you with great pleasure! 💖</p>
+       <!-- ដាក់ប្រអប់រាប់ថយក្រោយនៅទីនេះ (ផ្នែក Footer) -->
+    <div class="section footer-countdown" style="text-align: center; background: none; box-shadow: none; border: none;">
+        <!-- Paste កូដរាប់ថយក្រោយរបស់បងនៅត្រង់នេះ -->
+         <p style="margin-top: 20px; font-size: 0.9rem;"> Van Chankrisna ❤️ Min Sreylak</p>
+        <div class="countdown">
+            <div class="time-box"><span id="days">00</span><p>ថ្ងៃ</p></div>
+            <div class="time-box"><span id="hours">00</span><p>ម៉ោង</p></div>
+            <div class="time-box"><span id="minutes">00</span><p>នាទី</p></div>
+            <div class="time-box"><span id="seconds">00</span><p>វិនាទី</p></div>
+        </div>
+    </div>
+
     </footer>
 
     <!-- កូដរាប់ថយក្រោយ -->
@@ -596,7 +712,7 @@
         }
 
         // បង្កើតរូបថ្មីរៀងរាល់ ៤០០ មីលីវិនាទី
-        setInterval(createHeart, 400);
+        setInterval(createHeart, 600);
     </script>
     <!-- ------------------------------------- -->
     <!-- កូដកាំជ្រួចអបអរសាទរ (Fireworks) -->
@@ -604,7 +720,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
         function launchFireworks() {
-            var duration = 3000; // រយៈពេលបាញ់ ៣ វិនាទី
+            var duration = 2000; // រយៈពេលបាញ់ ៣ វិនាទី
             var end = Date.now() + duration;
 
             (function frame() {
@@ -637,9 +753,8 @@
         launchFireworks();
         
         // បាញ់ម្ដងទៀតជារៀងរាល់ ៧ វិនាទី (ដើម្បីកុំឲ្យរញ៉េរញ៉ៃភ្នែកភ្ញៀវពេក)
-        setInterval(launchFireworks, 7000);
+        setInterval(launchFireworks, 9000);
     </script>
-
     <!-- ------------------------------------- -->
     <!-- ប្រព័ន្ធចាក់តន្ត្រី (Background Music) -->
     <!-- ------------------------------------- -->
