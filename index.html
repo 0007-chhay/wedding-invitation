@@ -336,23 +336,36 @@
             100% { transform: rotate(360deg); }
         }
         /* ------------------------------------- */
-        /* បន្ថែមរូបភាព Background ស្រាលសម្រាប់ទំព័រទាំងមូល */
+        /* រូបភាព Background ស្រាល ដែលគាំទ្រទាំងលើ iPhone និង Android */
         /* ------------------------------------- */
         body {
-            /* ដាក់រូបភាព Background ថ្មីនៅទីនេះ */
-            background-image: url('bg-light.jpg') !important; 
-            background-size: cover !important; /* ឲ្យរូបភាពគ្របពេញអេក្រង់ */
-            background-attachment: fixed !important; /* ធ្វើឲ្យរូបភាពនៅនឹងថ្កល់ពេលភ្ញៀវអូសចុះក្រោម (ឡូយខ្លាំង) */
-            background-position: center !important;
+            position: relative; /* ចាំបាច់ត្រូវមាន */
+            background-color: #fffdf5; /* ពណ៌ផ្ទៃបម្រុងទុកបើរូបដើរយឺត */
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg-light.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -1; /* ទាញរូបឲ្យទៅនៅខាងក្រោយគេបង្អស់ */
         }
 
-        /* ធ្វើឲ្យប្រអប់អត្ថបទ (Section) មានផ្ទៃពណ៌សព្រិលៗ ដើម្បីងាយស្រួលអានអក្សរ */
+        /* ប្រអប់អត្ថបទកញ្ចក់ថ្លា គាំទ្រគ្រប់ទូរស័ព្ទ */
         .section {
-            background-color: rgba(255, 255, 255, 0.85) !important; /* ពណ៌សថ្លា ៨៥% (ឃើញរូបពីក្រោយព្រាលៗ) */
-            backdrop-filter: blur(8px); /* ធ្វើឲ្យផ្ទៃខាងក្រោយព្រិលស្រទន់ */
+            background-color: rgba(255, 255, 255, 0.85) !important;
+            -webkit-backdrop-filter: blur(8px); /* ថែមបន្ទាត់នេះសម្រាប់ iPhone (Safari) */
+            backdrop-filter: blur(8px);
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
             margin: 30px auto;
+            position: relative; /* កុំឲ្យរូប Background លេចពីលើ */
+            z-index: 1;
         }
 
         /* ------------------------------------- */
