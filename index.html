@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ចំណងដៃអាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
    <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -14,6 +15,7 @@
             color: #5a4b4b;
             text-align: center;
         }
+        
         h2, h3 {
             font-family: 'Khmer OS Moul', cursive;
             color: #722f37;
@@ -34,6 +36,7 @@
             color: #722f37;
             font-size: 3rem;
             margin-bottom: 10px;
+            
         }
         .hero p {
             font-size: 1.2rem;
@@ -522,6 +525,37 @@
             text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9) !important; /* ស្រមោលសជួយរុញអក្សរឲ្យផុសចេញពីផ្ទៃ Background */
             font-weight: bold;
         }
+        /* ឧទាហរណ៍នៃការបន្ថយទំហំអក្សរលើទូរស័ព្ទ */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* បន្ថយទំហំអក្សរឈ្មោះ */
+    }
+}
+
+/* ------------------------------------- */
+        /* កែតម្រូវទីតាំងប៊ូតុងទាំងពីរ */
+        /* ------------------------------------- */
+        .scroll-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; /* នៅខាងឆ្វេង */
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .music-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px; /* នៅខាងស្តាំ */
+            z-index: 10000;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+        }
+
     </style>
     
 </head>
@@ -532,9 +566,19 @@
         <h3>ពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</h3>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
         <p5>You are cordially invited to attend <br>the wedding ceremony.</p5>
-         <h2>VAN CHANKRISNA  <br>💕 <br> MIN SREYLAK</h2>
-        <p5>ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦</p5>
-        <p5>Date: 21-22 November-2026</p5>
+       <!-- ... កូដខាងលើៗ ... -->
+
+        <!-- សូម Paste កូដឈ្មោះថ្មីនេះជំនួសឈ្មោះចាស់ -->
+        <h2 style="font-family: 'Playfair Display', serif; letter-spacing: 3px; font-weight: 700;">VAN CHANKRISNA</h2>
+        
+        <!-- រូបបេះដូងចាស់របស់បង (បងអាចទុកកូដបេះដូងរបស់បងដដែលបាន មិនបាច់លុបទេ) -->
+        <div class="heart-icon">💞</div> 
+        
+        <h2 style="font-family: 'Playfair Display', serif; letter-spacing: 3px; font-weight: 700;">MIN SREYLAK</h2>
+
+        <!-- ... កូដថ្ងៃខែខាងក្រោមៗ ... -->
+        <p5>សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយល</p5>
+       
 
     </header>
 
