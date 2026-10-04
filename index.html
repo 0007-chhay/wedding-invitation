@@ -9,324 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Battambang', sans-serif;
-            background-color: #fcf9f9;
+            background-color: #fffdf5;
             color: #5a4b4b;
             text-align: center;
+            position: relative;
+            overflow-x: hidden;
         }
         
-        /* បានកែកំហុស Syntax Error ត្រង់នេះ (បំបែក h1 ចេញពី h2, h3) */
-        h2, h3 {
-            font-family: 'Moul', serif;
-            color: #722f37;
-        }
-        
-        h1 {
-            font-family: 'Moul', serif;
-            color: #722f37;
-        }
-        
-        .hero {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('1I9A3256.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 20px;
-        }
-        
-        /* ------------------------------------- */
-        /* រចនាឈ្មោះកូនកំលោះ & កូនក្រមុំ (អក្សរខ្មែរ h1) */
-        /* ------------------------------------- */
-        .hero h1 {
-            font-family: 'Moul', serif !important; 
-            color: #800020 !important; 
-            font-size: 2rem; 
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.9) !important; 
-            margin: 15px 0;
-            line-height: 1.6;
-        }
-
-        /* ------------------------------------- */
-        /* សម្រាប់តម្រឹមលើទូរស័ព្ទដៃ (Mobile View) */
-        /* ------------------------------------- */
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 1.3rem !important; 
-            }
-            .hero h2 {
-                font-size: 2.2rem !important; 
-            }
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .section {
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        
-        /* ការរចនាកន្លែងរាប់ថយក្រោយ */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .time-box {
-            background: #ffcdb2;
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 60px;
-        }
-        .time-box span {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #d53a3a;
-        }
-        
-        /* ការរចនា Card និង Form */
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-family: 'Battambang', sans-serif;
-        }
-        button {
-            background-color: #1e9c0e;
-            color: white;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #e5989b;
-        }
-        .map-btn {
-            display: inline-block;
-            background-color: #6d6875;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        
-        /* ------------------------------------- */
-        /* ការរចនា កន្លែងវិចិត្រសាលរូបភាពថ្មី (Gallery) */
-        /* ------------------------------------- */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .gallery img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover; 
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease; 
-            cursor: pointer;
-        }
-        .gallery img:hover {
-            transform: scale(1.05); 
-        }
-        
-        /* ------------------------------------- */
-        /* សម្រួលទំហំអក្សរពេលបើកលើទូរស័ព្ទដៃ (Mobile Responsive) */
-        /* ------------------------------------- */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 10px; 
-            }
-            .hero h1 {
-                font-size: 1.8rem; 
-                line-height: 1.4; 
-                margin-bottom: 5px;
-            }
-            .hero h2, .hero h3 {
-                font-size: 1.2rem; 
-                line-height: 1.4;
-            }
-            .hero p {
-                font-size: 1rem; 
-            }
-            
-            .countdown {
-                gap: 10px; 
-            }
-            .time-box {
-                min-width: 55px;
-                padding: 10px;
-            }
-            .time-box span {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* ------------------------------------- */
-        /* បែបផែនបេះដូងធ្លាក់ចុះមក (Falling Hearts) */
-        /* ------------------------------------- */
-        .falling-heart {
-            position: fixed;
-            top: -10vh; 
-            font-size: 1.5rem; 
-            z-index: 9999; 
-            pointer-events: none; 
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0.5; 
-            }
-        }
-        
-        /* ------------------------------------- */
-        /* បន្ថែមការរចនាពណ៌មាស (Gold Theme) ដើម្បីភាពថ្លៃថ្នូរ */
-        /* ------------------------------------- */
-        h2 {
-            color: #d4af37 !important; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        .card {
-            border: 2px solid #d4af37; 
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15) !important;
-        }
-        
-        .time-box {
-            background: #fffdf5 !important;
-            border: 2px solid #d4af37;
-            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
-        }
-        .time-box span {
-            color: #d4af37 !important; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        button {
-            background: linear-gradient(135deg, #e6c25e, #c59b27) !important;
-            color: #ffffff !important;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
-            border-radius: 8px !important;
-        }
-        button:hover {
-            background: linear-gradient(135deg, #c59b27, #9c7816) !important;
-            transform: translateY(-2px); 
-        }
-
-        .portrait-row img, .landscape-row img {
-            border: 2px solid #d4af37;
-            padding: 3px; 
-            background: white;
-        }
-
-        /* ------------------------------------- */
-        /* រចនាប្រអប់ QR Code ចំណងដៃ */
-        /* ------------------------------------- */
-        .gift-section {
-            background: #fffdf5; 
-            padding: 40px 20px;
-            border-radius: 15px;
-            border: 2px dashed #d4af37; 
-            margin: 40px auto;
-            max-width: 600px;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
-        }
-        .qr-container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #d4af37;
-            text-align: center;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-        .qr-code-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .qr-container p {
-            margin: 5px 0;
-            font-size: 1.1rem;
-            color: #333;
-        }
-        .qr-container strong {
-            color: #800020; 
-            font-size: 1.2rem;
-        }
-
-        /* ------------------------------------- */
-        /* រចនាប៊ូតុងតន្ត្រីពណ៌មាសនៅជ្រុងខាងក្រោម */
-        /* ------------------------------------- */
-        .music-btn {
-            position: relative !important;
-            bottom: auto !important;
-            right: auto !important;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #e6c25e, #c59b27); 
-            border: 2px solid #fff;
-            border-radius: 50%;
-            font-size: 24px;
-            color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: none;
-            padding-bottom: 2px; 
-        }
-        
-        .music-btn.playing {
-            animation: spinMusic 3s linear infinite;
-        }
-        
-        @keyframes spinMusic {
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* ------------------------------------- */
-        /* រូបភាព Background ស្រាល ដែលគាំទ្រទាំងលើ iPhone និង Android */
-        /* ------------------------------------- */
-        body {
-            position: relative; 
-            background-color: #fffdf5; 
-        }
-        
+        /* Background ស្រាលលាតពេញ */
         body::before {
             content: "";
             position: fixed;
@@ -334,182 +31,353 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('bg-light.jpg'); 
+            background-image: url('bg-light.jpg');
             background-size: cover;
             background-position: center;
-            z-index: -1; 
+            z-index: -1;
         }
 
+        h1, h2, h3 {
+            font-family: 'Moul', serif;
+            color: #800020;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('1I9A3256.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 50px 15px;
+        }
+        
+        .hero h1 {
+            font-size: 1.6rem;
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.9);
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .couple-name {
+            font-family: 'Dancing Script', cursive !important;
+            font-size: 2.8rem !important;
+            margin: 5px 0;
+            color: #800020 !important;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(255,255,255,0.9);
+        }
+        
         .section {
-            background-color: rgba(255, 255, 255, 0.5) !important;
-            -webkit-backdrop-filter: blur(8px); 
-            backdrop-filter: blur(8px);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-            margin: 30px auto;
-            position: relative; 
-            z-index: 1;
-        }
-
-        /* ------------------------------------- */
-        /* អក្សរលោតៗពីលើប៊ូតុងតន្ត្រី */
-        /* ------------------------------------- */
-        .music-wrapper {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-        }
-        
-        .music-text {
-            background-color: #fffdf5;
-            color: #800020; 
-            padding: 5px 15px;
-            border: 1px solid #d4af37; 
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            animation: bounceText 1.5s infinite; 
-            white-space: nowrap;
-        }
-        
-        @keyframes bounceText {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        
-        @keyframes bounceArrow {
-            0%, 20%, 50%, 80%, 100% { 
-                transform: translateX(-50%) translateY(0); 
-            }
-            40% { 
-                transform: translateX(-50%) translateY(-15px); 
-            }
-            60% { 
-                transform: translateX(-50%) translateY(-7px); 
-            }
-        }
-
-        /* ------------------------------------- */
-        /* រចនាផ្នែកថ្លែងអំណរគុណ */
-        /* ------------------------------------- */
-        .thank-you-section {
-            text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 80px; 
-        }
-        
-        .thank-you-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333333 !important; 
-            text-align: justify;
-            text-align-last: center;
-            margin: 0 auto 20px auto;
+            padding: 30px 15px;
             max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+            box-sizing: border-box;
+        }
+        
+        /* កន្លែងរាប់ថយក្រោយ ផ្តោតលើ Smartphone */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .time-box {
+            background: #fffdf5;
+            padding: 10px 5px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            flex: 1;
+            min-width: 50px;
+            box-shadow: 0 2px 5px rgba(212, 175, 55, 0.2);
+        }
+        .time-box span {
+            display: block;
+            font-size: 1.3rem;
             font-weight: bold;
+            color: #d4af37;
         }
-        
-        .thank-you-eng {
-            font-family: 'Great Vibes', cursive !important; 
-            font-size: 2rem !important;
-            color: #800020 !important; 
-            margin-bottom: 15px;
-        }
-        
-        @keyframes pulseHeart {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* ------------------------------------- */
-        /* កែពណ៌អក្សរ (ថ្ងៃ ម៉ោង នាទី វិនាទី) */
-        /* ------------------------------------- */
         .time-box p {
-            color: #333333 !important; 
-            font-size: 1rem !important; 
+            color: #333333;
+            font-size: 0.75rem;
+            margin: 3px 0 0 0;
+        }
+        
+        /* ប៊ូតុង Add to Calendar */
+        .cal-container {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .add-to-cal-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #e6c25e, #c59b27);
+            color: #ffffff;
+            font-family: 'Battambang', sans-serif;
+            font-size: 0.85rem;
             font-weight: bold;
-            margin: 5px 0 0 0 !important;
-            text-shadow: none !important; 
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+            box-sizing: border-box;
         }
 
-        /* ------------------------------------- */
-        /* កែតម្រូវទីតាំងប៊ូតុងទាំងពីរ */
-        /* ------------------------------------- */
-        .scroll-wrapper {
+        .card {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 12px;
+            border: 1px solid #d4af37;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: 'Battambang', sans-serif;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #e6c25e, #c59b27);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+        }
+        
+        .map-btn {
+            display: inline-block;
+            background-color: #6d6875;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Gallery រូបភាព */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            padding: 2px;
+            background: white;
+            box-sizing: border-box;
+        }
+        
+        /*  QR Code */
+        .qr-container {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+        .qr-code-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* ေដាះបេះដូងធ្លាក់ */
+        .falling-heart {
             position: fixed;
-            bottom: 20px;
-            left: 20px; 
+            top: -10vh;
+            font-size: 1.5rem;
+            z-index: 9999;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.5; }
+        }
+
+        /* ប៊ូតុងតន្ត្រី និងអូសចុះក្រោម */
+        .music-wrapper, .scroll-wrapper {
+            position: fixed;
+            bottom: 15px;
             z-index: 10000;
             display: flex;
             flex-direction: column;
             align-items: center;
-            cursor: pointer;
         }
+        .music-wrapper { right: 15px; }
+        .scroll-wrapper { left: 15px; cursor: pointer; }
         
-        .scroll-text {
+        .music-text, .scroll-text {
             background-color: #fffdf5;
             color: #800020;
-            padding: 5px 15px;
+            padding: 4px 10px;
             border: 1px solid #d4af37;
-            border-radius: 20px;
-            font-size: 14px;
+            border-radius: 15px;
+            font-size: 11px;
             font-weight: bold;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            animation: bounceText 1.5s infinite; 
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             white-space: nowrap;
         }
         
-        .scroll-btn {
-            width: 50px;
-            height: 50px;
+        .music-btn, .scroll-btn {
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, #e6c25e, #c59b27);
             border: 2px solid #fff;
             border-radius: 50%;
-            font-size: 20px;
+            font-size: 18px;
             color: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
-        /* ------------------------------------- */
-        /* កែពណ៌ចំណងជើងគ្រប់ប្រអប់ឲ្យលេចច្បាស់ */
-        /* ------------------------------------- */
-        .section h2, 
-        .section h3, 
-        .section h4 {
-            color: #800020 !important; 
-            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9) !important; 
-            font-weight: bold;
+        .music-btn.playing {
+            animation: spinMusic 3s linear infinite;
+        }
+        @keyframes spinMusic {
+            100% { transform: rotate(360deg); }
         }
 
-        /* ------------------------------------- */
-        /* រចនាអក្សរ សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស */
-        /* ------------------------------------- */
         .invite-text {
-            font-family: 'Moul', serif; 
-            font-size: 1.1rem;
-            color: #ffffff; 
-            background: linear-gradient(135deg, #800020, #a02040); 
-            padding: 8px 25px;
-            border-radius: 25px; 
-            border: 1.5px solid #d4af37; 
+            font-family: 'Moul', serif;
+            font-size: 0.95rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #800020, #a02040);
+            padding: 6px 20px;
+            border-radius: 20px;
+            border: 1.5px solid #d4af37;
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-top: 10px;
+        }
+        /* ------------------------------------- */
+        /* Gallery Layout Styles (Updated) */
+        /* ------------------------------------- */
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             margin-top: 15px;
-            letter-spacing: 1px;
-            text-shadow: none !important;
         }
 
+        .gallery-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* ជួរមាន ២ រូប */
+        .gallery-row.cols-2 img {
+            width: 48%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            padding: 2px;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        /* ជួរមាន ៣ រូប */
+        .gallery-row.cols-3 img {
+            width: 32%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid #d4af37;
+            padding: 2px;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        /* រូបធំពេញល្អ (ឧ. រូបទី៦ និងរូបផ្សេងទៀត) */
+        .gallery-row.cols-1 img {
+            width: 100%;
+            height: 200px; /* ពង្រីកកម្ពស់ឱ្យកាន់តែធំពេញស្អាត */
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            padding: 2px;
+            background: white;
+            box-sizing: border-box;
+        }
+        /* ------------------------------------- */
+        /* Lightbox Modal Styles (ចុចមើលរូបធំ) */
+        /* ------------------------------------- */
+        .lightbox-modal {
+            display: none; /* បិទជាមុនសិន */
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* ផ្ទៃខាងក្រោយខ្មៅស្រអាប់ */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #d4af37;
+        }
+
+        /* ធ្វើឱ្យរូបភាពក្នុង Gallery ទាំងអស់អាចចុចបាន */
+        .gallery-row img {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .gallery-row img:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
@@ -518,143 +386,247 @@
     <header class="hero">
         <h3>ពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</h3>
         <h1>វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</h1>
-        <p style="font-size: 1rem; color: #333; margin: 10px 0;">You are cordially invited to attend <br>the wedding ceremony.</p>
+        <p style="font-size: 0.9rem; color: #333; margin: 5px 0;">You are cordially invited to attend the wedding ceremony.</p>
         
-    <!-- ឈ្មោះកូនកំលោះ -->
-        <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 10px 0; text-shadow: 2px 2px 5px rgba(255,255,255,0.9); color: #800020 !important; font-weight: 700; letter-spacing: 2px;">Van Chankrisna</h2>
+        <div class="couple-name">Van Chankrisna</div>
+        <div style="font-size: 1.5rem; margin: 0;">💞</div> 
+        <div class="couple-name">Min Sreylak</div>
         
-        <!-- រូបបេះដូង -->
-        <div class="heart-icon">💞</div> 
-        
-        <!-- ឈ្មោះកូនក្រមុំ -->
-        <h2 style="font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 10px 0; text-shadow: 2px 2px 5px rgba(255,255,255,0.9); color: #800020 !important; font-weight: 700; letter-spacing: 2px;">Min Sreylak</h2>
-        <p class="invite-text">សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស</p>
+        <br>
+        <div class="invite-text">សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស</div>
     </header>
-
-    <!-- ផ្នែកកម្មវិធីលម្អិត -->
+    <!-- ផ្នែកឪពុកម្ដាយទាំងសងខាង -->
     <section class="section">
-        <h2>✨កម្មវិធីលម្អិត ✨​ <br> Detailed Program</h2>
-        <div class="card">
-            <h3>ថ្ងៃសិរីមង្គល <br> An Auspicious Day </h3>
-            <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២១ ខែវិច្ឆិកា ឆ្នាំ២០២៦​ <br> ម៉ោង២ រសៀល ចាប់ផ្ដើមកម្មវិធី</p>
-            <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦ <br>ម៉ោង ៥ ល្ងាច <strong>ពិធីទទួលភ្ញៀវពិសារភោជនាអារហារ </strong></p>
-            <p><strong>Date:</strong> November 21, 2026; program starts at 2:00 PM.</p>
-            <p><strong>Date:</strong> November 22, 2026; Reception and Banquet at 5:00 PM.</p>
-            <hr style="border: 0.5px solid #eee; margin: 20px 0;">
-            <p><strong>ទីតាំង:</strong> ក្រុងបាត់ដំបង ផ្លូវចំការដូង ( Battambang City, Chamkar Dong Road)</p>
-            <a href="https://maps.app.goo.gl/trofWD7W4vPz9mzH9" class="map-btn" target="_blank">📍 មើលផែនទី (Google Maps)</a>
+        <h2>✨ ឪពុកម្ដាយទាំងសងខាង ✨</h2>
+        <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #800020; font-weight: bold; margin-bottom: 15px;">Parents on both sides</p>
+        
+        <div class="card" style="margin-bottom: 0;">
+            <div style="display: flex; justify-content: space-around; text-align: center; gap: 10px;">
+                <!-- ខាងឪពុកម្ដាយកូនកំលោះ -->
+                <div style="flex: 1;">
+                    <p style="font-size: 0.9rem; font-weight: bold; color: #800020; margin-bottom: 8px;">គ្រួសារកូនកំលោះ</p>
+                    <p style="font-size: 0.85rem; margin: 4px 0;">លោក វ៉ាន ផុន</p>
+                    <p style="font-size: 0.85rem; margin: 4px 0;">លោកស្រី ជាត ឈួត</p>
+                </div>
+                
+                <div style="border-left: 1px dashed #d4af37; margin: 0 5px;"></div>
+
+                <!-- ខាងឪពុកម្ដាយកូនក្រមុំ -->
+                <div style="flex: 1;">
+                    <p style="font-size: 0.9rem; font-weight: bold; color: #800020; margin-bottom: 8px;">គ្រួសារកូនក្រមុំ</p>
+                    <p style="font-size: 0.85rem; margin: 4px 0;">លោក មិន វណ្ណា</p>
+                    <p style="font-size: 0.85rem; margin: 4px 0;">លោកស្រី ឆេង សុខនា</p>
+                </div>
+            </div>
         </div>
+        <h3 style="color: #800020; font-family: 'Moul', serif; font-size: 1.1rem; margin-bottom: 15px;">✨ មានកិត្តិយសសូមគោរពអញ្ជើញ ✨</h3>
+        <p style="font-size: 0.9rem; line-height: 1.8; color: #333; text-align: justify; text-align-last: center; margin-bottom: 20px;">
+            ឯកឧត្តម លោកជំទាវ លោកឧកញ៉ា លោក លោកស្រី អ្នកនាងកញ្ញា និងប្រិយមិត្តទាំងអស់ អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ដើម្បីប្រសិទ្ធពរជ័យ សិរីសួស្តី ជ័យមង្គលក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស កូនស្រី របស់យើងខ្ញុំ។
+        </p>
+
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #800020; margin-bottom: 10px;">✨ It is an honor to respectfully invite you. ✨</h3>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #555; text-align: justify; text-align-last: center;">
+            To all Excellencies, Okhnas, Ladies, Gentlemen, and friends, We invite you to preside over and attend as honored guests to bestow blessings, prosperity, and good fortune upon the wedding ceremony of our son and daughter.
+        </p>
     </section>
 
-    <!-- ផ្នែកវិចិត្រសាលរូបភាព (ថ្មី) -->
+    <!-- ផ្នែកកម្មវិធីលម្អិត (Program Agenda) -->
     <section class="section">
-        <h2>💖អានុស្សាវរីយ៍របស់យើង 💖<br>Our Memories</h2>
-        <div class="gallery">
-            <img src="61.jpg" alt="Pre-wedding Photo 4">
-            <img src="62.jpg" alt="Pre-wedding Photo 3">
-            <img src="63.jpg" alt="Pre-wedding Photo 4">
-            <img src="71.jpg" alt="Pre-wedding Photo 1">
-            <img src="72.jpg" alt="Pre-wedding Photo 2">
-            <img src="73.jpg" alt="Pre-wedding Photo 3">
+        <h2>✨ កម្មវិធីលម្អិត ✨</h2>
+        <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #800020; font-weight: bold; margin-bottom: 15px;">Detailed Program</p>
+        
+        <div class="card" style="margin-bottom: 0; text-align: left;">
+            <p style="font-family: 'Moul', serif; font-size: 0.95rem; color: #800020; text-align: center; margin-bottom: 20px;">
+                ថ្ងៃសៅរ៍ ទី២១ ខែវិច្ឆិកា ឆ្នាំ២០២៦<br>
+                <span style="font-family: 'Playfair Display', serif; font-size: 0.85rem;">Sunday, November 21, 2026</span>
+            </p>
+
+            <!-- ប្រអប់ទី ១ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១៣:០០ រសៀល / At 1:00 PM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីសែនក្រុងពាលី និងប្រារព្ធពិធីកាត់សក់ / Ceremony to Offer Sacrifices to the Guardian Spirits of the Land and Hair-Cutting Ceremony.</p>
+            </div>
+
+            <!-- ប្រអប់ទី ២ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១៥:០០ ល្ងាច / At 3:00 PM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីសែនជីដូនជីតា / Ancestor Worship Ceremony</p>
+            </div>
+
+            <!-- ប្រអប់ទី ៣ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១៦:០០ ល្ងាច / At 4:00 PM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត / Chanting Ceremony for the Recitation of Paritta (Protective Verses)</p>
+            </div>
+
+            <!-- ប្រអប់ទី ៤ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 5px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១៧:៣០ ល្ងាច / At 5:00 PM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីជុបលៀង និងពិសារភោជនីយហារ / Betrothal Ceremony and Meal</p>
+            </div>
+
+            <!-- ផ្នែកកម្មវិធីលម្អិត ថ្ងៃទី២២ វិច្ឆិកា ២០២៦ -->
+   
+        
+            <p style="font-family: 'Moul', serif; font-size: 0.95rem; color: #800020; text-align: center; margin-bottom: 20px;">
+                ថ្ងៃអាទិត្យ ទី២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦<br>
+                <span style="font-family: 'Playfair Display', serif; font-size: 0.85rem;">Sunday, November 22, 2026</span>
+            </p>
+
+            <!-- ប្រអប់ទី ១ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">០៨:០០ ពេលព្រឹក / At 8:00 AM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីហែជំនូន / Wedding Procession (Presentation of Betrothal Gifts)</p>
+            </div>
+
+            <!-- ប្រអប់ទី ២ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១០:៣០ នាទីព្រឹក / At 10:00 AM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីសំពះពាំន និងពិសារភោជនីយហារ / Sampeah Pteum Ceremony and Meal</p>
+            </div>
+
+            <!-- ប្រអប់ទី ៣ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១៣:០០ រសៀល / At 1:00 PM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីចិញ្ចៀន និងពិធីព្រះថោងនោងនាគសង្វាត / Wrist-tying ceremony and the Preah Thong-Neang Neak ceremony (holding the scarf)</p>
+            </div>
+
+            <!-- ប្រអប់ទី ៤ -->
+            <div style="background: #fffdf5; border: 1px solid #d4af37; border-radius: 10px; padding: 12px; margin-bottom: 15px;">
+                <p style="font-weight: bold; color: #800020; font-size: 0.9rem; margin: 0 0 5px 0;">១៥:០០ ល្ងាច / At 3:00 PM</p>
+                <p style="font-size: 0.8rem; color: #555; margin: 0; line-height: 1.4;">ពិធីទទួលភ្ញៀវ (ពិធីជប់លៀង) / Reception (Banquet)</p>
+            </div>
+
+            <p style="font-weight: bold; color: #800020; font-size: 0.85rem; text-align: center; margin-bottom: 5px;">ពិធីជប់លៀងមង្គលការ (ម៉ោង ០៥:០០ ល្ងាច)</p>
+            <p style="font-size: 0.8rem; text-align: center; color: #555; margin-bottom: 15px;">Wedding party at 5:00 PM</p>
+
+            <!-- ប៊ូតុង Add to Calendar -->
+            <div class="cal-container" style="margin-top: 15px;">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Reception+-+Van+Chankrisna+%26+Min+Sreylak&dates=20261122T170000/20261122T220000&details=ពិធីជប់លៀងភោជនាហារពេលល្ងាច&location=Battambang" target="_blank" class="add-to-cal-btn">
+                    📅  Add to calendar
+                </a>
+            </div>
         </div>
+        
+    </section>
+    
+
+    <!-- ផ្នែកកម្មវិធីលម្អិត និង Countdown -->
+    <section class="section">
+        <h2>✨ ទីតាំងផ្ទះការ ✨ <br> Location </h2>
+        <div class="card" style="margin-bottom: 0;">
+            <p style="font-size: 0.85rem;"><strong>ទីតាំង:</strong> ក្រុងបាត់ដំបង ផ្លូវចំការដូង <br> Battambang City, Chamkar Dong Road</p>
+           <!-- រូបភាពទីតាំង (Map Image) -->
+            <div style="margin: 15px 0;">
+                <img src="map.jpg" alt="Wedding Location Map" style="width: 100%; height: auto; border-radius: 10px; border: 2px solid #d4af37; padding: 3px; background: white; box-sizing: border-box;">
+            </div>
+            
+            <a href="https://maps.app.goo.gl/trofWD7W4vPz9mzH9" class="map-btn" target="_blank">📍 មើលផែនទី Google Maps</a>
+
+            <!-- ប្រអប់រាប់ថយក្រោយ -->
+            <div style="margin-top: 20px;">
+                <p style="font-weight: bold; color: #800020; margin-bottom: 8px; font-size: 0.9rem;">⏳ រាប់ថយក្រោយដល់ថ្ងៃមង្គល <br> Counting down to the wedding day</p>
+                <div class="countdown">
+                    <div class="time-box"><span id="days">00</span><p>ថ្ងៃ Day</p></div>
+                    <div class="time-box"><span id="hours">00</span><p>ម៉ោង</p></div>
+                    <div class="time-box"><span id="minutes">00</span><p>នាទី</p></div>
+                    <div class="time-box"><span id="seconds">00</span><p>វិនាទី</p></div>
+                </div>
+            </div>
+
+            <!-- ប៊ូតុង Add to Calendar -->
+            <div class="cal-container" style="margin-top: 15px;">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Reception+-+Van+Chankrisna+%26+Min+Sreylak&dates=20261122T170000/20261122T220000&details=ពិធីជប់លៀងភោជនាហារពេលល្ងាច&location=Battambang" target="_blank" class="add-to-cal-btn">
+                    📅  Add to calendar
+                </a>
+            </div>
+        </div>
+        
     </section>
 
+   <!-- ផ្នែកវិចិត្រសាលរូបភាព (Our Memories - 10 Photos) -->
+    <section class="section">
+        <h2>💖 អនុស្សាវរីយ៍ 💖 <br> <span style="font-size: 0.85rem; font-family: 'Playfair Display', serif;">Our Memories</span></h2>
+        
+        <div class="gallery-container">
+            <!-- ជួរទី ១ (២ រូប) -->
+            <div class="gallery-row cols-2">
+                <img src="61.jpg" alt="Memory 1">
+                <img src="63.jpg" alt="Memory 2">
+            </div>
+
+            <!-- ជួរទី ២ (៣ រូប) -->
+            <div class="gallery-row cols-3">
+                <img src="72.jpg" alt="Memory 3">
+                <img src="71.jpg" alt="Memory 4">
+                <img src="73.jpg" alt="Memory 5">
+            </div>
+
+            <!-- ជួរទី ៣ (រូបទី៦ ពង្រីកធំពេញ) -->
+            <div class="gallery-row cols-1">
+                <img src="62.jpg" alt="Memory 6">
+            </div>
+
+            <!-- ជួរទី ៤ (បន្ថែម ២ រូបទៀត៖ ទី៧ និងទី៨) -->
+            <div class="gallery-row cols-2">
+                <img src="81.jpg" alt="Memory 7">
+                <img src="82.jpg" alt="Memory 8">
+            </div>
+
+            <!-- ជួរទី ៥ (បន្ថែម ២ រូបទៀត៖ ទី៩ និងទី១០) -->
+            <div class="gallery-row cols-2">
+                <img src="83.jpg" alt="Memory 9">
+                <img src="84.jpg" alt="Memory 10">
+            </div>
+        </div>
+    </section>
     <!-- ផ្នែកទម្រង់ចុះឈ្មោះ (RSVP) -->
     <section class="section">
-        <h2>💖បញ្ជាក់ការចូលរួម 💖<br> Confirm participation </h2>
-        <div class="card">
-            <p>សូមមេត្តាបំពេញព័ត៌មានខាងក្រោមដើម្បីងាយស្រួលដល់យើងខ្ញុំក្នុងការរៀបចំកន្លែងទទួល</p>
-            <p>Please fill out the information below to make it easier for us to arrange a pick-up location.</p>
+        <h2>💖 បញ្ជាក់ការចូលរួម 💖 <br> Confirm participation</h2>
+        <div class="card" style="margin-bottom: 0;">
+            <p style="font-size: 0.85rem; margin-bottom: 15px;">សូមបំពេញព័ត៌មានខាងក្រោមដើម្បីងាយស្រួលដល់យើងខ្ញុំក្នុងការរៀបចំកន្លែងទទួល <br> Please fill out the information below to make it easier for us to arrange a pick-up location.</p>
     
             <form id="rsvpForm">
-                <input type="text" name="name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក... write your name here.." required>
-                
+                <input type="text" name="name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក...write your name here..." required>
                 <select name="attendance" required>
-                    <option value="">តើអ្នកនឹងចូលរួមដែរឬទេ? / Will you be joining too? </option>
-                    <option value="ចូលរួម">បាទ/ចាស ខ្ញុំនឹងចូលរួម / Yes, I will participate. </option>
+                    <option value="">តើអ្នកនឹងចូលរួមដែរឬទេ? Will you be joining too? </option>
+                    <option value="ចូលរួម">បាទ/ចាស ខ្ញុំនឹងចូលរួម / Yes, I will participate.</option>
                     <option value="មិនចូលរួម">សុំទោស ខ្ញុំមិនអាចចូលរួមបានទេ / I'm sorry, I cannot attend.</option>
                 </select>
-                
                 <select name="guest">
                     <option value="១ នាក់">ចូលរួមម្នាក់ឯង / Participate alone </option>
                     <option value="២ នាក់">ចូលរួម ២ នាក់ / Participate as a pair (2 people)</option>
-                    <option value="លក្ខណៈគ្រួសារ">ចូលរួមជាលក្ខណៈគ្រួសារ / Participate as a family </option>
+                    <option value="លក្ខណៈគ្រួសារ">ចូលរួមជាលក្ខណៈគ្រួសារ / Participate as a family</option>
                 </select>
-                
-                <button type="submit" id="submitBtn">បញ្ជូនការបញ្ជាក់ / confirmation</button>
+                <button type="submit" id="submitBtn">បញ្ជូនការបញ្ជាក់ / Submit </button>
             </form>
-
-            <script>
-                document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-                    e.preventDefault(); 
-                    
-                    var form = e.target;
-                    var data = new FormData(form);
-                    var btn = document.getElementById("submitBtn");
-                    
-                    btn.innerText = "កំពុងបញ្ជូន..."; 
-                    
-                    fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
-                        method: "POST",
-                        body: data
-                    })
-                    .then(response => {
-                        alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! យើងខ្ញុំរង់ចាំស្វាគមន៍ដោយក្តីរីករាយ។");
-                        form.reset(); 
-                        btn.innerText = "បញ្ជូនការបញ្ជាក់";
-                    })
-                    .catch(error => {
-                        alert("សុំទោស មានបញ្ហាបន្តិចបន្តួច សូមសាកល្បងម្ដងទៀត។");
-                        btn.innerText = "បញ្ជូនការបញ្ជាក់";
-                    });
-                });
-            </script>
         </div>
     </section>
     
     <!-- ផ្នែកចំណងដៃ QR Code -->
-    <div class="section gift-section">
-        <h2>💖ចំណងដៃ 💖 <br>Gift given at a celebration</h2>
-        <p style="text-align: center; margin-bottom: 20px;">
-            សម្រាប់ញាតិមិត្តដែលមិនអាចអញ្ជើញចូលរួមបាន ប៉ុន្តែមានបំណងផ្ញើជាចំណងដៃដល់ពួកយើង សូមប្រើប្រាស់ QR Code ខាងក្រោមដោយក្ដីអនុគ្រោះ៖ / For friends and family who are unable to attend but wish to send a gift, please kindly use the QR code below:
-        </p>
-        
+    <section class="section">
+        <h2>💖 ចំណងដៃ 💖 <br> Wedding gift</h2>
+        <p style="font-size: 0.85rem; margin-bottom: 15px;">សម្រាប់ញាតិមិត្តដែលមិនអាចអញ្ជើញចូលរួមបាន ប៉ុន្តែមានបំណងផ្ញើជាចំណងដៃ សូមប្រើប្រាស់ QR Code ខាងក្រោម៖ <br> For friends and relatives who are unable to attend but wish to send a gift, please use the QR code below:</p>
         <div class="qr-container">
             <img src="qr.jpg" alt="Bank QR Code" class="qr-code-img">
         </div>
-    </div>
+    </section>
     
-    <!-- ------------------------------------- -->
-    <!-- ផ្នែកថ្លែងអំណរគុណ (Thank You Section) -->
-    <!-- ------------------------------------- -->
-    <div class="section thank-you-section">
-        <h2>❤️ថ្លែងអំណរគុណ❤️</h2>
-        <p class="thank-you-text">
-            យើងខ្ញុំទាំងពីរ សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះ ឯកឧត្តម លោកជំទាវ អស់លោក លោកស្រី អ្នកនាងកញ្ញា និងញាតិមិត្តជិតឆ្ងាយទាំងអស់ ដែលបានចំណាយពេលវេលាដ៏មានតម្លៃ អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយសក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ ព្រមទាំងបានផ្តល់នូវចំណងដៃដ៏មានតម្លៃ។
-            <br><br>
-            សូមគោរពជូនពរ ឯកឧត្តម លោកជំទាវ អស់លោក លោកស្រី អ្នកនាងកញ្ញា ជួបប្រទះតែពុទ្ធពរទាំង ៤ ប្រការគឺ អាយុ វណ្ណៈ សុខៈ និងពលៈ កុំបីឃ្លៀងឃ្លាតឡើយ។
+    <!-- ផ្នែកថ្លែងអំណរគុណ -->
+    <section class="section">
+        <h2>❤️ អំណរគុណ ❤️</h2>
+        <p style="font-size: 0.9rem; line-height: 1.6; text-align: justify; text-align-last: center; margin: 0 0 15px 0;">
+            យើងខ្ញុំទាំងពីរ សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះ ឯកឧត្តម លោកជំទាវ អស់លោក លោកស្រី អ្នកនាងកញ្ញា ដែលបានចំណាយពេលវេលាដ៏មានតម្លៃ អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយសក្នុងពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ។
         </p>
-        <p class="thank-you-eng">
-            Thank you from the bottom of our hearts for joining us on our special day. Your presence and warm wishes mean the world to us.
+        <p style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #800020; font-weight: bold;">
+            Thank you for joining us on our special day!
         </p>
-        <div class="thank-you-hearts">❤️❤️❤️</div>
-    </div>
+        <div>❤️❤️❤️</div>
+    </section>
 
-    <footer style="padding: 20px; background: #6d6875; color: white;">
-    <div class="section footer-countdown" style="text-align: center; background: none; box-shadow: none; border: none;">
-         <p style="margin-top: 20px; font-size: 0.9rem;"> Van Chankrisna ❤️ Min Sreylak</p>
-        <div class="countdown">
-            <div class="time-box"><span id="days">00</span><p>ថ្ងៃ</p></div>
-            <div class="time-box"><span id="hours">00</span><p>ម៉ោង</p></div>
-            <div class="time-box"><span id="minutes">00</span><p>នាទី</p></div>
-            <div class="time-box"><span id="seconds">00</span><p>វិនាទី</p></div>
-        </div>
-    </div>
-    </footer>
-
-    <!-- កូដរាប់ថយក្រោយ -->
+    <!-- កូដរាប់ថយក្រោយ JavaScript -->
     <script>
-        const weddingDate = new Date(2026, 10, 21, 17, 0, 0).getTime();
+        const weddingDate = new Date("2026-11-21T14:00:00").getTime();
 
         const countdownTimer = setInterval(function() {
             const now = new Date().getTime();
@@ -662,7 +634,6 @@
 
             if (distance < 0) {
                 clearInterval(countdownTimer);
-                document.getElementById("countdown").innerHTML = "<h3>ដល់ថ្ងៃមង្គលហើយ!</h3>";
                 return; 
             }
 
@@ -677,73 +648,57 @@
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }, 1000);
 
+        // បេះដូងធ្លាក់
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('falling-heart');
-            
             const symbols = ['💖', '🌹', '💕', '🌷', '✨']; 
-            
-            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-            heart.innerText = randomSymbol; 
-            
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)]; 
             heart.style.left = Math.random() * 100 + 'vw';
-            
             const fallDuration = Math.random() * 3 + 3;
             heart.style.animationDuration = fallDuration + 's';
-            
-            heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; 
-            
+            heart.style.fontSize = (Math.random() * 0.8 + 1) + 'rem'; 
             document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, fallDuration * 1000);
+            setTimeout(() => heart.remove(), fallDuration * 1000);
         }
-
-        setInterval(createHeart, 600);
+        setInterval(createHeart, 800);
     </script>
     
-    <!-- ------------------------------------- -->
-    <!-- កូដកាំជ្រួចអបអរសាទរ (Fireworks) -->
-    <!-- ------------------------------------- -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- កូដកាំជ្រួច -->
+    <script src="https://cdn.jsdelivr.5net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
-        function launchFireworks() {
-            var duration = 2000; 
-            var end = Date.now() + duration;
-
-            (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.9 },
-                    colors: ['#d4af37', '#800020', '#ffffff'], 
-                    zIndex: 9999
-                });
-
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
-        }
-        
-        launchFireworks();
-        setInterval(launchFireworks, 9000);
+        // កូដ RSVP Form Submit
+        document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+            e.preventDefault(); 
+            var form = e.target;
+            var data = new FormData(form);
+            var btn = document.getElementById("submitBtn");
+            btn.innerText = "កំពុងបញ្ជូន..."; 
+            
+            fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
+                method: "POST",
+                body: data
+            })
+            .then(response => {
+                alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម!");
+                form.reset(); 
+                btn.innerText = "បញ្ជូនការបញ្ជាក់";
+            })
+            .catch(error => {
+                alert("សុំទោស មានបញ្ហាបន្តិចបន្តួច សូមសាកល្បងម្ដងទៀត។");
+                btn.innerText = "បញ្ជូនការបញ្ជាក់";
+            });
+        });
     </script>
     
-    <!-- ------------------------------------- -->
-    <!-- ប្រព័ន្ធចាក់តន្ត្រី (Background Music) -->
-    <!-- ------------------------------------- -->
+    <!-- ប្រព័ន្ធចាក់តន្ត្រី -->
     <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
     
     <div class="music-wrapper">
         <div id="musicText" class="music-text">ចុចស្ដាប់តន្ត្រី 🎶</div>
-        <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
-            🎵
-        </button>
+        <button id="musicBtn" class="music-btn" onclick="toggleMusic()">🎵</button>
     </div>
     
     <script>
@@ -772,10 +727,8 @@
         }, { once: true });
     </script>
     
-    <!-- ------------------------------------- -->
-    <!-- ប៊ូតុងអូសចុះក្រោម (អណ្តែតខាងឆ្វេង) -->
-    <!-- ------------------------------------- -->
-    <div class="scroll-wrapper" onclick="window.scrollBy({top: 600, behavior: 'smooth'})">
+    <!-- ប៊ូតុងអូសចុះក្រោម -->
+    <div class="scroll-wrapper" onclick="window.scrollBy({top: 500, behavior: 'smooth'})">
         <div class="scroll-text">សូមអូសចុះក្រោម</div>
         <div class="scroll-btn">⬇️</div>
     </div>
@@ -789,6 +742,29 @@
                 scrollWrap.style.display = 'flex'; 
             }
         });
+        
+        // មុខងារបើក Lightbox ពេលចុចលើរូបភាពក្នុង Gallery
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const galleryImages = document.querySelectorAll(".gallery-row img");
+
+        galleryImages.forEach(img => {
+            img.addEventListener("click", function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            });
+        });
+
+        // មុខងារបិទ Lightbox ពេលចុចលើ Background ឬសញ្ញា X
+        function closeLightbox() {
+            modal.style.display = "none";
+        }
+    
     </script>
+    <!-- Lightbox Modal Container -->
+    <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="modalImg">
+    </div>
 </body>
 </html>
