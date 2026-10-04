@@ -743,22 +743,36 @@
     </div>
     
     <script>
+        // មុខងារលាក់/បង្ហាញ scroll wrapper
         window.addEventListener('scroll', function() {
             var scrollWrap = document.querySelector('.scroll-wrapper');
-            if (window.scrollY > 150) {
-                scrollWrap.style.display = 'none'; 
-            } else {
-                scrollWrap.style.display = 'flex'; 
+            if (scrollWrap) {
+                if (window.scrollY > 150) {
+                    scrollWrap.style.display = 'none';
+                } else {
+                    scrollWrap.style.display = 'flex';
+                }
             }
         });
-        
+    </script>
+
+    <!-- Lightbox Modal Container -->
+    <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="modalImg">
+    </div>
+
+    <!-- JavaScript សម្រាប់ Lightbox -->
+    <script>
         // មុខងារបើក Lightbox ពេលចុចលើរូបភាពក្នុង Gallery
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
         const galleryImages = document.querySelectorAll(".gallery-container img, .gallery-row img, .gallery img");
 
         galleryImages.forEach(img => {
-            img.addEventListener("click", function() {
+            img.style.cursor = "pointer";
+            img.addEventListener("click", function(e) {
+                e.stopPropagation();
                 modal.style.display = "flex";
                 modalImg.src = this.src;
             });
@@ -768,12 +782,6 @@
         function closeLightbox() {
             modal.style.display = "none";
         }
-    
     </script>
-    <!-- Lightbox Modal Container -->
-    <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="modalImg">
-    </div>
 </body>
 </html>
