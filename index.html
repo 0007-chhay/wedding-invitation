@@ -677,6 +677,10 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
     let lastSubmitTime = 0; // កត់ត្រាពេលវេលាចុចចុងក្រោយ
+    // មុខងារសម្រាប់ត្រួតពិនិត្យនិងសម្អាតអត្ថបទការពារ XSS
+    function sanitizeInput(str) {
+        return str.replace(/[<>]/g, ''); //  cắt bỏសញ្ញា < និង > ដើម្បីកុំឱ្យបញ្ចូលកូដ HTML/JS បាន
+    }
 
     // // កូដ RSVP Form Submit
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
