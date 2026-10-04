@@ -673,32 +673,57 @@
         setInterval(createHeart, 800);
     </script>
     
-    <!-- កូដកាំជ្រួច -->
-    <script src="https://cdn.jsdelivr.5net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-    <script>
-        // កូដ RSVP Form Submit
-        document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-            e.preventDefault(); 
-            var form = e.target;
-            var data = new FormData(form);
-            var btn = document.getElementById("submitBtn");
-            btn.innerText = "កំពុងបញ្ជូន..."; 
+   <!-- កូដកាំជ្រួច -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+    let lastSubmitTime = 0; // កត់ត្រាពេលវេលាចុចចុងក្រោយ
+
+    // // កូដ RSVP Form Submit
+    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+        e.preventDefault(); 
+        
+        var currentTime = new Date().getTime();
+        // ការពារ៖ បើចុចញាប់ពេក ក្នុងរយៈពេល ២៤ ម៉ោង (86400000 ms) ហាមផ្ញើ
+        if (currentTime - lastSubmitTime < 86400000) {
+            alert("សូមមេត្តារង់ចាំ មុនពេលបញ្ជាក់ការចូលរួមម្ដងទៀត។");
+            return;
+        }
+        
+        var form = e.target;
+        var data = new FormData(form);
+        var btn = document.getElementById("submitBtn");
+        
+        btn.disabled = true;
+        btn.innerText = "កំពុងបញ្ជូន..."; 
+        
+        fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
+            method: "POST",
+            body: data
+        })
+        .then(response => {
+            lastSubmitTime = new Date().getTime(); // កត់ត្រាពេលផ្ញើបានជោគជ័យ
+            alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
             
-            fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
-                method: "POST",
-                body: data
-            })
-            .then(response => {
-                alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម!");
-                form.reset(); 
-                btn.innerText = "បញ្ជូនការបញ្ជាក់";
-            })
-            .catch(error => {
-                alert("សុំទោស មានបញ្ហាបន្តិចបន្តួច សូមសាកល្បងម្ដងទៀត។");
-                btn.innerText = "បញ្ជូនការបញ្ជាក់";
-            });
+            // បាញ់កាំជ្រួចអបអរសាទរ
+            if (typeof confetti === "function") {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            form.reset(); 
+            btn.disabled = false;
+            btn.innerText = "បញ្ជូនការបញ្ជាក់";
+        })
+        .catch(error => {
+            alert("សុំទោស មានបញ្ហាបន្តិចបន្តួច សូមសាកល្បងម្ដងទៀត។​ Sorry, there is a slight problem. Please try again.");
+            btn.disabled = false;
+            btn.innerText = "បញ្ជូនការបញ្ជាក់";
         });
-    </script>
+    });
+</script>
     
     <!-- ប្រព័ន្ធចាក់តន្ត្រី -->
     <audio id="bgMusic" loop>
