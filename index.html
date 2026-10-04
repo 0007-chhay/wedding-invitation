@@ -676,30 +676,37 @@
    <!-- កូដកាំជ្រួច -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
-    let lastSubmitTime = 0; // កត់ត្រាពេលវេលាចុចចុងក្រោយ
-    
     // មុខងារសម្រាប់ត្រួតពិនិត្យនិងសម្អាតអត្ថបទការពារ XSS
     function sanitizeInput(str) {
         return str.replace(/[<>]/g, ''); // កាត់សញ្ញា < និង > ចោល
     }
 
-    // កូដ RSVP Form Submit
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
         e.preventDefault(); 
-         
-        var currentTime = new Date().getTime();
-        // ការពារ៖ បើចុចញាប់ពេក ក្នុងរយៈពេល ២៤ ម៉ោង (86400000 ms) ហាមផ្ញើ
-        if (currentTime - lastSubmitTime < 86400000) {
-            alert("សូមមេត្តារង់ចាំ មុនពេលបញ្ជាក់ការចូលរួមម្ដងទៀត។");
+        
+        // ពិនិត្យមើលថា Device នេះធ្លាប់បាន Submit រួចហើយឬ (បានតែ ១ដងគត់)
+        if (localStorage.getItem('has_submitted') === 'true') {
+            alert("ឧបករណ៍នេះបានបញ្ជាក់ការចូលរួមរួចរាល់ហើយ មិនអាចបញ្ជាក់ម្ដងទៀតបានទេ។ / This device has already confirmed participation.");
             return;
         }
         
         var form = e.target;
         var data = new FormData(form);
+        
+        // ពិនិត្យនិងសម្អាតឈ្មោះកុំឱ្យមានសញ្ញា < ឬ >
+        if (data.has('name')) {
+            let cleanName = sanitizeInput(data.get('name'));
+            if (cleanName.trim() === "") {
+                alert("សូមបញ្ចូលឈ្មោះឱ្យបានត្រឹមត្រូវ។ / Please enter a valid name.");
+                return;
+            }
+            data.set('name', cleanName);
+        }
+
         var btn = document.getElementById("submitBtn");
         
         btn.disabled = true;
-        btn.innerText = "កំពុងបញ្ជូន..."; 
+        btn.innerText = "កំពុងបញ្ជូន... / Sending..."; 
         
         // បិទ Keyboard និងទម្លាក់អេក្រង់ Zoom មកទំហំដើមវិញ
         document.activeElement.blur();
@@ -709,7 +716,9 @@
             body: data
         })
         .then(response => {
-            lastSubmitTime = new Date().getTime(); // កត់ត្រាពេលផ្ញើបានជោគជ័យ
+            // ចុះបញ្ជីថា Device នេះបាន Submit រួចហើយ (ចងចាំជារៀងរហូត)
+            localStorage.setItem('has_submitted', 'true');
+            
             alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
             
             // បាញ់កាំជ្រួចអបអរសាទរ
@@ -723,12 +732,15 @@
 
             form.reset(); 
             btn.disabled = false;
-            btn.innerText = "បញ្ជូនការបញ្ជាក់";
+            btn.innerText = "បញ្ជូនការបញ្ជាក់ / Submit";
         })
         .catch(error => {
-            alert("សុំទោស មានបញ្ហាបន្តិចបន្តួច សូមសាកល្បងម្ដងទៀត។​ Sorry, there is a slight problem. Please try again.");
+            localStorage.setItem('has_submitted', 'true');
+            
+            alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
+            form.reset();
             btn.disabled = false;
-            btn.innerText = "បញ្ជូនការបញ្ជាក់";
+            btn.innerText = "បញ្ជូនការបញ្ជាក់ / Submit";
         });
     });
 </script>
