@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//Van Chankrisna & Min Sreylak//KM
+BEGIN:VEVENT
+UID:wedding-20261121@chankrisna-sreylak.com
+DTSTAMP:20261005T000000Z
+DTSTART:20261121T170000Z
+DTEND:20261121T220000Z
+SUMMARY:ពិធីជប់លៀងមង្គលការ - Van Chankrisna & Min Sreylak
+DESCRIPTION:ពិធីសិរីមង្គលអាពាហ៍ពិពាហ៍របស់យើងខ្ញុំ។ The wedding dinner reception will be held on November 22, 2026, at 5:00 PM.
+LOCATION:Phnom Penh
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR
