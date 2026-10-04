@@ -676,15 +676,16 @@
    <!-- កូដកាំជ្រួច -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
-    // មុខងារសម្រាប់ត្រួតពិនិត្យនិងសម្អាតអត្ថបទការពារ XSS
-    function sanitizeInput(str) {
-        return str.replace(/[<>]/g, ''); // កាត់សញ្ញា < និង > ចោល
+    // មុខងារពិនិត្យ៖ អនុញ្ញាតអក្សរខ្មែរ អក្សរអង់គ្លេស ដកឃ្លា (Space) និងសញ្ញា &
+    function isValidName(str) {
+        const regex = /^[\u1780-\u17FFa-zA-Z\s&]+$/;
+        return regex.test(str);
     }
 
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
         e.preventDefault(); 
         
-        // ពិនិត្យមើលថា Device នេះធ្លាប់បាន Submit រួចហើយឬ (បានតែ ១ដងគត់)
+        // ពិនិត្យមើលថា Device នេះធ្លាប់បាន Submit រួចហើយឬยัง (បានតែ ១ដងគត់)
         if (localStorage.getItem('has_submitted') === 'true') {
             alert("ឧបករណ៍នេះបានបញ្ជាក់ការចូលរួមរួចរាល់ហើយ មិនអាចបញ្ជាក់ម្ដងទៀតបានទេ។ / This device has already confirmed participation.");
             return;
@@ -692,15 +693,24 @@
         
         var form = e.target;
         var data = new FormData(form);
-        
-        // ពិនិត្យនិងសម្អាតឈ្មោះកុំឱ្យមានសញ្ញា < ឬ >
-        if (data.has('name')) {
-            let cleanName = sanitizeInput(data.get('name'));
-            if (cleanName.trim() === "") {
-                alert("សូមបញ្ចូលឈ្មោះឱ្យបានត្រឹមត្រូវ។ / Please enter a valid name.");
-                return;
-            }
-            data.set('name', cleanName);
+        var nameValue = data.get('name') ? data.get('name').trim() : '';
+
+        // ពិនិត្យថាតើបានបំពេញឈ្មោះឬអត់
+        if (nameValue === "") {
+            alert("សូមបញ្ចូលឈ្មោះរបស់អ្នក។ / Please enter your name.");
+            return;
+        }
+
+        // ពិនិត្យប្រវែងឈ្មោះមិនឱ្យលើសពី ៦០ តួអក្សរ
+        if (nameValue.length > 60) {
+            alert("ឈ្មោះវែងពេក!  / Name is too long!");
+            return;
+        }
+
+        // ពិនិត្យសុវត្ថិភាព៖ ទទួលយកអក្សរ ដកឃ្លា និងសញ្ញា & ប៉ុណ្ណោះ
+        if (!isValidName(nameValue)) {
+            alert("សូមបញ្ចូលឈ្មោះឱ្យបានត្រឹមត្រូវ ។ / Invalid characters!");
+            return;
         }
 
         var btn = document.getElementById("submitBtn");
