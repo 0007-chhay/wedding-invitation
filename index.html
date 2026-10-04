@@ -755,7 +755,7 @@
         // មុខងារបើក Lightbox ពេលចុចលើរូបភាពក្នុង Gallery
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
-        const galleryImages = document.querySelectorAll(".gallery-row img");
+        const galleryImages = document.querySelectorAll(".gallery-container img, .gallery-row img, .gallery img");
 
         galleryImages.forEach(img => {
             img.addEventListener("click", function() {
