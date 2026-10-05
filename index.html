@@ -676,7 +676,6 @@
    <!-- កូដកាំជ្រួច -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
-    // មុខងារពិនិត្យ៖ អនុញ្ញាតអក្សរខ្មែរ អក្សរអង់គ្លេស ដកឃ្លា (Space) និងសញ្ញា &
     function isValidName(str) {
         const regex = /^[\u1780-\u17FFa-zA-Z\s&]+$/;
         return regex.test(str);
@@ -685,9 +684,8 @@
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
         e.preventDefault(); 
         
-        // ពិនិត្យមើលថា Device នេះធ្លាប់បាន Submit រួចហើយឬยัง (បានតែ ១ដងគត់)
         if (localStorage.getItem('has_submitted') === 'true') {
-            alert("ឧបករណ៍នេះបានបញ្ជាក់ការចូលរួមរួចរាល់ហើយ មិនអាចបញ្ជាក់ម្ដងទៀតបានទេ។ / This device has already confirmed participation.");
+            alert("ឧបករណ៍នេះបានបញ្ជាក់ការចូលរួមរួចរាល់ហើយ / This device has already confirmed participation.");
             return;
         }
         
@@ -695,43 +693,45 @@
         var data = new FormData(form);
         var nameValue = data.get('name') ? data.get('name').trim() : '';
 
-        // ពិនិត្យថាតើបានបំពេញឈ្មោះឬអត់
         if (nameValue === "") {
             alert("សូមបញ្ចូលឈ្មោះរបស់អ្នក។ / Please enter your name.");
             return;
         }
 
-        // ពិនិត្យប្រវែងឈ្មោះមិនឱ្យលើសពី ៦០ តួអក្សរ
         if (nameValue.length > 60) {
             alert("ឈ្មោះវែងពេក!  / Name is too long!");
             return;
         }
 
-        // ពិនិត្យសុវត្ថិភាព៖ ទទួលយកអក្សរ ដកឃ្លា និងសញ្ញា & ប៉ុណ្ណោះ
         if (!isValidName(nameValue)) {
             alert("សូមបញ្ចូលឈ្មោះឱ្យបានត្រឹមត្រូវ ។ / Invalid characters!");
             return;
         }
 
+        // 🔑 បញ្ចូល Secret Token ទៅក្នុងទិន្នន័យដែលត្រូវផ្ញើចេញ
+        data.append('secret', 'MySuperSecretWedding2026Key');
+
         var btn = document.getElementById("submitBtn");
-        
         btn.disabled = true;
         btn.innerText = "កំពុងបញ្ជូន... / Sending..."; 
-        
-        // បិទ Keyboard និងទម្លាក់អេក្រង់ Zoom មកទំហំដើមវិញ
         document.activeElement.blur();
 
-        fetch("https://script.google.com/macros/s/AKfycbyzQ3LZjmLF3qWKqWzGrPV8sn9auPCq3BknVAesD-E21kSVpHTaSwHCOoOVfdAZTsaH/exec", {
+        fetch("ជំនួសតំណភ្ជាប់ Apps Script របស់បងនៅទីនេះ", {
             method: "POST",
             body: data
         })
-        .then(response => {
-            // ចុះបញ្ជីថា Device នេះបាន Submit រួចហើយ (ចងចាំជារៀងរហូត)
+        .then(response => response.json())
+        .then(result => {
+            if(result.status === "error") {
+                alert("មានបញ្ហាកើតឡើង៖ " + result.message);
+                btn.disabled = false;
+                btn.innerText = "បញ្ជូនការបញ្ជាក់ / Submit";
+                return;
+            }
+
             localStorage.setItem('has_submitted', 'true');
-            
             alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
             
-            // បាញ់កាំជ្រួចអបអរសាទរ
             if (typeof confetti === "function") {
                 confetti({
                     particleCount: 100,
@@ -745,8 +745,8 @@
             btn.innerText = "បញ្ជូនការបញ្ជាក់ / Submit";
         })
         .catch(error => {
+            // ករណី Network ជំរុញឱ្យជាប់ Block តែបើជោគជ័យអាចចាត់ទុកដូចនេះ
             localStorage.setItem('has_submitted', 'true');
-            
             alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
             form.reset();
             btn.disabled = false;
