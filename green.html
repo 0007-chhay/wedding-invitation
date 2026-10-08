@@ -1843,9 +1843,13 @@
         try{var n=q.get("n"); if(n){n=n.replace(/-/g,"+").replace(/_/g,"/"); while(n.length%4) n+="=";
             name=new TextDecoder().decode(Uint8Array.from(atob(n),function(c){return c.charCodeAt(0);})).slice(0,80).trim();}}catch(e){name="";}
         window.__guestName=name;
-        if(location.hash.indexOf("n=")>-1){try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}}
+        if(location.hash.indexOf("n=")>-1||location.hash.indexOf("g=")>-1){try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}}
         var env=document.getElementById("envelope");
-        if(name){document.getElementById("envName").textContent=name;document.getElementById("envHon").textContent=hon;}
+        function show(h,nm){window.__guestName=nm;document.getElementById("envName").textContent=nm;document.getElementById("envHon").textContent=h;
+            var gn=document.getElementById("guestName"); if(gn&&!gn.value) gn.value=(h?h+" ":"")+nm;}
+        if(name) show(hon,name);
+        var gid=(q.get("g")||"").replace(/\D/g,"");
+        if(gid&&!name){fetch("/api/guest?id="+gid).then(function(r){return r.json();}).then(function(d){if(d&&d.name) show(d.hon||"",d.name);}).catch(function(){});}
         document.documentElement.style.overflow="hidden";
         document.getElementById("envOpen").addEventListener("click",function(){
             env.classList.add("open");
