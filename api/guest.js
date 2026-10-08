@@ -4,6 +4,7 @@
 // POST /api/guest {hon, name}        → {id}   (ឈ្មោះដូចគ្នា ទទួលបានលេខដដែល)
 // GET  /api/guest?id=12              → {hon, name}
 // GET  /api/guest?admin=ADMIN_KEY    → បញ្ជីភ្ញៀវទាំងអស់
+// GET  /api/guest?del=12&key=ADMIN_KEY → លុបភ្ញៀវលេខ ១២
 
 const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -47,6 +48,20 @@ module.exports = async (req, res) => {
     }
 
     const q = req.query || {};
+
+    // លុបភ្ញៀវ
+    if (q.del) {
+      if (!ADMIN || q.key !== ADMIN) return res.status(403).send('Forbidden');
+      const id = String(q.del).replace(/\D/g, '');
+      const raw = await redis(['HGET', 'guests', id]);
+      if (raw) {
+        try { const g = JSON.parse(raw); await redis(['HDEL', 'guest_keys', `${g.hon}|${g.name}`]); } catch {}
+        await redis(['HDEL', 'guests', id]);
+      }
+      res.setHeader('Location', `/api/guest?admin=${encodeURIComponent(ADMIN)}`);
+      return res.status(302).end();
+    }
+
     if (q.admin !== undefined) {
       if (!ADMIN || q.admin !== ADMIN) return res.status(403).send('Forbidden');
       const all = (await redis(['HGETALL', 'guests'])) || [];
@@ -58,9 +73,9 @@ module.exports = async (req, res) => {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       return res.status(200).send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
         <title>បញ្ជីភ្ញៀវ</title><style>body{font-family:system-ui,sans-serif;background:#1f2913;color:#efe2b8;padding:16px;max-width:640px;margin:auto}
-        td,th{padding:6px 8px;border-bottom:1px solid #3a4a26;text-align:left}table{border-collapse:collapse;width:100%}</style>
-        <h2>បញ្ជីភ្ញៀវដែលបានផ្ញើកាត (${rows.length})</h2><table><tr><th>#</th><th>ការគោរព</th><th>ឈ្មោះ</th><th>ថ្ងៃ</th></tr>
-        ${rows.map(r => `<tr><td>${r.id}</td><td>${esc(r.hon)}</td><td>${esc(r.name)}</td><td>${new Date(r.t).toLocaleDateString()}</td></tr>`).join('')}</table>`);
+        a{color:#ff9a8a;text-decoration:none}td,th{padding:6px 8px;border-bottom:1px solid #3a4a26;text-align:left}table{border-collapse:collapse;width:100%}</style>
+        <h2>បញ្ជីភ្ញៀវដែលបានផ្ញើកាត (${rows.length})</h2><table><tr><th>#</th><th>ការគោរព</th><th>ឈ្មោះ</th><th>ថ្ងៃ</th><th></th></tr>
+        ${rows.map(r => `<tr><td>${r.id}</td><td>${esc(r.hon)}</td><td>${esc(r.name)}</td><td>${new Date(r.t).toLocaleDateString()}</td><td><a href="/api/guest?del=${r.id}&key=${encodeURIComponent(ADMIN)}" onclick="return confirm('លុបភ្ញៀវ ${esc(r.name).replace(/'/g,'')}? Link របស់គាត់នឹងបង្ហាញ «ភ្ញៀវកិត្តិយស» ជំនួសឈ្មោះ')">🗑</a></td></tr>`).join('')}</table>`);
     }
 
     if (q.id) {
