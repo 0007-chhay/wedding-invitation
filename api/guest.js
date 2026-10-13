@@ -75,8 +75,8 @@ module.exports = async (req, res) => {
       return res.status(200).send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
         <title>បញ្ជីភ្ញៀវ</title><style>body{font-family:system-ui,sans-serif;background:#1f2913;color:#efe2b8;padding:16px;max-width:640px;margin:auto}
         a{color:#ff9a8a;text-decoration:none}td,th{padding:6px 8px;border-bottom:1px solid #3a4a26;text-align:left}table{border-collapse:collapse;width:100%}</style>
-        <h2>បញ្ជីភ្ញៀវដែលបានផ្ញើកាត (${rows.length})</h2><table><tr><th>#</th><th>ការគោរព</th><th>ឈ្មោះ</th><th>ថ្ងៃ</th><th>ពី</th><th></th></tr>
-        ${rows.map(r => `<tr><td>${r.id}</td><td>${esc(r.hon)}</td><td>${esc(r.name)}</td><td>${new Date(r.t).toLocaleDateString()}</td><td>${esc(r.src || 'my-secord-app')}</td><td><a href="/api/guest?del=${r.id}&key=${encodeURIComponent(ADMIN)}" onclick="return confirm('លុបភ្ញៀវ ${esc(r.name).replace(/'/g,'')}? Link របស់គាត់នឹងបង្ហាញ «ភ្ញៀវកិត្តិយស» ជំនួសឈ្មោះ')">🗑</a></td></tr>`).join('')}</table>`);
+        <h2>បញ្ជីភ្ញៀវដែលបានផ្ញើកាត (${rows.length})</h2><table><tr><th>ល.រ</th><th>កូដ link</th><th>ការគោរព</th><th>ឈ្មោះ</th><th>ថ្ងៃ</th><th>ពី</th><th></th></tr>
+        ${rows.map((r, i) => `<tr><td>${i + 1}</td><td><small>#g=${r.id}</small></td><td>${esc(r.hon)}</td><td>${esc(r.name)}</td><td>${new Date(r.t).toLocaleDateString()}</td><td>${esc(r.src || 'my-secord-app')}</td><td><a href="/api/guest?del=${r.id}&key=${encodeURIComponent(ADMIN)}" onclick="return confirm('លុបភ្ញៀវ ${esc(r.name).replace(/'/g,'')}? Link របស់គាត់នឹងបង្ហាញ «ភ្ញៀវកិត្តិយស» ជំនួសឈ្មោះ')">🗑</a></td></tr>`).join('')}</table>`);
     }
 
     if (q.id) {
