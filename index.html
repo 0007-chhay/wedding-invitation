@@ -1067,18 +1067,54 @@
             border-radius: 50%;
             background: #ebd39b;
         }
-                .sched-flower {
-            width: 72%;
-            height: 72%;
+                        .sched-flower {
+            width: 34px;
+            height: 34px;
             object-fit: contain;
             filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
         }
+        /* ប្រអប់ផ្កា៖ ទំហំថេរ មិនរួមតូចពេលអក្សរវែង */
+        div:has(> .sched-flower) {
+            flex-shrink: 0;
+            min-width: 50px;
+            min-height: 50px;
+        }
+          /* ផ្កាមាសតុបតែងស្រោមសំបុត្រ (ជ្រុងខាងក្រោម) */
+        .env-card::before, .env-card::after {
+            content: "";
+            position: absolute;
+            bottom: -14px;
+            width: 86px;
+            height: 86px;
+            background: url('flower.png') center / contain no-repeat;
+            opacity: 0.9;
+            pointer-events: none;
+            filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+        }
+        .env-card::before { left: -14px; transform: rotate(35deg); }
+        .env-card::after { right: -14px; transform: rotate(-35deg); }
+        /* បន្ទាត់មានផ្កាកណ្តាល ពីលើឈ្មោះភ្ញៀវ */
+        .env-flower-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px auto 2px;
+        }
+        .env-flower-line::before, .env-flower-line::after {
+            content: "";
+            height: 1px;
+            width: 70px;
+            background: linear-gradient(90deg, transparent, var(--gold-accent));
+        }
+        .env-flower-line::after { transform: scaleX(-1); }
+        .env-flower-line img { width: 30px; height: 30px; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45)); }
     </style>
 </head>
 <body>
     <!-- ស្រោមសំបុត្រ៖ បង្ហាញឈ្មោះភ្ញៀវពី link (#g=.. ឬ ?h=..&n=..) -->
     <div id="envelope" class="env" role="dialog" aria-modal="true" aria-label="សំបុត្រអញ្ជើញ / Invitation">
-        <div class="env-card">
+                <div class="env-card">
             <div class="env-flap"></div>
             <img src="sl.png" alt="" class="env-seal" width="64" height="49">
 
@@ -1091,6 +1127,7 @@
             <p class="env-invite">សូមគោរពអញ្ជើញ</p>
             <p class="env-en">We cordially invite</p>
 
+            <div class="env-flower-line"><img src="flower.png" alt=""></div>
             <p class="env-hon" id="envHon"></p>
             <h1 class="env-name" id="envName">ភ្ញៀវកិត្តិយស</h1>
 
