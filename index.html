@@ -1026,6 +1026,28 @@
         @media (prefers-reduced-motion: reduce) {
             .sparkle, .falling-item, .floating-golden-butterfly { display: none; }
         }
+
+                /* ------------------------------------- */
+        /* ប៊ូតុងទាក់ទងតាម Telegram (ក្រោម QR Code) */
+        /* ------------------------------------- */
+        .tg-contact { margin-top: 22px; }
+        .tg-contact .tg-text { margin: 0 0 12px; }
+        .tg-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--gold-text), var(--gold-accent));
+            color: var(--bg-dark);
+            font-family: 'Battambang', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.15s ease;
+        }
+        .tg-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
@@ -1268,7 +1290,7 @@
                 <span class="cal-btn-en">Save the date</span>
             </a>
             <p class="cal-hint"></p>
-            <a class="cal-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%87%E1%9E%94%E1%9F%8B%E1%9E%9B%E1%9F%80%E1%9E%84%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%80%E1%9E%B6%E1%9E%9A%20-%20Van%20Chankrisna%20%26%20Min%20Sreylak&amp;dates=20261122T100000Z%2F20261122T150000Z&amp;details=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%9F%E1%9E%B7%E1%9E%9A%E1%9E%B8%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%A2%E1%9E%B6%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%96%E1%9E%B7%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%9A%E1%9E%94%E1%9E%9F%E1%9F%8B%E1%9E%99%E1%9E%BE%E1%9E%84%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86%E1%9F%94%20The%20wedding%20dinner%20reception%20will%20be%20held%20on%20November%2022%2C%202026%2C%20at%205%3A00%20PM.%0A%0A%F0%9F%93%8D%20Google%20Map%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FtrofWD7W4vPz9mzH9&amp;location=Battambang%20City" target="_blank" rel="noopener">ឬបន្ថែមក្នុង Google Calendar</a>
+            <a class="cal-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%87%E1%9E%94%E1%9F%8B%E1%9E%9B%E1%9F%80%E1%9E%84%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%80%E1%9E%B6%E1%9E%9A%20-%20Van%20Chankrisna%20%26%20Min%20Sreylak&amp;dates=20261122T170000%2F20261122T220000&amp;ctz=Asia%2FPhnom_Penh&amp;details=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%9F%E1%9E%B7%E1%9E%9A%E1%9E%B8%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%A2%E1%9E%B6%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%96%E1%9E%B7%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%9A%E1%9E%94%E1%9E%9F%E1%9F%8B%E1%9E%99%E1%9E%BE%E1%9E%84%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86%E1%9F%94%20The%20wedding%20dinner%20reception%20will%20be%20held%20on%20November%2022%2C%202026%2C%20at%205%3A00%20PM.%0A%0A%F0%9F%93%8D%20Google%20Map%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FtrofWD7W4vPz9mzH9&amp;location=Battambang%20City" target="_blank" rel="noopener">ឬបន្ថែមក្នុង Google Calendar</a>
         </div>
         <hr class="divider">
 
@@ -1370,7 +1392,16 @@
                 <div class="qr-image-container">
                     <img src="qr-code.jpg" alt="ABA QR Code" class="qr-image" loading="lazy" decoding="async">
                 </div>
+                 <!-- ប៊ូតុងទាក់ទងតាម Telegram -->
+                <div class="tg-contact">
+                    <p class="tg-text">You can contact me directly via Telegram</p>
+                    <a href="https://t.me/brochhay2026" target="_blank" rel="noopener" class="tg-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.06-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                        ទាក់ទងតាម Telegram
+                    </a>
+                </div>
             </div>
+
         </div>
         <hr class="divider">
 
@@ -1459,7 +1490,7 @@
                 <span class="cal-btn-en">Save the date</span>
             </a>
             <p class="cal-hint"></p>
-            <a class="cal-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%87%E1%9E%94%E1%9F%8B%E1%9E%9B%E1%9F%80%E1%9E%84%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%80%E1%9E%B6%E1%9E%9A%20-%20Van%20Chankrisna%20%26%20Min%20Sreylak&amp;dates=20261122T100000Z%2F20261122T150000Z&amp;details=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%9F%E1%9E%B7%E1%9E%9A%E1%9E%B8%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%A2%E1%9E%B6%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%96%E1%9E%B7%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%9A%E1%9E%94%E1%9E%9F%E1%9F%8B%E1%9E%99%E1%9E%BE%E1%9E%84%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86%E1%9F%94%20The%20wedding%20dinner%20reception%20will%20be%20held%20on%20November%2022%2C%202026%2C%20at%205%3A00%20PM.%0A%0A%F0%9F%93%8D%20Google%20Map%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FtrofWD7W4vPz9mzH9&amp;location=Battambang%20City" target="_blank" rel="noopener">ឬបន្ថែមក្នុង Google Calendar</a>
+            <a class="cal-google" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%87%E1%9E%94%E1%9F%8B%E1%9E%9B%E1%9F%80%E1%9E%84%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%80%E1%9E%B6%E1%9E%9A%20-%20Van%20Chankrisna%20%26%20Min%20Sreylak&amp;dates=20261122T170000%2F20261122T220000&amp;ctz=Asia%2FPhnom_Penh&amp;details=%E1%9E%96%E1%9E%B7%E1%9E%92%E1%9E%B8%E1%9E%9F%E1%9E%B7%E1%9E%9A%E1%9E%B8%E1%9E%98%E1%9E%84%E1%9F%92%E1%9E%82%E1%9E%9B%E1%9E%A2%E1%9E%B6%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%96%E1%9E%B7%E1%9E%96%E1%9E%B6%E1%9E%A0%E1%9F%8D%E1%9E%9A%E1%9E%94%E1%9E%9F%E1%9F%8B%E1%9E%99%E1%9E%BE%E1%9E%84%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86%E1%9F%94%20The%20wedding%20dinner%20reception%20will%20be%20held%20on%20November%2022%2C%202026%2C%20at%205%3A00%20PM.%0A%0A%F0%9F%93%8D%20Google%20Map%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FtrofWD7W4vPz9mzH9&amp;location=Battambang%20City" target="_blank" rel="noopener">ឬបន្ថែមក្នុង Google Calendar</a>
         </div>
         </div>
 
