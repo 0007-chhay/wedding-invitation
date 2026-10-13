@@ -1054,6 +1054,31 @@
             transition: transform 0.15s ease;
         }
         .tg-btn:active { transform: scale(0.96); }
+
+        
+        /* ប៊ូតុងខាងក្រោម៖ បង្ហាញផ្នែកដែលកំពុងមើល */
+        .bottom-nav .nav-item { position: relative; }
+        .bottom-nav .nav-item.active {
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 6px 16px rgba(235, 211, 155, 0.6);
+        }
+        .bottom-nav .nav-item.active::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            margin-left: -3px;
+            border-radius: 50%;
+            background: #ebd39b;
+        }
+                .sched-flower {
+            width: 72%;
+            height: 72%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+        }
     </style>
 </head>
 <body>
@@ -1169,7 +1194,7 @@
         <!-- ប្រអប់កម្មវិធីទី១ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១៣:០០ រសៀល​ / At 1:00 PM</h4>
@@ -1179,7 +1204,7 @@
         <!-- ប្រអប់កម្មវិធីទី២ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១៥:៣០ ល្ងាច / At 3:30 PM</h4>
@@ -1189,7 +1214,7 @@
         <!-- ប្រអប់កម្មវិធីទី៣ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១៧:០០ ល្ងាច / At 5:00 PM</h4>
@@ -1199,7 +1224,7 @@
         <!-- ប្រអប់កម្មវិធីទី៤ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១៨:០០ ល្ងាច / At 6:00 PM</h4>
@@ -1209,7 +1234,7 @@
         <!-- ប្រអប់កម្មវិធីទី៥ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១៩:០០ ល្ងាច / At 7:00 PM</h4>
@@ -1222,7 +1247,7 @@
         <!-- ប្រអប់កម្មវិធីទី១ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">០៧:០០ ពេលព្រឹក / At 7:00 AM</h4>
@@ -1232,7 +1257,7 @@
         <!-- ប្រអប់កម្មវិធីទី២ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">៧:៣០ នាទីព្រឹក / At 7:30 AM</h4>
@@ -1242,7 +1267,7 @@
         <!-- ប្រអប់កម្មវិធីទី៣ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">៨:៣០ នាទីព្រឹក / 8:30 AM</h4>
@@ -1252,7 +1277,7 @@
         <!-- ប្រអប់កម្មវិធីទី៤ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">៩:៣០ នាទីព្រឹក / 9:30 AM</h4>
@@ -1262,7 +1287,7 @@
         <!-- ប្រអប់កម្មវិធីទី៥ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១១:០០ នាទីព្រឹក / 11:00 AM</h4>
@@ -1272,7 +1297,7 @@
         <!-- ប្រអប់កម្មវិធីទី៦ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១១:៣០ នាទីព្រឹក / 11:30 AM</h4>
@@ -1282,7 +1307,7 @@
         <!-- ប្រអប់កម្មវិធីទី៧ -->
         <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(232, 220, 170, 0.2); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: left; display: flex; align-items: center;">
             <div style="width: 50px; height: 50px; background: rgba(232, 220, 170, 0.15); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; border: 1px solid var(--gold-accent); margin-right: 20px;">
-                🎪
+                <img src="flower.png" alt="" class="sched-flower">
             </div>
             <div>
                 <h4 style="margin: 0 0 5px 0; font-size: 1.1rem;">១៧:០០ ល្ងាច / 5:00 PM</h4>
@@ -1917,6 +1942,37 @@
             fetch("/api/wishes").then(function(r){return r.json();}).then(function(d){(d.wishes||[]).forEach(function(w){item(w,false);});}).catch(function(){});}
         var sec=document.getElementById("wishes-section");
         if("IntersectionObserver" in window&&sec){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){load();o.disconnect();}},{rootMargin:"600px"}).observe(sec);} else load();
+    })();
+    </script>
+      <script>
+    (function () {
+        var items = [].slice.call(document.querySelectorAll('.bottom-nav .nav-item'));
+        var list = [];
+        items.forEach(function (a) {
+            var el = document.querySelector(a.getAttribute('href'));
+            if (el) list.push({ a: a, el: el });
+        });
+        // ផ្នែកពាក្យជូនពរ ក៏បង្ហាញលើប៊ូតុង 💌 ដែរ
+        var wish = document.getElementById('wishes-section');
+        var rsvpBtn = document.querySelector('.bottom-nav .nav-item[href="#rsvp"]');
+        if (wish && rsvpBtn) list.push({ a: rsvpBtn, el: wish });
+ 
+        var current = null, ticking = false;
+        function update() {
+            ticking = false;
+            var line = window.innerHeight * 0.28, best = null, bestTop = -1e9;
+            list.forEach(function (s) {
+                var t = s.el.getBoundingClientRect().top;
+                if (t <= line && t > bestTop) { bestTop = t; best = s.a; }
+            });
+            if (best === current) return;
+            current = best;
+            items.forEach(function (a) { a.classList.toggle('active', a === best); });
+        }
+        window.addEventListener('scroll', function () {
+            if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }, { passive: true });
+        update();
     })();
     </script>
 </body>
