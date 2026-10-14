@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
+    <!-- ១. បិទភ្ជាប់ភ្លាមៗក្រោម <head> -->
+    <script>try{if(location.hash.length>1)sessionStorage.setItem("etheapGuest",location.hash);}catch(e){}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ចំណងដៃអាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
@@ -1116,6 +1118,39 @@
                 font-size: 16px !important;
             }
         }
+        
+        /* តន្ត្រីក្នុងជួរប៊ូតុងខាងក្រោម */
+        #musicText { display: none !important; }
+        .bottom-nav #musicToggle { cursor: pointer; border: none; }
+        .bottom-nav #musicToggle.playing { animation: none; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 0 14px rgba(235, 211, 155, 0.7); }
+        .bottom-nav #musicToggle.playing span { display: inline-block; animation: spinRecord 3s linear infinite; }
+        /* ប៊ូតុងប្តូរស្តាយធៀប (នៅកន្លែងប៊ូតុងតន្ត្រីចាស់) */
+        .switch-text {
+            background-color: #fffdf5;
+            color: #800020;
+            padding: 4px 10px;
+            border: 1px solid #d4af37;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            animation: bounceText 1.5s infinite;
+        }
+        .switch-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            text-decoration: none;
+            border: 2px solid #ebd39b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+        }
+        .switch-btn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
@@ -1148,11 +1183,10 @@
     </audio>
 
     <!-- ប៊ូតុងតន្ត្រីពណ៌មាស -->
-    <div class="music-wrapper">
-        <div id="musicText" class="music-text">ចុចស្ដាប់តន្ត្រី 🎶</div>
-        <div id="musicToggle" class="music-btn" onclick="toggleMusic()" role="button" tabindex="0" aria-label="តន្ត្រី / Music">
-            🎻
-        </div>
+       <div class="music-wrapper">
+        <div class="switch-text">Matcha Style 🍵</div>
+        <a class="switch-btn" href="green.html" data-switch style="background: linear-gradient(135deg, #6b8040, #26321a);" aria-label="Matcha Style">🌿</a>
+        <div id="musicText" class="music-text"></div>
     </div>
 
     <!-- រូបគូស្វាមីភរិយាព្រិលនៅផ្ទៃខាងក្រោយ -->
@@ -1572,6 +1606,7 @@
         <a href="#gallery" class="nav-item" aria-label="រូបថត / Gallery">📸</a>
         <a href="#qr" class="nav-item" aria-label="ចំណងដៃ / Gift">🎁</a>
         <a href="#rsvp" class="nav-item" aria-label="បញ្ជាក់ការចូលរួម / RSVP">💌</a>
+          <div id="musicToggle" class="nav-item" onclick="toggleMusic()" role="button" tabindex="0" aria-label="តន្ត្រី / Music"><span>🎻</span></div>
     </div>
 
     <!-- ===================================================== -->
@@ -2013,6 +2048,15 @@
         }, { passive: true });
         update();
     })();
+    </script>
+     <script>
+    // ប្តូរស្តាយធៀប ដោយរក្សាឈ្មោះភ្ញៀវ (#g=...)
+    document.querySelectorAll("[data-switch]").forEach(function (a) {
+        a.addEventListener("click", function (e) {
+            var h = ""; try { h = sessionStorage.getItem("etheapGuest") || ""; } catch (_) {}
+            if (h) { e.preventDefault(); location.href = a.getAttribute("href") + h; }
+        });
+    });
     </script>
 </body>
 </html>
