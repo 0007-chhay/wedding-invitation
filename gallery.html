@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2b1b0d">
+    <title>អនុស្សាវរីយ៍របស់យើង | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
+    <meta property="og:image" content="https://wedding-invitation-gilt-eight.vercel.app/first.jpg">
+    <meta property="og:title" content="អនុស្សាវរីយ៍អាពាហ៍ពិពាហ៍ | វ៉ាន ច័ន្ទគ្រឹស្នា &amp; មិន ស្រីលក្ខ">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moul&family=Battambang:wght@400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== ពណ៌ដូច index.html ===== */
+        :root {
+            --bg-dark: #2b1b0d;
+            --bg-light: #4a2e1b;
+            --gold-text: #ebd39b;
+            --gold-accent: #b88a44;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2b1b0d;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .93 0 0 0 0 .82 0 0 0 0 .6 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+                radial-gradient(circle at center, #3d2613 0%, #1a0f0a 100%);
+            background-size: 240px 240px, 100% 100%;
+            background-attachment: fixed;
+            font-family: 'Battambang', sans-serif;
+            color: var(--gold-text);
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* រូបគូស្វាមីភរិយាព្រិលជាផ្ទៃខាងក្រោយ (first.jpg ដដែល) */
+        .photo-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+        .photo-bg::before {
+            content: ""; position: absolute; inset: -40px;
+            background: url('first.jpg') center 25% / cover no-repeat;
+            filter: blur(10px) brightness(0.62) saturate(0.9);
+        }
+        .photo-bg::after {
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(43,27,13,.45) 0%, rgba(22,13,7,.86) 100%);
+        }
+
+        /* ក្បាច់ខ្មែរប្រាំងៗកណ្តាល */
+        .kbach-watermark {
+            position: fixed; top: 50%; left: 50%;
+            width: min(82vw, 560px); aspect-ratio: 1 / 1;
+            transform: translate(-50%, -50%);
+            opacity: 0.07; pointer-events: none; z-index: 0;
+        }
+        .kbach-watermark svg { width: 100%; height: 100%; display: block; }
+
+        /* ក្បាច់វល្លិ៍សងខាង */
+        .kbach-left, .kbach-right {
+            position: fixed; top: 0; bottom: 0; width: 70px; z-index: 10;
+            pointer-events: none; background-color: rgba(10,5,2,.35);
+            background-repeat: repeat-y; background-size: 100% auto;
+        }
+        .kbach-left { left: 0; background-image: url('vine-tile.svg'); border-right: 1px solid rgba(226,183,90,.6); }
+        .kbach-right { right: 0; background-image: url('vine-tile-right.svg'); border-left: 1px solid rgba(226,183,90,.6); }
+
+        .main-content {
+            max-width: 650px; margin: 0 auto;
+            padding: 50px 100px 140px;
+            position: relative; text-align: center; z-index: 2;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Moul', serif; color: var(--gold-text);
+            margin: 10px 0; font-weight: normal;
+            text-shadow: 2px 2px 5px rgba(0,0,0,.6); line-height: 1.6;
+        }
+        .main-title { font-size: 1.8rem; margin-bottom: 10px; }
+        .eng-wedding-title {
+            font-family: 'Dancing Script', cursive; font-size: 2rem; font-weight: 700;
+            color: var(--gold-accent); margin: 0; line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,.6);
+        }
+        .intro { font-size: .95rem; line-height: 1.8; color: #d1b88a; margin: 16px 0 0; }
+
+        .divider {
+            border: 0; height: 2px; margin: 40px 0;
+            background: linear-gradient(to right, transparent, var(--gold-accent), transparent);
+        }
+
+        /* ===== Gallery ដូច index.html: ជួរ 2 → 3 → 1 ===== */
+        .gallery-custom { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .gallery-row { display: flex; gap: 15px; justify-content: center; }
+        .gallery-set { margin-top: 15px; display: flex; flex-direction: column; gap: 15px; animation: fadeInGallery .9s ease-out both; }
+        .gallery-row img {
+            width: 100%; min-width: 0; object-fit: cover;
+            border-radius: 12px; border: 2px solid var(--gold-accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,.5);
+            cursor: pointer; background: rgba(0,0,0,.3);
+            transition: transform .3s ease;
+        }
+        .gallery-row img:hover { transform: scale(1.05); z-index: 2; position: relative; }
+        .gallery-2-cols img { flex: 1; height: 250px; }
+        .gallery-3-cols img { flex: 1; height: 180px; }
+        .gallery-1-col img { flex: 1; height: 250px; }
+        @keyframes fadeInGallery { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+        /* ===== វីដេអូ (ប្រអប់ដូច map-container) ===== */
+        .video-card {
+            background: rgba(0,0,0,.3); border: 1px solid rgba(235,211,155,.2);
+            border-radius: 15px; padding: 15px; margin-top: 20px;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .video-card video {
+            width: 100%; aspect-ratio: 16 / 9; background: #000;
+            border-radius: 10px; border: 1px solid var(--gold-accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,.4);
+        }
+
+        /* ប៊ូតុងមាស (ដូច map-button) */
+        .gold-btn {
+            display: inline-block; margin-top: 25px;
+            background: linear-gradient(135deg, #ebd39b, #b88a44);
+            color: #351f0f; font-family: 'Battambang', sans-serif;
+            font-size: 1rem; font-weight: bold; text-decoration: none;
+            padding: 12px 24px; border: 0; border-radius: 25px; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,.5); transition: .3s;
+        }
+        .gold-btn:active { transform: scale(.95); }
+
+        .state {
+            background: rgba(0,0,0,.3); border: 1px solid rgba(235,211,155,.2);
+            border-radius: 15px; padding: 40px 20px; margin-top: 25px;
+            font-size: .95rem; line-height: 1.8; color: #d1b88a;
+        }
+        .state strong { display: block; font-family: 'Moul', serif; font-weight: normal; color: var(--gold-text); font-size: 1.15rem; margin-bottom: 8px; }
+        .count { font-size: .9rem; color: #d1b88a; margin: 0; }
+
+        .thank-eng {
+            font-family: 'Dancing Script', cursive; font-size: 1.6rem;
+            color: var(--gold-accent); line-height: 1.4; margin: 10px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+        }
+
+        /* ===== Bottom Navigation (ដូច index.html) ===== */
+        .bottom-nav {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 450px; background: rgba(43,27,13,.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(235,211,155,.4); border-radius: 25px;
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 12px 15px; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,.8);
+            margin-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        .nav-item {
+            position: relative; width: 45px; height: 45px;
+            background: linear-gradient(135deg, #ebd39b, #b88a44);
+            border-radius: 12px; display: flex; justify-content: center; align-items: center;
+            color: var(--bg-dark); font-size: 1.4rem; text-decoration: none;
+            transition: .3s; box-shadow: 0 3px 8px rgba(0,0,0,.5);
+        }
+        .nav-item.active {
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 0 0 0 3px rgba(255,255,255,.85), 0 6px 16px rgba(235,211,155,.6);
+        }
+        .nav-item.active::after {
+            content: ""; position: absolute; bottom: -10px; left: 50%;
+            width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #ebd39b;
+        }
+
+        .nav-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(235,211,155,.4); }
+        /* តន្ត្រីក្នុងជួរប៊ូតុងខាងក្រោម (ដូច index.html) */
+        .bottom-nav #musicToggle { cursor: pointer; border: none; }
+        .bottom-nav #musicToggle.playing { box-shadow: 0 0 0 3px rgba(255,255,255,.8), 0 0 14px rgba(235,211,155,.7); }
+        .bottom-nav #musicToggle.playing span { display: inline-block; animation: spinRecord 3s linear infinite; }
+        @keyframes spinRecord { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+        /* ===== ផ្ទាំងពង្រីករូប (ដូច index.html + ប្តូររូបបាន) ===== */
+        .modal {
+            display: none; position: fixed; inset: 0; z-index: 100000;
+            background: rgba(0,0,0,.92); backdrop-filter: blur(5px);
+            justify-content: center; align-items: center; flex-direction: column;
+            touch-action: pan-y;
+        }
+        .modal.open { display: flex; }
+        .modal-content {
+            max-width: 92%; max-height: 78vh; border-radius: 12px;
+            border: 2px solid var(--gold-accent); box-shadow: 0 4px 20px rgba(0,0,0,.8);
+            animation: zoomIn .3s ease;
+        }
+        @keyframes zoomIn { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-btn {
+            position: absolute; width: 46px; height: 46px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #ebd39b, #b88a44); color: #351f0f;
+            border: 0; font-size: 1.5rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,.6); text-decoration: none;
+        }
+        .modal-close { top: calc(16px + env(safe-area-inset-top, 0px)); right: 16px; }
+        .modal-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+        .modal-next { right: 10px; top: 50%; transform: translateY(-50%); }
+        .modal-count { margin-top: 16px; font-size: .9rem; color: var(--gold-text); }
+        .modal-full { margin-top: 10px; font-size: .85rem; color: #d1b88a; text-decoration: underline; text-underline-offset: 3px; }
+
+        /* ===== ពន្លឺ និងមេអំបៅ (ស្រាលៗ) ===== */
+        .sparkle {
+            position: fixed; width: 3px; height: 3px; background: white; border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(235,211,155,.8);
+            animation: twinkle 2.5s infinite ease-in-out; pointer-events: none; z-index: 1;
+        }
+        @keyframes twinkle { 0%,100% { opacity: 0; transform: scale(.5); } 50% { opacity: 1; transform: scale(1.5); } }
+        .butterfly-flying-container { position: fixed; inset: 0; pointer-events: none; z-index: 9998; overflow: hidden; }
+        .floating-golden-butterfly {
+            position: absolute; width: 35px; height: 35px;
+            background: url('butterfly.svg') center / contain no-repeat;
+            animation: flyRandomly 6s ease-in-out infinite;
+        }
+        @keyframes flyRandomly {
+            0% { transform: translate(0, 100vh) scale(.6) rotate(0); opacity: 0; }
+            20%, 80% { opacity: 1; }
+            50% { transform: translate(var(--randomX1), 50vh) scale(1.1) rotate(45deg); }
+            100% { transform: translate(var(--randomX2), -10vh) scale(.7) rotate(90deg); opacity: 0; }
+        }
+
+        /* ===== ទូរស័ព្ទ ===== */
+        @media (max-width: 768px) {
+            .kbach-left, .kbach-right { width: 40px; }
+            .main-content { padding: 40px 44px 140px; }
+            .main-title { font-size: 1.3rem; }
+            .eng-wedding-title { font-size: 1.6rem; }
+            .gallery-custom, .gallery-set, .gallery-row { gap: 10px; }
+            .gallery-set { margin-top: 10px; }
+            .gallery-2-cols img { height: 200px; }
+            .gallery-3-cols img { height: 130px; }
+            .gallery-1-col img { height: 180px; }
+            .gallery-row img:hover { transform: none; }
+            .bottom-nav { width: 85%; padding: 10px; }
+            .nav-item { width: 40px; height: 40px; font-size: 1.2rem; }
+            .nav-item:hover { transform: none; }
+            .nav-item.active:hover { transform: translateY(-6px) scale(1.08); }
+            .thank-eng { font-size: 1.35rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .sparkle, .floating-golden-butterfly { display: none; }
+            .gallery-set, .modal-content { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="photo-bg" aria-hidden="true"></div>
+    <div class="kbach-watermark" id="watermark" aria-hidden="true"></div>
+    <div class="kbach-left"></div>
+    <div class="kbach-right"></div>
+
+    <div class="main-content">
+        <h2 class="main-title">អនុស្សាវរីយ៍របស់យើង</h2>
+        <p class="eng-wedding-title">Our Memories</p>
+        <p class="intro">
+            វ៉ាន ច័ន្ទគ្រឹស្នា 💛 មិន ស្រីលក្ខ<br>
+            ថ្ងៃទី២១-២២ ខែវិច្ឆិកា ឆ្នាំ២០២៦
+        </p>
+
+        <hr class="divider">
+
+        <!-- ពេលមិនទាន់មានរូប ឬកំពុងផ្ទុក -->
+        <div id="state" class="state">កំពុងផ្ទុក... / Loading...</div>
+
+        <!-- វីដេអូ -->
+        <div id="videoSection" hidden>
+            <h2 class="main-title">វីដេអូ<br><span style="font-size:1.2rem">Videos</span></h2>
+            <div id="videos" class="video-card"></div>
+            <hr class="divider">
+        </div>
+
+        <!-- រូបភាព -->
+        <div id="photoSection" hidden>
+            <h2 class="main-title">រូបភាព<br><span style="font-size:1.2rem">Photos</span></h2>
+            <p class="count" id="photoCount"></p>
+            <div id="gallery" class="gallery-custom"></div>
+            <button id="more" class="gold-btn" hidden>📸 បង្ហាញរូបបន្ថែម / Show more</button>
+            <hr class="divider">
+        </div>
+
+        <h2 class="main-title">ថ្លែងអំណរគុណ</h2>
+        <p class="thank-eng">Thank you for being part of our special day.</p>
+        <div style="font-size:1.4rem">❤️❤️❤️</div>
+        <a href="index.html" class="gold-btn">💌 ត្រឡប់ទៅលិខិតអញ្ជើញ / Back</a>
+    </div>
+
+    <!-- តន្ត្រី (ដូច index.html) -->
+    <audio id="bgMusic" loop preload="none">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- របារប៊ូតុងខាងក្រោម (ភ្ជាប់ទៅផ្នែកក្នុង index.html) -->
+    <div class="bottom-nav">
+        <a href="index.html#schedule" class="nav-item" aria-label="កម្មវិធី / Schedule">⏰</a>
+        <a href="index.html#map" class="nav-item" aria-label="ផែនទី / Map">🗺️</a>
+        <a href="gallery.html" class="nav-item active" aria-label="រូបថត / Gallery" aria-current="page">📸</a>
+        <a href="index.html#qr" class="nav-item" aria-label="ចំណងដៃ / Gift">🎁</a>
+        <a href="index.html#rsvp" class="nav-item" aria-label="បញ្ជាក់ការចូលរួម / RSVP">💌</a>
+        <div id="musicToggle" class="nav-item" role="button" tabindex="0" aria-label="តន្ត្រី / Music"><span>🎻</span></div>
+    </div>
+
+    <!-- ផ្ទាំងរូបធំ -->
+    <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="មើលរូប / Photo">
+        <button class="modal-btn modal-close" aria-label="បិទ / Close">&times;</button>
+        <button class="modal-btn modal-prev" aria-label="រូបមុន / Previous">‹</button>
+        <img class="modal-content" id="fullImage" alt="">
+        <button class="modal-btn modal-next" aria-label="រូបបន្ទាប់ / Next">›</button>
+        <div class="modal-count" id="modalCount"></div>
+        <a class="modal-full" id="modalFull" target="_blank" rel="noopener">បើករូបដើម / Open original</a>
+    </div>
+
+    <script>
+        // ===================================================
+        // កែតែកន្លែងនេះ: Public URL របស់ R2 bucket (គ្មាន / នៅចុង)
+        // ===================================================
+        const R2_URL = "https://pub-xxxxxxxxxxxxxxxx.r2.dev";
+
+        const SETS_PER_PAGE = 6; // 1 ឈុត = 6 រូប (2+3+1) ⇒ 36 រូបម្តង
+        const $ = (id) => document.getElementById(id);
+        const url = (name) => R2_URL + "/" + encodeURI(name);
+        let photos = [], shown = 0, current = 0;
+
+        // ===== ផ្ទុកបញ្ជីរូបពី R2 =====
+        async function load() {
+            try {
+                const res = await fetch(R2_URL + "/list.json", { cache: "no-store" });
+                if (!res.ok) throw 0;
+                const data = await res.json();
+                photos = data.photos || [];
+                const videos = data.videos || [];
+                if (!photos.length && !videos.length) throw 0;
+                $("state").hidden = true;
+                if (videos.length) renderVideos(videos);
+                if (photos.length) {
+                    $("photoSection").hidden = false;
+                    $("photoCount").textContent = photos.length + " សន្លឹក / photos";
+                    showMore();
+                }
+            } catch (e) {
+                $("state").innerHTML = "<strong>រូបភាពនឹងមកដល់ឆាប់ៗ</strong>សូមត្រឡប់មកមើលវិញក្រោយកម្មវិធី 💍<br>Photos coming soon after the wedding.";
+            }
+        }
+
+        function renderVideos(list) {
+            $("videoSection").hidden = false;
+            list.forEach((name) => {
+                const v = document.createElement("video");
+                v.src = url(name); v.controls = true; v.preload = "metadata"; v.playsInline = true;
+                $("videos").appendChild(v);
+            });
+        }
+
+        function makeImg(i) {
+            const img = document.createElement("img");
+            img.src = url(photos[i]);
+            img.alt = "Memory " + (i + 1);
+            img.loading = "lazy";
+            img.decoding = "async";
+            img.onclick = () => openModal(i);
+            return img;
+        }
+
+        // បង្កើតជួរ 2 → 3 → 1 ដូច index.html
+        function showMore() {
+            const pattern = [["gallery-2-cols", 2], ["gallery-3-cols", 3], ["gallery-1-col", 1]];
+            for (let s = 0; s < SETS_PER_PAGE && shown < photos.length; s++) {
+                const set = document.createElement("div");
+                set.className = "gallery-set";
+                for (const [cls, n] of pattern) {
+                    if (shown >= photos.length) break;
+                    const row = document.createElement("div");
+                    row.className = "gallery-row " + cls;
+                    for (let k = 0; k < n && shown < photos.length; k++) row.appendChild(makeImg(shown++));
+                    set.appendChild(row);
+                }
+                $("gallery").appendChild(set);
+            }
+            $("more").hidden = shown >= photos.length;
+        }
+        $("more").onclick = showMore;
+
+        // ===== ផ្ទាំងរូបធំ =====
+        const modal = $("imageModal");
+        function openModal(i) { current = i; updateModal(); modal.classList.add("open"); document.body.style.overflow = "hidden"; }
+        function closeModal() { modal.classList.remove("open"); document.body.style.overflow = ""; }
+        function step(d) { current = (current + d + photos.length) % photos.length; updateModal(); }
+        function updateModal() {
+            $("fullImage").src = url(photos[current]);
+            $("modalFull").href = url(photos[current]);
+            $("modalCount").textContent = (current + 1) + " / " + photos.length;
+            new Image().src = url(photos[(current + 1) % photos.length]);
+        }
+        modal.querySelector(".modal-close").onclick = closeModal;
+        modal.querySelector(".modal-prev").onclick = (e) => { e.stopPropagation(); step(-1); };
+        modal.querySelector(".modal-next").onclick = (e) => { e.stopPropagation(); step(1); };
+        modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+        document.addEventListener("keydown", (e) => {
+            if (!modal.classList.contains("open")) return;
+            if (e.key === "Escape") closeModal();
+            if (e.key === "ArrowLeft") step(-1);
+            if (e.key === "ArrowRight") step(1);
+        });
+        let sx = null;
+        modal.addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; }, { passive: true });
+        modal.addEventListener("touchend", (e) => {
+            if (sx === null) return;
+            const dx = e.changedTouches[0].clientX - sx;
+            if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+            sx = null;
+        });
+
+        load();
+    </script>
+
+    <!-- តន្ត្រី: ចុចប៊ូតុង 🎻 ឬចាប់ផ្តើមពេលភ្ញៀវប៉ះអេក្រង់លើកដំបូង -->
+    <script>
+        (function () {
+            var music = document.getElementById("bgMusic");
+            var btn = document.getElementById("musicToggle");
+            function play() { return music.play().then(function () { btn.classList.add("playing"); }).catch(function () {}); }
+            function toggle() { if (music.paused) play(); else { music.pause(); btn.classList.remove("playing"); } }
+            btn.addEventListener("click", toggle);
+            btn.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+            document.body.addEventListener("click", function (e) {
+                if (e.target.closest && e.target.closest("#musicToggle, .bottom-nav a")) return;
+                if (music.paused) play();
+            }, { once: true });
+            // ផ្អាកតន្ត្រីពេលមើលវីដេអូ
+            document.addEventListener("play", function (e) {
+                if (e.target.tagName === "VIDEO" && !music.paused) { music.pause(); btn.classList.remove("playing"); }
+            }, true);
+        })();
+    </script>
+
+    <!-- ក្បាច់ watermark (គូរដោយ JS ឱ្យដូច index.html ប៉ុន្តែកូដខ្លីជាង) -->
+    <script>
+        (function () {
+            var c = "#e8c478", s = '<svg viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" fill="' + c + '">';
+            s += '<circle r="49" fill="none" stroke="' + c + '" stroke-width="1.4"/><circle r="43" fill="none" stroke="' + c + '" stroke-width=".8"/>';
+            for (var i = 0; i < 24; i++) { var a = i * Math.PI / 12; s += '<circle cx="' + (46 * Math.sin(a)).toFixed(2) + '" cy="' + (-46 * Math.cos(a)).toFixed(2) + '" r="1.8"/>'; }
+            for (var r = 0; r < 360; r += 30) {
+                s += '<g transform="rotate(' + r + ')"><path d="M0,-50 C 15,-60 18,-77 7,-90 C 2,-96 -5,-97 -3,-90 C 3,-83 -1,-75 -8,-70 C -15,-64 -12,-55 0,-50 Z" fill="none" stroke="' + c + '" stroke-width="1.8"/><path d="M-1,-54 C 7,-61 10,-72 5,-82" fill="none" stroke="' + c + '" stroke-width="1.1"/><circle cx="-3" cy="-89" r="1.6"/></g>';
+                s += '<path d="M0,-50 C 8,-56 9,-66 3,-73 C 0,-76 -4,-76 -2,-72 C 1,-68 -1,-63 -5,-60 C -9,-57 -7,-52 0,-50 Z" transform="rotate(' + (r + 15) + ') scale(-1,1)" opacity=".8"/>';
+            }
+            for (var p = 22.5; p < 360; p += 45) {
+                s += '<path d="M0,-13 C 11,-22 9,-35 0,-43 C -9,-35 -11,-22 0,-13 Z" transform="rotate(' + p + ')" fill="none" stroke="' + c + '" stroke-width="1.6"/>';
+                s += '<path d="M0,-13 C 5,-19 4,-26 0,-30 C -4,-26 -5,-19 0,-13 Z" transform="rotate(' + p + ')"/>';
+            }
+            s += '<circle r="9" fill="none" stroke="' + c + '" stroke-width="1.4"/><circle r="4"/></svg>';
+            document.getElementById("watermark").innerHTML = s;
+        })();
+    </script>
+
+    <!-- ពន្លឺ និងមេអំបៅ (ស្រាលៗ ដូច index.html) -->
+    <script>
+        (function () {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var counts = { s: 0, b: 0 }, timers = [];
+            var box = document.createElement('div');
+            box.className = 'butterfly-flying-container';
+            document.body.appendChild(box);
+            function sparkle() {
+                if (counts.s >= 10) return;
+                var el = document.createElement('div');
+                el.className = 'sparkle';
+                el.style.top = Math.random() * innerHeight + 'px';
+                el.style.left = Math.random() * innerWidth + 'px';
+                el.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+                document.body.appendChild(el); counts.s++;
+                setTimeout(function () { el.remove(); counts.s--; }, 3500);
+            }
+            function butterfly() {
+                if (counts.b >= 3) return;
+                var el = document.createElement('div');
+                el.className = 'floating-golden-butterfly';
+                el.style.left = Math.random() * innerWidth + 'px';
+                el.style.setProperty('--randomX1', ((Math.random() - .5) * 150) + 'px');
+                el.style.setProperty('--randomX2', ((Math.random() - .5) * 250) + 'px');
+                var d = 5 + Math.random() * 4;
+                el.style.animationDuration = d + 's';
+                box.appendChild(el); counts.b++;
+                setTimeout(function () { el.remove(); counts.b--; }, d * 1000);
+            }
+            function start() { if (timers.length) return; timers.push(setInterval(sparkle, 800), setInterval(butterfly, 2200)); }
+            function stop() { timers.forEach(clearInterval); timers = []; }
+            document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+            start();
+        })();
+    </script>
+</body>
+</html>
