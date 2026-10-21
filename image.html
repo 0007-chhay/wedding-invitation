@@ -193,38 +193,39 @@
 
     <div class="photo-masonry" id="galleryContainer"></div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ប្រើ CDN unpkg ដែលស្គាល់ window.supabaseClient ច្បាស់ ១០០% -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script>
     const SUPABASE_URL = 'https://hojyarygbfnszspisjzd.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvanlhcnlnYmZuc3pzcGlzanpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIyNjkzNzksImV4cCI6MjEwNzg0NTM3OX0.f7ziLBlDqd5W_t6fdVpN2uGHgWxz-1T61NkA_BFq7J0';
     const CLOUD_NAME = 'xtyf2x4c';
     const UPLOAD_PRESET = 'wedding_preset';
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // បង្កើត Client
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function loadGallery() {
       const container = document.getElementById('galleryContainer');
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('wedding_photos')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) {
-        console.error('Supabase fetch error:', error);
+        console.error('Database Error:', error);
         return;
       }
 
       container.innerHTML = '';
       if (!data || data.length === 0) {
-        container.innerHTML = '<div class="empty-state">មិនទាន់មានរូបភាពនៅឡើយទេ សូមបង្ហោះរូបភាពដំបូង!</div>';
+        container.innerHTML = '<div style="grid-column: span 2; text-align: center; color: #a48a58; padding: 40px 0;">មិនទាន់មានរូបភាពនៅឡើយទេ</div>';
         return;
       }
 
       data.forEach(item => {
         const card = document.createElement('div');
         card.className = 'photo-card';
-        card.innerHTML = `<img src="${item.image_url}" loading="lazy" alt="Wedding moment" onerror="this.parentElement.style.display='none'">`;
+        card.innerHTML = `<img src="${item.image_url}" loading="lazy" alt="Wedding moment">`;
         container.appendChild(card);
       });
     }
@@ -250,23 +251,19 @@
         });
 
         const clData = await res.json();
-        if (!res.ok) {
-          throw new Error(clData.error?.message || 'បរាជ័យក្នុងការ Upload ទៅ Cloudinary');
-        }
+        if (!res.ok) throw new Error(clData.error?.message || 'Upload ទៅ Cloudinary បរាជ័យ');
 
-        // ប្រើប្រាស់ f_auto,q_auto ដើម្បីធានាថារូបភាពបង្ហាញគ្រប់ browser ទាំងអស់
         const optimizedUrl = clData.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
 
-        const { error: dbError } = await supabase
+        const { error: dbError } = await supabaseClient
           .from('wedding_photos')
           .insert([{ image_url: optimizedUrl }]);
 
-        if (dbError) {
-          throw new Error('Supabase error: ' + dbError.message);
-        }
+        if (dbError) throw new Error(dbError.message);
 
         fileInput.value = '';
         await loadGallery();
+        alert('បង្ហោះរូបភាពជោគជ័យ!');
       } catch (err) {
         console.error(err);
         alert('មានបញ្ហា៖ ' + err.message);
