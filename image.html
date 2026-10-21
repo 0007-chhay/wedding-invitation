@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories - កម្រងរូបភាព</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;500;600&family=Moul&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: #0d0a07;
+      color: #dfcfb3;
+      font-family: 'Kantumruy Pro', sans-serif;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 10%, #201710 0%, #0d0a07 100%);
+      border-left: 1px solid rgba(212, 175, 55, 0.25);
+      border-right: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 24px 16px 100px 16px;
+      position: relative;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #dfc282;
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255, 215, 0, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:active {
+      transform: scale(0.96);
+      background: rgba(212, 175, 55, 0.2);
+    }
+
+    /* Title Styling ដូចរូបដើម */
+    .header-section {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .header-section h1 {
+      font-family: 'Moul', cursive;
+      font-size: 21px;
+      background: linear-gradient(180deg, #ffe29a 0%, #d4a34b 50%, #996e21 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+      filter: drop-shadow(0 2px 8px rgba(212, 163, 75, 0.25));
+      margin-bottom: 4px;
+    }
+
+    .header-section p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: #d8b776;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+    }
+
+    /* Upload Action Bar ធ្វើឱ្យរាងស្លីម មិនទើសភ្នែក */
+    .action-panel {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
+
+    .upload-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #e4c175 0%, #ab802e 100%);
+      color: #171007;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      box-shadow: 0 4px 18px rgba(184, 137, 44, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .upload-trigger:active {
+      transform: scale(0.96);
+    }
+
+    .upload-trigger svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Grid រូបភាព មានស៊ុមមាសរលោង ដូចរូបដើម */
+    .photo-masonry {
+      column-count: 2;
+      column-gap: 12px;
+    }
+
+    .photo-card {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      position: relative;
+      border-radius: 14px;
+      padding: 2.5px;
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.45) 0%, rgba(50, 35, 20, 0.3) 50%, rgba(212, 175, 55, 0.2) 100%);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+      transition: transform 0.2s ease;
+    }
+
+    .photo-card:active {
+      transform: scale(0.98);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* Loading Spinner */
+    .loading-pulse {
+      font-size: 13px;
+      color: #dfc282;
+      text-align: center;
+      margin-bottom: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <a href="index.html" class="back-btn">
+        <span style="font-size: 16px;">‹</span> ត្រឡប់ទៅធៀបការ
+      </a>
+      <span style="font-size: 11px; color: #a48a58; letter-spacing: 0.5px;">GALLERY</span>
+    </div>
+
+    <!-- Title Header -->
+    <div class="header-section">
+      <h1>អនុស្សាវរីយ៍របស់យើង</h1>
+      <p>Our Memories</p>
+    </div>
+
+    <!-- Upload Button -->
+    <div class="action-panel">
+      <label class="upload-trigger" id="uploadLabel">
+        <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+        <span id="btnText">បង្ហោះរូបថតអនុស្សាវរីយ៍</span>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleUpload()">
+      </label>
+    </div>
+
+    <div class="loading-pulse" id="loadingNotice">កំពុងបញ្ជូនរូបភាព... សូមរង់ចាំ</div>
+
+    <!-- Grid បង្ហាញរូបភាព -->
+    <div class="photo-masonry" id="galleryContainer">
+      <!-- រូបភាពនឹងបង្ហាញនៅទីនេះ -->
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://hojyarygbfnszspisjzd.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvanlhcnlnYmZuc3pzcGlzanpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIyNjkzNzksImV4cCI6MjEwNzg0NTM3OX0.f7ziLBlDqd5W_t6fdVpN2uGHgWxz-1T61NkA_BFq7J0';
+    const CLOUD_NAME = 'xtyf2x4c';
+    const UPLOAD_PRESET = 'wedding_preset';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function loadGallery() {
+      const { data, error } = await supabase
+        .from('wedding_photos')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) return console.error(error);
+
+      const container = document.getElementById('galleryContainer');
+      container.innerHTML = '';
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.innerHTML = `<img src="${item.image_url}" loading="lazy" alt="Wedding moment">`;
+        container.appendChild(card);
+      });
+    }
+
+    async function handleUpload() {
+      const fileInput = document.getElementById('fileInput');
+      const btnText = document.getElementById('btnText');
+      const loader = document.getElementById('loadingNotice');
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      loader.style.display = 'block';
+      btnText.innerText = 'កំពុង Upload...';
+
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', UPLOAD_PRESET);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+          method: 'POST',
+          body: formData
+        });
+        const clData = await res.json();
+        if (!res.ok) throw new Error(clData.error?.message || 'បរាជ័យ');
+
+        const optimizedUrl = clData.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_800/');
+
+        await supabase.from('wedding_photos').insert([{ image_url: optimizedUrl }]);
+
+        fileInput.value = '';
+        await loadGallery();
+      } catch (err) {
+        alert('មានបញ្ហា៖ ' + err.message);
+      } finally {
+        loader.style.display = 'none';
+        btnText.innerText = 'បង្ហោះរូបថតអនុស្សាវរីយ៍';
+      }
+    }
+
+    loadGallery();
+  </script>
+</body>
+</html>
