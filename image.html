@@ -65,7 +65,7 @@
       background: rgba(212, 175, 55, 0.2);
     }
 
-    /* Title Styling ដូចរូបដើម */
+    /* Title Styling */
     .header-section {
       text-align: center;
       margin-bottom: 24px;
@@ -90,7 +90,7 @@
       letter-spacing: 1.5px;
     }
 
-    /* Upload Action Bar ធ្វើឱ្យរាងស្លីម មិនទើសភ្នែក */
+    /* Upload Action Bar */
     .action-panel {
       display: flex;
       justify-content: center;
@@ -122,33 +122,38 @@
       fill: currentColor;
     }
 
-    /* Grid រូបភាព មានស៊ុមមាសរលោង ដូចរូបដើម */
+    /* Grid រូបភាព */
     .photo-masonry {
-      column-count: 2;
-      column-gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
     .photo-card {
-      break-inside: avoid;
-      margin-bottom: 12px;
       position: relative;
       border-radius: 14px;
       padding: 2.5px;
       background: linear-gradient(145deg, rgba(212, 175, 55, 0.45) 0%, rgba(50, 35, 20, 0.3) 50%, rgba(212, 175, 55, 0.2) 100%);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
-      transition: transform 0.2s ease;
-    }
-
-    .photo-card:active {
-      transform: scale(0.98);
+      overflow: hidden;
     }
 
     .photo-card img {
       width: 100%;
-      height: auto;
+      height: 190px;
       display: block;
       border-radius: 12px;
       object-fit: cover;
+      background-color: #1a140e;
+    }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: span 2;
+      text-align: center;
+      color: #a48a58;
+      font-size: 13px;
+      padding: 40px 0;
     }
 
     /* Loading Spinner */
@@ -164,7 +169,6 @@
 <body>
 
   <div class="app-container">
-    <!-- Top Bar -->
     <div class="top-bar">
       <a href="index.html" class="back-btn">
         <span style="font-size: 16px;">‹</span> ត្រឡប់ទៅធៀបការ
@@ -172,13 +176,11 @@
       <span style="font-size: 11px; color: #a48a58; letter-spacing: 0.5px;">GALLERY</span>
     </div>
 
-    <!-- Title Header -->
     <div class="header-section">
       <h1>អនុស្សាវរីយ៍របស់យើង</h1>
       <p>Our Memories</p>
     </div>
 
-    <!-- Upload Button -->
     <div class="action-panel">
       <label class="upload-trigger" id="uploadLabel">
         <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
@@ -189,10 +191,7 @@
 
     <div class="loading-pulse" id="loadingNotice">កំពុងបញ្ជូនរូបភាព... សូមរង់ចាំ</div>
 
-    <!-- Grid បង្ហាញរូបភាព -->
-    <div class="photo-masonry" id="galleryContainer">
-      <!-- រូបភាពនឹងបង្ហាញនៅទីនេះ -->
-    </div>
+    <div class="photo-masonry" id="galleryContainer"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -205,19 +204,27 @@
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function loadGallery() {
+      const container = document.getElementById('galleryContainer');
       const { data, error } = await supabase
         .from('wedding_photos')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) return console.error(error);
+      if (error) {
+        console.error('Supabase fetch error:', error);
+        return;
+      }
 
-      const container = document.getElementById('galleryContainer');
       container.innerHTML = '';
+      if (!data || data.length === 0) {
+        container.innerHTML = '<div class="empty-state">មិនទាន់មានរូបភាពនៅឡើយទេ សូមបង្ហោះរូបភាពដំបូង!</div>';
+        return;
+      }
+
       data.forEach(item => {
         const card = document.createElement('div');
         card.className = 'photo-card';
-        card.innerHTML = `<img src="${item.image_url}" loading="lazy" alt="Wedding moment">`;
+        card.innerHTML = `<img src="${item.image_url}" loading="lazy" alt="Wedding moment" onerror="this.parentElement.style.display='none'">`;
         container.appendChild(card);
       });
     }
@@ -241,16 +248,27 @@
           method: 'POST',
           body: formData
         });
+
         const clData = await res.json();
-        if (!res.ok) throw new Error(clData.error?.message || 'បរាជ័យ');
+        if (!res.ok) {
+          throw new Error(clData.error?.message || 'បរាជ័យក្នុងការ Upload ទៅ Cloudinary');
+        }
 
-        const optimizedUrl = clData.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_800/');
+        // ប្រើប្រាស់ f_auto,q_auto ដើម្បីធានាថារូបភាពបង្ហាញគ្រប់ browser ទាំងអស់
+        const optimizedUrl = clData.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
 
-        await supabase.from('wedding_photos').insert([{ image_url: optimizedUrl }]);
+        const { error: dbError } = await supabase
+          .from('wedding_photos')
+          .insert([{ image_url: optimizedUrl }]);
+
+        if (dbError) {
+          throw new Error('Supabase error: ' + dbError.message);
+        }
 
         fileInput.value = '';
         await loadGallery();
       } catch (err) {
+        console.error(err);
         alert('មានបញ្ហា៖ ' + err.message);
       } finally {
         loader.style.display = 'none';
