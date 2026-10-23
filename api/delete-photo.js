@@ -1,22 +1,20 @@
-import { createClient } from '@supabase/supabase-js';
+// api/delete-photo.js
 
-// ទាញយក environment variables ឬដាក់ផ្ទាល់នៅ Server
-const supabase = createClient(
-  process.env.SUPABASE_URL || 'https://hojyarygbfnszspisjzd.supabase.co',
-  process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvanlhcnlnYmZuc3pzcGlzanpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIyNjkzNzksImV4cCI6MjEwNzg0NTM3OX0.f7ziLBlDqd5W_t6fdVpN2uGHgWxz-1T61NkA_BFq7J0'
-);
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://hojyarygbfnszspisjzd.supabase.co';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvanlhcnlnYmZuc3pzcGlzanpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIyNjkzNzksImV4cCI6MjEwNzg0NTM3OX0.f7ziLBlDqd5W_t6fdVpN2uGHgWxz-1T61NkA_BFq7J0';
 
-const MASTER_PASSWORD = process.env.ADMIN_PASSWORD || "686911"; // កំណត់ពាក្យសម្ងាត់នៅទីនេះ
+// កំណត់ Password របស់អ្នកនៅទីនេះ
+const MASTER_PASSWORD = process.env.ADMIN_PASSWORD || "686911";
 
 export default async function handler(req, res) {
-  // ទទួលយកតែ POST request
+  // អនុញ្ញាតតែ POST request ប៉ុណ្ណោះ
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { id, password } = req.body;
+  const { id, password } = req.body || {};
 
-  // ផ្ទៀងផ្ទាត់លេខសម្ងាត់នៅលើ Server (ភ្ញៀវមិនអាចដឹងកូដនេះឡើយ)
+  // ផ្ទៀងផ្ទាត់ពាក្យសម្ងាត់
   if (!password || password !== MASTER_PASSWORD) {
     return res.status(401).json({ error: 'លេខសម្ងាត់មិនត្រឹមត្រូវទេ!' });
   }
@@ -26,12 +24,20 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { error } = await supabase
-      .from('wedding_photos')
-      .delete()
-      .eq('id', id);
+    // ហៅទៅ Supabase REST API ផ្ទាល់ (មិនបាច់ពឹងផ្អែកលើ @supabase/supabase-js)
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/wedding_photos?id=eq.${id}`, {
+      method: 'DELETE',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
 
-    if (error) throw error;
+    if (!response.ok) {
+      const errText = await response.text();
+      return res.status(response.status).json({ error: errText || 'បរាជ័យក្នុងការលុបពី Database' });
+    }
 
     return res.status(200).json({ success: true, message: 'លុបរូបភាពជោគជ័យ' });
   } catch (err) {
