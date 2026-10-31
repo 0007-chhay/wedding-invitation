@@ -154,6 +154,49 @@
     .thanks .script { font-size: 1.7rem; }
     .thanks p { margin: 8px 0 0; font-size: .9rem; line-height: 1.8; color: var(--gold-soft); }
 
+    /* ចងដៃជូនពរ */
+    .tie-card {
+      margin: 6px auto 34px; max-width: 380px;
+      background: rgba(0,0,0,.3); border: 1px solid rgba(235,211,155,.25);
+      border-radius: 15px; padding: 24px 18px 20px; box-shadow: 0 4px 15px rgba(0,0,0,.5);
+    }
+    .tie-card h2 { font-family: 'Moul', serif; font-weight: normal; font-size: 1.3rem; line-height: 1.8; margin: 0; color: var(--gold-text); text-shadow: 2px 2px 5px rgba(0,0,0,.6); }
+    .tie-sub { margin: 0; font-size: .85rem; color: var(--gold-soft); }
+    .tie-art { display: block; width: 100%; max-width: 230px; margin: 10px auto 4px; }
+    .tie-art .thread { stroke-dasharray: 150; stroke-dashoffset: 150; transition: stroke-dashoffset 1.4s ease; }
+    .tie-art .knot { opacity: 0; transform-origin: 115px 139px; transform: scale(.3); transition: opacity .4s ease 1.3s, transform .4s ease 1.3s; }
+    .tie-card.tied .thread { stroke-dashoffset: 0; }
+    .tie-card.tied .knot { opacity: 1; transform: scale(1); }
+    .tie-card.tied .spark { animation: spark 1.3s ease 1.5s forwards; }
+    .spark { opacity: 0; }
+    @keyframes spark { 0% { opacity: 0; transform: translateY(6px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px); } }
+    .tie-who { margin: 4px 0 12px; font-family: 'Moul', serif; font-size: 1rem; color: var(--gold-text); min-height: 1.6em; }
+    .tie-input {
+      display: block; width: 100%; max-width: 260px; margin: 0 auto 12px; padding: 12px 14px;
+      background: rgba(0,0,0,.4); border: 1px solid var(--gold-accent); border-radius: 8px;
+      color: var(--gold-text); font-family: 'Battambang', sans-serif; font-size: 16px; text-align: center; outline: none;
+    }
+    .tie-input::placeholder { color: rgba(235,211,155,.5); }
+    .tie-input:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 2px; }
+    .tie-btn {
+      font-family: 'Battambang', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer;
+      padding: 12px 28px; border: none; border-radius: 999px; color: #351f0f;
+      background: linear-gradient(135deg, var(--gold-text), var(--gold-accent)); box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    }
+    .tie-btn:active { transform: scale(.97); }
+    .tie-btn:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 3px; }
+    .tie-btn.done { background: transparent; color: var(--gold-text); border: 1px solid var(--gold-accent); box-shadow: none; cursor: default; }
+    .tie-err { min-height: 1.4em; margin: 8px 0 0; font-size: .85rem; color: #f0a07a; }
+    .tie-num { margin: 6px 0 0; font-family: 'Moul', serif; font-size: 2rem; line-height: 1.6; color: #f0c968; text-shadow: 1px 1px 3px rgba(0,0,0,.6); }
+    .tie-label { margin: 0; font-size: .9rem; color: var(--gold-soft); }
+    .tie-recent { margin-top: 12px; }
+    .chip { display: inline-block; margin: 3px; padding: 3px 11px; border: 1px solid rgba(235,211,155,.35); border-radius: 999px; font-size: .78rem; color: var(--gold-soft); }
+    .chip.me { border-color: var(--gold-accent); color: #f0c968; }
+    @media (prefers-reduced-motion: reduce) {
+      .tie-art .thread, .tie-art .knot { transition: none; }
+      .tie-card.tied .spark { animation: none; }
+    }
+
     /* ផ្ទាំងមើលរូបធំ */
     .lightbox {
       position: fixed; inset: 0; z-index: 100; display: none;
@@ -232,6 +275,40 @@
 
     <section class="thanks">
       <div class="flower-line"><img src="flower.png" alt=""></div>
+
+      <div class="tie-card" id="tieCard">
+        <h2>ចងដៃជូនពរ</h2>
+        <p class="tie-sub">Tie a blessing for the couple</p>
+        <svg class="tie-art" viewBox="0 0 230 220" role="img" aria-label="កដៃ និងអំបោះក្រហមជូនពរ">
+          <path d="M82 176 L80 62 Q78 14 115 10 Q152 14 150 62 L148 176 Z" fill="#c99a73"/>
+          <path d="M136 22 Q150 34 150 62 L148 176 L138 176 Z" fill="#b48460" opacity=".55"/>
+          <path d="M79 128 A36 9 0 0 1 151 128" fill="none" stroke="#8e2626" stroke-width="5" stroke-linecap="round" opacity=".6" class="thread"/>
+          <path d="M79 128 A36 9 0 0 0 151 128" fill="none" stroke="#c0392b" stroke-width="6" stroke-linecap="round" class="thread"/>
+          <g class="knot">
+            <circle cx="115" cy="139" r="6" fill="#c0392b"/>
+            <path d="M113 142 Q105 158 99 168" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round"/>
+            <path d="M117 142 Q126 157 131 169" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <rect x="72" y="170" width="86" height="50" rx="8" fill="#6e3f1c"/>
+          <rect x="72" y="170" width="86" height="7" fill="#d9ac55"/>
+          <g fill="#d9ac55" opacity=".75">
+            <path d="M87 194 l5 -5 l5 5 l-5 5 z"/><path d="M104 194 l5 -5 l5 5 l-5 5 z"/><path d="M121 194 l5 -5 l5 5 l-5 5 z"/><path d="M138 194 l5 -5 l5 5 l-5 5 z"/>
+          </g>
+          <circle class="spark" cx="82" cy="112" r="3" fill="#f0c968"/>
+          <circle class="spark" cx="150" cy="108" r="3.5" fill="#f0c968"/>
+          <circle class="spark" cx="115" cy="98" r="2.5" fill="#fff1c2"/>
+          <circle class="spark" cx="96" cy="102" r="2" fill="#fff1c2"/>
+          <circle class="spark" cx="136" cy="100" r="2" fill="#f0c968"/>
+        </svg>
+        <p class="tie-who" id="tieWho"></p>
+        <input class="tie-input" id="tieName" type="text" maxlength="60" placeholder="ឈ្មោះរបស់អ្នក... your name" aria-label="ឈ្មោះ / Name" hidden>
+        <button type="button" class="tie-btn" id="tieBtn">ចងដៃជូនពរ</button>
+        <p class="tie-err" id="tieErr" role="alert"></p>
+        <p class="tie-num" id="tieNum">…</p>
+        <p class="tie-label">នាក់បានចងដៃជូនពរ</p>
+        <div class="tie-recent" id="tieRecent"></div>
+      </div>
+
       <p class="script">Thank you for celebrating with us</p>
       <p>អរគុណយ៉ាងជ្រាលជ្រៅ ចំពោះវត្តមាន និងពរជ័យរបស់លោកអ្នក</p>
     </section>
@@ -425,6 +502,102 @@
     });
 
     loadGallery();
+
+    // ===== ចងដៃជូនពរ (រក្សាទុកក្នុង Supabase table: wedding_blessings) =====
+    (function () {
+      const TIE_KEY = 'etheap_tied';
+      const card = $('tieCard'), btn = $('tieBtn'), input = $('tieName'), err = $('tieErr');
+      let guestName = '', total = 0;
+
+      function chip(name, mine) {
+        const c = document.createElement('span');
+        c.className = 'chip' + (mine ? ' me' : '');
+        c.textContent = name;
+        return c;
+      }
+
+      function setTied(name) {
+        card.classList.add('tied');
+        btn.classList.add('done');
+        btn.textContent = 'បានចងដៃរួច · អរគុណ';
+        input.hidden = true;
+        if (name) $('tieWho').textContent = name;
+      }
+
+      // អានឈ្មោះភ្ញៀវពី link ផ្ទាល់ខ្លួន (#g=12 ឬ #h=..&n=..)
+      async function resolveGuest() {
+        let hash = '';
+        try { hash = sessionStorage.getItem('etheapGuest') || location.hash || ''; } catch (e) { hash = location.hash || ''; }
+        const q = new URLSearchParams(hash.replace(/^#/, ''));
+        const HL = ["លោក លោកស្រី","លោក","លោកស្រី","អ្នកនាង","កញ្ញា","លោកគ្រូ","អ្នកគ្រូ","ឯកឧត្តម លោកជំទាវ","បងប្អូន","Mr.","Ms.","Mrs.","Mr. & Mrs.","សម្លាញ់"];
+        try {
+          const n = q.get('n');
+          if (n) {
+            let s = n.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '=';
+            const name = new TextDecoder().decode(Uint8Array.from(atob(s), c => c.charCodeAt(0))).trim().slice(0, 60);
+            const hon = HL[parseInt(q.get('h'), 10)] || '';
+            return (hon ? hon + ' ' : '') + name;
+          }
+          const g = (q.get('g') || '').replace(/\D/g, '');
+          if (g) {
+            const d = await (await fetch('/api/guest?id=' + g)).json();
+            if (d && d.name) return ((d.hon ? d.hon + ' ' : '') + d.name).slice(0, 60);
+          }
+        } catch (e) {}
+        return '';
+      }
+
+      async function loadTies() {
+        const { count } = await supabaseClient.from('wedding_blessings').select('*', { count: 'exact', head: true });
+        const { data } = await supabaseClient.from('wedding_blessings').select('name').order('created_at', { ascending: false }).limit(6);
+        total = count || 0;
+        $('tieNum').textContent = km(total);
+        const box = $('tieRecent');
+        box.textContent = '';
+        const mine = localStorage.getItem(TIE_KEY) || '';
+        (data || []).forEach(r => box.appendChild(chip(r.name, r.name === mine)));
+      }
+
+      input.addEventListener('input', () => { err.textContent = ''; });
+
+      btn.addEventListener('click', async () => {
+        if (btn.classList.contains('done')) return;
+        const name = (guestName || input.value).trim().slice(0, 60);
+        if (!name) { err.textContent = 'សូមសរសេរឈ្មោះរបស់អ្នកសិន / Enter your name first'; input.focus(); return; }
+
+        btn.disabled = true;
+        btn.textContent = 'កំពុងចង…';
+        const { error } = await supabaseClient.from('wedding_blessings').insert([{ name }]);
+        btn.disabled = false;
+        if (error) {
+          console.error(error);
+          btn.textContent = 'ចងដៃជូនពរ';
+          err.textContent = 'ចងមិនបាន។ សូមសាកម្តងទៀត។ / Could not save, try again.';
+          return;
+        }
+
+        try { localStorage.setItem(TIE_KEY, name); } catch (e) {}
+        setTied(name);
+        setTimeout(() => {
+          total += 1;
+          $('tieNum').textContent = km(total);
+          $('tieRecent').prepend(chip(name, true));
+        }, 1600);
+      });
+
+      (async () => {
+        let saved = '';
+        try { saved = localStorage.getItem(TIE_KEY) || ''; } catch (e) {}
+        if (saved) {
+          setTied(saved);
+        } else {
+          guestName = await resolveGuest();
+          if (guestName) $('tieWho').textContent = guestName;
+          else input.hidden = false;
+        }
+        loadTies().catch(e => console.error(e));
+      })();
+    })();
   </script>
 </body>
 </html>
