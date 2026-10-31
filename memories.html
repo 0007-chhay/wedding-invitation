@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>អនុស្សាវរីយ៍របស់យើង | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Moul&family=Battambang:wght@400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #2b1b0d;
+      --bg-light: #4a2e1b;
+      --gold-text: #ebd39b;
+      --gold-accent: #b88a44;
+      --gold-soft: #d1b88a;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-dark);
+      /* វាយនភណ្ឌក្រដាសដូចធៀប */
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .93 0 0 0 0 .82 0 0 0 0 .6 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+        radial-gradient(circle at center, #3d2613 0%, #1a0f0a 100%);
+      background-size: 240px 240px, 100% 100%;
+      background-attachment: fixed;
+      font-family: 'Battambang', sans-serif;
+      color: var(--gold-text);
+      overflow-x: hidden;
+    }
+
+    /* រូបគូស្វាមីភរិយាព្រិលនៅផ្ទៃខាងក្រោយ (ដូចធៀប) */
+    .photo-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .photo-bg::before {
+      content: ""; position: absolute; inset: -40px;
+      background: url('first.jpg') center 25% / cover no-repeat;
+      filter: blur(9px) brightness(0.6) saturate(0.95);
+    }
+    .photo-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(43,27,13,.5) 0%, rgba(22,13,7,.88) 100%);
+    }
+
+    /* ក្បាច់វល្លិ៍សងខាង (ឯកសារដដែលនឹងធៀប) */
+    .kbach-left, .kbach-right {
+      position: fixed; top: 0; bottom: 0; width: 70px; z-index: 10; pointer-events: none;
+      background-color: rgba(10,5,2,.35); background-repeat: repeat-y; background-size: 100% auto;
+    }
+    .kbach-left { left: 0; background-image: url('vine-tile.svg'); border-right: 1px solid rgba(226,183,90,.6); }
+    .kbach-right { right: 0; background-image: url('vine-tile-right.svg'); border-left: 1px solid rgba(226,183,90,.6); }
+
+    .page {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 28px 100px 80px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    /* ប៊ូតុងត្រឡប់ */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--gold-text); text-decoration: none; font-size: .9rem;
+      padding: 8px 18px; border-radius: 999px;
+      border: 1px solid rgba(235,211,155,.45);
+      background: rgba(43,27,13,.6);
+    }
+    .back-btn:active { transform: scale(.96); }
+    .back-btn:focus-visible, .upload-btn:focus-within, .photo:focus-visible, .lb-btn:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 3px; }
+
+    /* ចំណងជើង */
+    .seal { width: 64px; height: auto; display: block; margin: 26px auto 6px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }
+    h1 {
+      font-family: 'Moul', serif; font-weight: normal;
+      font-size: 1.8rem; line-height: 1.7; margin: 0;
+      color: var(--gold-text); text-shadow: 2px 2px 5px rgba(0,0,0,.6);
+    }
+    .script {
+      font-family: 'Dancing Script', cursive; font-weight: 700;
+      font-size: 2rem; line-height: 1.2; margin: 0;
+      color: var(--gold-accent); text-shadow: 1px 1px 3px rgba(0,0,0,.6);
+    }
+    .couple { margin: 10px 0 0; font-size: .95rem; color: var(--gold-soft); }
+
+    /* បន្ទាត់ខណ្ឌមានផ្កាកណ្តាល */
+    .flower-line { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 26px auto; }
+    .flower-line::before, .flower-line::after {
+      content: ""; height: 1px; width: 110px;
+      background: linear-gradient(90deg, transparent, var(--gold-accent));
+    }
+    .flower-line::after { transform: scaleX(-1); }
+    .flower-line img { width: 30px; height: 30px; filter: drop-shadow(0 2px 3px rgba(0,0,0,.45)); }
+
+    /* ប្រអប់បង្ហោះរូប */
+    .upload-card {
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(235,211,155,.2);
+      border-radius: 15px;
+      padding: 22px 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.5);
+    }
+    .upload-card p { margin: 0 0 16px; font-size: .9rem; line-height: 1.7; color: var(--gold-soft); }
+    .upload-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold-text), var(--gold-accent));
+      color: #351f0f; font-family: 'Battambang', sans-serif; font-weight: 700; font-size: 1rem;
+      padding: 13px 26px; border-radius: 999px; cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    }
+    .upload-btn:active { transform: scale(.97); }
+    .upload-btn.busy { opacity: .7; pointer-events: none; }
+    .upload-btn svg { width: 20px; height: 20px; fill: currentColor; }
+    .status { min-height: 1.6em; margin: 12px 0 0; font-size: .85rem; color: var(--gold-text); }
+
+    .count { margin: 0 0 14px; font-size: .9rem; color: var(--gold-soft); }
+
+    /* ក្រឡារូបភាព៖ លំនាំ ២ / ៣ / ១ ដូចផ្នែកអនុស្សាវរីយ៍ក្នុងធៀប */
+    .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .photo {
+      position: relative; padding: 0; border: 2px solid var(--gold-accent); border-radius: 12px;
+      overflow: hidden; cursor: zoom-in; background: rgba(0,0,0,.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,.5);
+      grid-column: span 3; height: 250px;
+    }
+    .photo.third { grid-column: span 2; height: 180px; }
+    .photo.full { grid-column: span 6; height: 250px; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    @media (hover: hover) { .photo:hover img { transform: scale(1.05); } }
+
+    .del {
+      position: absolute; top: 7px; right: 7px; z-index: 2;
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid rgba(235,211,155,.5); background: rgba(20,12,6,.7);
+      color: var(--gold-text); font-size: 15px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; opacity: .75;
+    }
+    .del:active { background: rgba(160,30,30,.85); }
+
+    .skeleton { background: rgba(235,211,155,.06); border-color: rgba(184,138,68,.35); cursor: default; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .5; } }
+
+    .empty {
+      grid-column: span 6; padding: 36px 16px; border: 1px dashed rgba(235,211,155,.35); border-radius: 15px;
+      color: var(--gold-soft); font-size: .95rem; line-height: 1.8;
+    }
+
+    .thanks { margin-top: 44px; }
+    .thanks .script { font-size: 1.7rem; }
+    .thanks p { margin: 8px 0 0; font-size: .9rem; line-height: 1.8; color: var(--gold-soft); }
+
+    /* ផ្ទាំងមើលរូបធំ */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100; display: none;
+      background: rgba(10,6,3,.94); align-items: center; justify-content: center; padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 100%; max-height: 82vh; border-radius: 12px;
+      border: 2px solid var(--gold-accent); box-shadow: 0 4px 24px rgba(0,0,0,.8); object-fit: contain;
+    }
+    .lb-btn {
+      position: absolute; background: rgba(43,27,13,.7); color: var(--gold-text);
+      border: 1px solid rgba(235,211,155,.45); border-radius: 50%;
+      width: 44px; height: 44px; font-size: 24px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lb-close { top: 18px; right: 18px; }
+    .lb-prev { left: 14px; top: 50%; margin-top: -22px; }
+    .lb-next { right: 14px; top: 50%; margin-top: -22px; }
+    .lb-count { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: .9rem; color: var(--gold-soft); }
+
+    @media (max-width: 768px) {
+      .kbach-left, .kbach-right { width: 40px; }
+      .page { padding: 22px 52px 60px; }
+      h1 { font-size: 1.35rem; }
+      .script { font-size: 1.7rem; }
+      .grid { gap: 10px; }
+      .photo { height: 200px; }
+      .photo.third { height: 130px; }
+      .photo.full { height: 180px; }
+      .flower-line::before, .flower-line::after { width: 70px; }
+      .lb-prev, .lb-next { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton { animation: none; }
+      .photo img { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="photo-bg" aria-hidden="true"></div>
+  <div class="kbach-left" aria-hidden="true"></div>
+  <div class="kbach-right" aria-hidden="true"></div>
+
+  <main class="page">
+    <div style="text-align:left">
+      <a href="/" class="back-btn" id="backLink"><span aria-hidden="true">‹</span> ត្រឡប់ទៅធៀប</a>
+    </div>
+
+    <img src="sl.png" alt="" class="seal" width="64" height="49">
+    <h1>អនុស្សាវរីយ៍របស់យើង</h1>
+    <p class="script">Our Memories</p>
+    <p class="couple">វ៉ាន ច័ន្ទគ្រឹស្នា &amp; មិន ស្រីលក្ខ</p>
+
+    <div class="flower-line"><img src="flower.png" alt=""></div>
+
+    <section class="upload-card">
+      <p>ចែករំលែករូបថតដែលលោកអ្នកបានថតក្នុងពិធី ដើម្បីរក្សាទុកជាអនុស្សាវរីយ៍រួមគ្នា<br>Share the photos you took at our wedding.</p>
+      <label class="upload-btn" id="uploadBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+        <span id="btnText">បង្ហោះរូបថត</span>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      </label>
+      <p class="status" id="status" role="status"></p>
+    </section>
+
+    <div class="flower-line"><img src="flower.png" alt=""></div>
+
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid">
+      <div class="photo skeleton"></div><div class="photo skeleton"></div>
+      <div class="photo third skeleton"></div><div class="photo third skeleton"></div><div class="photo third skeleton"></div>
+      <div class="photo full skeleton"></div>
+    </div>
+
+    <section class="thanks">
+      <div class="flower-line"><img src="flower.png" alt=""></div>
+      <p class="script">Thank you for celebrating with us</p>
+      <p>អរគុណយ៉ាងជ្រាលជ្រៅ ចំពោះវត្តមាន និងពរជ័យរបស់លោកអ្នក</p>
+    </section>
+  </main>
+
+  <!-- ផ្ទាំងមើលរូបធំ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="មើលរូបភាព">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="បិទ">&times;</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="រូបមុន">‹</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-btn lb-next" id="lbNext" aria-label="រូបបន្ទាប់">›</button>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://hojyarygbfnszspisjzd.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvanlhcnlnYmZuc3pzcGlzanpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIyNjkzNzksImV4cCI6MjEwNzg0NTM3OX0.f7ziLBlDqd5W_t6fdVpN2uGHgWxz-1T61NkA_BFq7J0';
+    const CLOUD_NAME = 'xtyf2x4c';
+    const UPLOAD_PRESET = 'wedding_preset';
+
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const $ = id => document.getElementById(id);
+    const KM = ['០','១','២','៣','៤','៥','៦','៧','៨','៩'];
+    const km = n => String(n).replace(/\d/g, d => KM[d]);
+    let photos = [];
+
+    // ត្រឡប់ទៅធៀបវិញ ដោយរក្សាឈ្មោះភ្ញៀវ (#g=...)
+    try { const h = sessionStorage.getItem('etheapGuest'); if (h) $('backLink').href = '/' + h; } catch (e) {}
+
+    // ទទួលយកតែ link រូបភាពពី Cloudinary ប៉ុណ្ណោះ (ការពារ link ចម្លែកក្នុង database)
+    function safeUrl(u) {
+      try { const x = new URL(u); return x.protocol === 'https:' && x.hostname === 'res.cloudinary.com' ? x.href : null; }
+      catch (e) { return null; }
+    }
+    // រូបតូចសម្រាប់ក្រឡា (ផ្ទុកលឿនជាង) និងរូបធំសម្រាប់ផ្ទាំងមើល
+    const thumb = u => u.replace('/upload/f_auto,q_auto/', '/upload/f_auto,q_auto,w_700/');
+
+    function render() {
+      const grid = $('grid');
+      grid.textContent = '';
+      $('count').textContent = photos.length ? 'រូបថតសរុប ' + km(photos.length) + ' សន្លឹក' : '';
+
+      if (!photos.length) {
+        const e = document.createElement('div');
+        e.className = 'empty';
+        e.innerHTML = 'មិនទាន់មានរូបថតនៅឡើយទេ<br>សូមក្លាយជាអ្នកដំបូងដែលចែករំលែកអនុស្សាវរីយ៍';
+        grid.appendChild(e);
+        return;
+      }
+
+      photos.forEach((p, i) => {
+        const pos = i % 6;
+        const card = document.createElement('div');
+        card.className = 'photo' + (pos >= 2 && pos <= 4 ? ' third' : pos === 5 ? ' full' : '');
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'មើលរូបទី ' + km(i + 1));
+
+        const img = document.createElement('img');
+        img.src = thumb(p.url);
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+
+        const del = document.createElement('button');
+        del.className = 'del';
+        del.type = 'button';
+        del.title = 'លុបរូបភាព (សម្រាប់ម្ចាស់កម្មវិធី)';
+        del.setAttribute('aria-label', 'លុបរូបភាព');
+        del.textContent = '×';
+        del.addEventListener('click', ev => { ev.stopPropagation(); deletePhoto(p.id); });
+
+        card.addEventListener('click', () => openViewer(i));
+        card.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openViewer(i); } });
+
+        card.appendChild(img);
+        card.appendChild(del);
+        grid.appendChild(card);
+      });
+    }
+
+    async function loadGallery() {
+      const { data, error } = await supabaseClient
+        .from('wedding_photos')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Database Error:', error);
+        $('grid').textContent = '';
+        $('status').textContent = 'ផ្ទុករូបភាពមិនបាន។ សូមបើកទំព័រម្តងទៀត។';
+        return;
+      }
+      photos = (data || []).map(r => ({ id: r.id, url: safeUrl(r.image_url) })).filter(p => p.url);
+      render();
+    }
+
+    // ---- បង្ហោះរូប (អាចជ្រើសច្រើនសន្លឹកក្នុងពេលតែមួយ) ----
+    $('fileInput').addEventListener('change', async () => {
+      const files = Array.from($('fileInput').files || []);
+      if (!files.length) return;
+      const btn = $('uploadBtn'), status = $('status');
+      btn.classList.add('busy');
+      let ok = 0, fail = 0;
+
+      for (let i = 0; i < files.length; i++) {
+        $('btnText').textContent = 'កំពុងបង្ហោះ ' + km(i + 1) + ' / ' + km(files.length);
+        status.textContent = 'សូមកុំបិទទំព័រ រហូតដល់បង្ហោះរួច';
+        try {
+          const fd = new FormData();
+          fd.append('file', files[i]);
+          fd.append('upload_preset', UPLOAD_PRESET);
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: 'POST', body: fd });
+          const cl = await res.json();
+          if (!res.ok) throw new Error(cl.error?.message || 'Cloudinary upload failed');
+          const url = cl.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
+          const { error } = await supabaseClient.from('wedding_photos').insert([{ image_url: url }]);
+          if (error) throw new Error(error.message);
+          ok++;
+        } catch (err) {
+          console.error(err);
+          fail++;
+        }
+      }
+
+      $('fileInput').value = '';
+      btn.classList.remove('busy');
+      $('btnText').textContent = 'បង្ហោះរូបថត';
+      status.textContent = fail
+        ? 'បង្ហោះបាន ' + km(ok) + ' សន្លឹក, មិនបាន ' + km(fail) + ' សន្លឹក។ សូមសាករូបដែលមិនបានម្តងទៀត។'
+        : 'បង្ហោះបាន ' + km(ok) + ' សន្លឹក។ អរគុណសម្រាប់អនុស្សាវរីយ៍!';
+      await loadGallery();
+    });
+
+    // ---- លុបរូប (ត្រូវការលេខកូដម្ចាស់កម្មវិធី) ----
+    async function deletePhoto(id) {
+      const password = prompt('សូមបញ្ចូលលេខកូដសម្ងាត់ម្ចាស់កម្មវិធី៖');
+      if (!password) return;
+      try {
+        const res = await fetch('/api/delete-photo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, password })
+        });
+        const result = await res.json();
+        if (!res.ok) { alert(result.error || 'លុបមិនបាន'); return; }
+        $('status').textContent = 'បានលុបរូបភាព។';
+        await loadGallery();
+      } catch (err) {
+        alert('មានបញ្ហាក្នុងការតភ្ជាប់៖ ' + err.message);
+      }
+    }
+
+    // ---- ផ្ទាំងមើលរូបធំ (ចុច ‹ › ឬអូសឆ្វេង/ស្តាំ) ----
+    let cur = 0, lastFocus = null;
+    function show(i) {
+      cur = (i + photos.length) % photos.length;
+      $('lbImg').src = photos[cur].url;
+      $('lbCount').textContent = km(cur + 1) + ' / ' + km(photos.length);
+    }
+    function openViewer(i) {
+      lastFocus = document.activeElement;
+      show(i);
+      $('lightbox').classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+      $('lbClose').focus();
+    }
+    function closeViewer() {
+      $('lightbox').classList.remove('open');
+      document.documentElement.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    $('lbClose').addEventListener('click', closeViewer);
+    $('lbPrev').addEventListener('click', e => { e.stopPropagation(); show(cur - 1); });
+    $('lbNext').addEventListener('click', e => { e.stopPropagation(); show(cur + 1); });
+    $('lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeViewer(); });
+    document.addEventListener('keydown', e => {
+      if (!$('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeViewer();
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
+    let sx = null;
+    $('lightbox').addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    $('lightbox').addEventListener('touchend', e => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+      sx = null;
+    });
+
+    loadGallery();
+  </script>
+</body>
+</html>
