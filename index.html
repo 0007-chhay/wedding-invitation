@@ -1467,35 +1467,6 @@
         </div>
         <hr class="divider">
 
-        <!-- ផ្នែកទី៥៖ បញ្ជាក់ការចូលរួម (RSVP Section) -->
-        <div id="rsvp" style="margin-top: 50px; margin-bottom: 40px;">
-            <h2 class="main-title">សូមបញ្ជាក់ការចូលរួម<br><span style="font-size: 1.2rem;">Confirm participation</span></h2>
-            
-            <div class="rsvp-card">
-                <p>សូមបំពេញព័ត៌មានខាងក្រោម<br>
-                Please fill out the information below.</p>
-                
-                <form id="rsvpForm" class="rsvp-form">
-                    <input type="text" name="name" aria-label="ឈ្មោះ / Name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក... write your name here.." required>
-                    
-                    <select name="attendance" required aria-label="ការចូលរួម / Attendance">
-                        <option value="" disabled selected>តើអ្នកនឹងចូលរួមដែរឬទេ? / Will you be joining too?</option>
-                        <option value="ចូលរួម">បាទ/ចាស ខ្ញុំនឹងចូលរួម / Yes, I will participate.</option>
-                        <option value="មិនចូលរួម">សុំទោស ខ្ញុំមិនអាចចូលរួមបានទេ / I'm sorry, I cannot attend.</option>
-                    </select>
-                    
-                    <select name="guest" aria-label="ចំនួនភ្ញៀវ / Guests">
-                        <option value="១ នាក់" selected>ចូលរួមម្នាក់ឯង / Participate alone</option>
-                        <option value="២ នាក់">ចូលរួម ២ នាក់ / Participate as a pair (2 people)</option>
-                        <option value="លក្ខណៈគ្រួសារ">ចូលរួមជាលក្ខណៈគ្រួសារ / Participate as a family</option>
-                    </select>
-                    
-                    <button type="submit" id="submitBtn" class="rsvp-btn">បញ្ជូន / confirmation</button>
-                </form>
-            </div>
-        </div>
-        <hr class="divider">
-
         <!-- ផ្នែកទី៦៖ ចំណងដៃ (Gift Section) -->
         <div id="qr" style="margin-top: 50px;">
             <h2 class="main-title">🎁ចំណងដៃ🎁<br><span style="font-size: 1.2rem;">Gift given at a celebration</span></h2>
@@ -1617,7 +1588,7 @@
         <a href="#map" class="nav-item" aria-label="ផែនទី / Map">🗺️</a>
         <a href="#gallery" class="nav-item" aria-label="រូបថត / Gallery">📸</a>
         <a href="#qr" class="nav-item" aria-label="ចំណងដៃ / Gift">🎁</a>
-        <a href="#rsvp" class="nav-item" aria-label="បញ្ជាក់ការចូលរួម / RSVP">💌</a>
+        <a href="#wishes-section" class="nav-item" aria-label="ពាក្យជូនពរ / Wishes">💌</a>
           <div id="musicToggle" class="nav-item" onclick="toggleMusic()" role="button" tabindex="0" aria-label="តន្ត្រី / Music"><span>🎻</span></div>
     </div>
 
@@ -1708,110 +1679,6 @@
         })();
     </script>
 
-    <!-- កូដកាំជ្រួច -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
-    <script>
-        function isValidName(str) {
-            const regex = /^[\u1780-\u17FFa-zA-Z\s&]+$/;
-            return regex.test(str);
-        }
-
-        window.addEventListener("DOMContentLoaded", function() {
-            if (localStorage.getItem('has_submitted') === 'true') {
-                var btn = document.getElementById("submitBtn");
-                if (btn) {
-                    btn.disabled = true;
-                    btn.innerText = "បានបញ្ជូនរួច / Sent";
-                }
-            }
-        });
-
-        document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-            e.preventDefault(); 
-            
-            if (localStorage.getItem('has_submitted') === 'true') {
-                alert("ឧបករណ៍នេះបានបញ្ជាក់ការចូលរួមរួចរាល់ហើយ / This device has already confirmed participation.");
-                var btn = document.getElementById("submitBtn");
-                if (btn) {
-                    btn.disabled = true;
-                    btn.innerText = "បានបញ្ជូនរួច / Sent";
-                }
-                return;
-            }
-            
-            var form = e.target;
-            var data = new FormData(form);
-            var nameValue = data.get('name') ? data.get('name').trim() : '';
-            var attendanceValue = data.get('attendance') ? data.get('attendance') : '';
-            var guestValue = data.get('guest') ? data.get('guest') : '';
-
-            if (nameValue === "") {
-                alert("សូមបញ្ចូលឈ្មោះរបស់អ្នក។ / Please enter your name.");
-                return;
-            }
-
-            if (nameValue.length > 60) {
-                alert("ឈ្មោះវែងពេក! / Name is too long!");
-                return;
-            }
-
-            if (!isValidName(nameValue)) {
-                alert("សូមបញ្ចូលឈ្មោះឱ្យបានត្រឹមត្រូវ ។ / Invalid characters!");
-                return;
-            }
-
-            var btn = document.getElementById("submitBtn");
-            btn.disabled = true;
-            btn.innerText = "កំពុងបញ្ជូន... / Sending..."; 
-            document.activeElement.blur();
-
-            fetch("/api/dakjol", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: nameValue,
-                    attendance: attendanceValue,
-                    guest: guestValue
-                })
-            })
-            .then(response => response.json())
-            .then(result => {
-                if(result.status === "error") {
-                    alert("មានបញ្ហាកើតឡើង៖ " + result.message);
-                    btn.disabled = false;
-                    btn.innerText = "បញ្ជូន / confirmation"; 
-                    return;
-                }
-
-                localStorage.setItem('has_submitted', 'true');
-                alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
-                
-                if (typeof confetti === "function") {
-                    confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: { y: 0.6 }
-                    });
-                }
-
-                form.reset(); 
-                
-                btn.disabled = true;
-                btn.innerText = "បានបញ្ជូនរួច / Sent";
-            })
-            .catch(error => {
-                localStorage.setItem('has_submitted', 'true');
-                alert("អរគុណសម្រាប់ការបញ្ជាក់ការចូលរួម! Thank you for confirming your participation!");
-                form.reset();
-                
-                btn.disabled = true;
-                btn.innerText = "បានបញ្ជូនរួច / Sent";
-            });
-        });
-    </script>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (localStorage.getItem("hasSentWish") === "true") {
@@ -1835,46 +1702,40 @@
             }
 
             var guestNameVal = (document.getElementById("guestName").value || "").trim().slice(0,60);
-                        var textToSend = "💌 មានសារជូនពរថ្មីពីភ្ញៀវកិត្តិយស!\n\n👤 ឈ្មោះ: " + (guestNameVal || "-") + "\n💬 ពាក្យជូនពរ: " + guestMessage;
             var submitBtn = document.querySelector("#wishesForm button[type='submit']");
-            
             var originalBtnText = submitBtn ? submitBtn.innerText : "បញ្ជូនពាក្យជូនពរ / Send";
-            
-            if (submitBtn) {
-                submitBtn.innerText = "កំពុងផ្ញើ...";
-                submitBtn.disabled = true;
-            }
+            if (submitBtn) { submitBtn.innerText = "កំពុងផ្ញើ..."; submitBtn.disabled = true; }
+            function resetBtn() { if (submitBtn) { submitBtn.innerText = originalBtnText; submitBtn.disabled = false; } }
 
-            fetch('/api/send-wish', {
+            // ផ្ញើតែឈ្មោះ និងពរ; server ជាអ្នករក្សាទុក និងជូនដំណឹងទៅ Telegram
+            fetch("/api/wishes", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message: textToSend })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: guestNameVal, message: guestMessage })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    fetch("/api/wishes",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:guestNameVal,message:guestMessage})})
-                        .then(function(r){return r.json();}).then(function(d){if(d&&d.wish&&window.__addWish) window.__addWish(d.wish);}).catch(function(){});
-                    alert("អរគុណច្រើន! ពាក្យជូនពររបស់អ្នកត្រូវបានបញ្ជូនជោគជ័យ។ Thank you very much! Your well wishes have been successfully sent.");
+            .then(function (r) { return r.json().then(function (d) { return { status: r.status, d: d }; }); })
+            .then(function (x) {
+                if (x.d && x.d.ok) {
+                    if (x.d.wish && window.__addWish) window.__addWish(x.d.wish);
+                    alert(x.d.pending
+                        ? "អរគុណច្រើន! ពាក្យជូនពររបស់អ្នកបានទទួល ហើយនឹងបង្ហាញលើជញ្ជាំងបន្ទាប់ពីគូស្វាមីភរិយាបានមើល។ Thank you! Your wishes will appear on the wall shortly."
+                        : "អរគុណច្រើន! ពាក្យជូនពររបស់អ្នកត្រូវបានបញ្ជូនជោគជ័យ។ Thank you very much! Your well wishes have been successfully sent.");
                     localStorage.setItem("hasSentWish", "true");
                     lockFormAfterSend();
+                } else if (x.d && x.d.error === "link") {
+                    alert("សូមកុំដាក់ link ក្នុងពាក្យជូនពរ។ Please don't include links in your message.");
+                    resetBtn();
+                } else if (x.status === 429) {
+                    alert("សូមរង់ចាំបន្តិច ហើយសាកម្តងទៀត។ Please wait a moment and try again.");
+                    resetBtn();
                 } else {
                     alert("សូមព្យាយាមម្ដងទៀត។ Please try again.");
-                    if (submitBtn) {
-                        submitBtn.innerText = originalBtnText;
-                        submitBtn.disabled = false;
-                    }
+                    resetBtn();
                 }
             })
-            .catch(error => {
-                console.error("Error:", error);
+            .catch(function () {
                 alert("មិនអាចតភ្ជាប់ទៅកាន់ប្រព័ន្ធបានទេ! Unable to connect to the system!");
-                if (submitBtn) {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
-                }
+                resetBtn();
             });
         });
 
@@ -2038,10 +1899,6 @@
             var el = document.querySelector(a.getAttribute('href'));
             if (el) list.push({ a: a, el: el });
         });
-        // ផ្នែកពាក្យជូនពរ ក៏បង្ហាញលើប៊ូតុង 💌 ដែរ
-        var wish = document.getElementById('wishes-section');
-        var rsvpBtn = document.querySelector('.bottom-nav .nav-item[href="#rsvp"]');
-        if (wish && rsvpBtn) list.push({ a: rsvpBtn, el: wish });
  
         var current = null, ticking = false;
         function update() {
