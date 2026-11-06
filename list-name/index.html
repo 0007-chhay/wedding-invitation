@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#2b1b0d">
+  <title>បញ្ជីចំណងដៃ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Moul&family=Battambang:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #2b1b0d;
+      --ink: #1c110a;
+      --gold-text: #ebd39b;
+      --gold-accent: #b88a44;
+      --gold-soft: #d1b88a;
+      --line: rgba(235,211,155,.18);
+      --groom: #8fb3d9;
+      --bride: #e6a3b4;
+      --ok: #9be29b;
+      --warn: #ffb27a;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+    body {
+      margin: 0; min-height: 100vh;
+      background-color: var(--bg-dark);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .93 0 0 0 0 .82 0 0 0 0 .6 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 50% 0%, #4a2e1b 0%, #1a0f0a 75%);
+      background-size: 240px 240px, 100% 100%;
+      background-attachment: fixed;
+      font-family: 'Battambang', sans-serif;
+      color: var(--gold-text);
+      padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+    }
+    button, input, select { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--gold-text); outline-offset: 2px; }
+
+    /* ក្បាច់វល្លិ៍សងខាង — តែអេក្រង់ធំ (ទូរស័ព្ទត្រូវការទំហំសម្រាប់វាយ) */
+    .kbach-left, .kbach-right { display: none; }
+    @media (min-width: 960px) {
+      .kbach-left, .kbach-right {
+        display: block; position: fixed; top: 0; bottom: 0; width: 70px; z-index: 0; pointer-events: none;
+        background-color: rgba(10,5,2,.35); background-repeat: repeat-y; background-size: 100% auto;
+      }
+      .kbach-left { left: 0; background-image: url('../vine-tile.svg'); border-right: 1px solid rgba(226,183,90,.6); }
+      .kbach-right { right: 0; background-image: url('../vine-tile-right.svg'); border-left: 1px solid rgba(226,183,90,.6); }
+    }
+
+    .page { max-width: 760px; margin: 0 auto; padding: 18px 14px 60px; position: relative; z-index: 1; }
+
+    /* ក្បាលទំព័រ */
+    header { text-align: center; padding: 8px 0 4px; }
+    .top-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer;
+      font-size: .82rem; padding: 6px 14px; border-radius: 999px;
+      border: 1px solid rgba(235,211,155,.4); background: rgba(43,27,13,.6); color: var(--gold-text);
+    }
+    .pill:active { transform: scale(.96); }
+    h1 {
+      font-family: 'Moul', serif; font-weight: normal; font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+      line-height: 1.7; margin: 14px 0 0; text-shadow: 2px 2px 5px rgba(0,0,0,.6);
+    }
+    .couple { margin: 0; font-size: .9rem; color: var(--gold-soft); }
+    .flower-line { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 12px auto 18px; }
+    .flower-line::before, .flower-line::after { content: ""; height: 1px; width: 90px; background: linear-gradient(90deg, transparent, var(--gold-accent)); }
+    .flower-line::after { transform: scaleX(-1); }
+    .flower-line img { width: 26px; height: 26px; }
+
+    /* សរុប: ចំណុចសំខាន់បំផុតនៃទំព័រ */
+    .totals {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid rgba(184,138,68,.55); border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,.45);
+    }
+    .tot { background: rgba(20,12,6,.72); padding: 12px 14px; text-align: center; }
+    .tot span { display: block; font-size: .78rem; color: var(--gold-soft); }
+    .tot b { display: block; font-size: clamp(1.25rem, 5vw, 1.6rem); line-height: 1.5; font-variant-numeric: tabular-nums; }
+    .tot.wide { grid-column: span 2; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 4px 16px; font-size: .82rem; color: var(--gold-soft); padding: 8px 10px; }
+    .tot.wide em { font-style: normal; color: var(--gold-text); font-weight: 700; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+    .dot.groom { background: var(--groom); } .dot.bride { background: var(--bride); }
+
+    /* ទម្រង់កត់ត្រា */
+    .entry {
+      margin: 18px 0; padding: 16px 14px 14px; border-radius: 16px;
+      background: rgba(0,0,0,.32); border: 1px solid rgba(235,211,155,.22);
+      box-shadow: 0 4px 15px rgba(0,0,0,.45);
+    }
+    .entry.editing { border-color: var(--warn); box-shadow: 0 0 0 1px var(--warn), 0 4px 15px rgba(0,0,0,.45); }
+    .entry h2 { font-family: 'Moul', serif; font-weight: normal; font-size: 1rem; margin: 0 0 12px; line-height: 1.8; }
+    .row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .row > * { min-width: 0; }
+    label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .field {
+      width: 100%; padding: 12px 12px; border-radius: 10px; font-size: 1rem;
+      background: rgba(255,248,230,.06); border: 1px solid rgba(235,211,155,.3); color: var(--gold-text);
+    }
+    .field::placeholder { color: rgba(209,184,138,.55); }
+    .field:focus { outline: none; border-color: var(--gold-text); background: rgba(255,248,230,.1); }
+    select.field { flex: 0 0 34%; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold-soft) 50%), linear-gradient(135deg, var(--gold-soft) 50%, transparent 50%); background-position: calc(100% - 16px) 52%, calc(100% - 11px) 52%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 26px; }
+    select.field option { background: #2b1b0d; }
+    .amount { font-size: 1.35rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+
+    .seg { display: flex; flex: 0 0 auto; border: 1px solid rgba(235,211,155,.3); border-radius: 10px; overflow: hidden; }
+    .seg button { border: 0; background: transparent; padding: 0 16px; cursor: pointer; font-size: 1.05rem; color: var(--gold-soft); min-height: 46px; }
+    .seg button[aria-pressed="true"] { background: var(--gold-text); color: #351f0f; font-weight: 700; }
+    .sides { flex: 1; }
+    .sides button { flex: 1; font-size: .92rem; }
+    .sides button[data-side="groom"][aria-pressed="true"] { background: var(--groom); }
+    .sides button[data-side="bride"][aria-pressed="true"] { background: var(--bride); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: -2px 0 10px; }
+    .chips button {
+      border: 1px solid rgba(184,138,68,.6); background: rgba(184,138,68,.12); color: var(--gold-text);
+      border-radius: 999px; padding: 4px 12px; font-size: .88rem; cursor: pointer; font-variant-numeric: tabular-nums;
+    }
+    .chips button:active { background: rgba(184,138,68,.4); }
+
+    .hint:empty { display: none; }
+    .hint { min-height: 1.4em; margin: -4px 0 8px; font-size: .8rem; color: var(--warn); }
+    .actions { display: flex; gap: 8px; }
+    .save {
+      flex: 1; border: 0; border-radius: 999px; padding: 13px 20px; cursor: pointer; font-weight: 700; font-size: 1.05rem;
+      background: linear-gradient(135deg, var(--gold-text), var(--gold-accent)); color: #351f0f; box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    }
+    .save:active { transform: scale(.98); }
+    .ghost { border: 1px solid rgba(235,211,155,.4); background: transparent; border-radius: 999px; padding: 0 18px; cursor: pointer; color: var(--gold-soft); }
+    .danger { border-color: rgba(255,120,110,.6); color: #ff9a8a; }
+    [hidden] { display: none !important; }
+
+    /* បញ្ជី — ទម្រង់សៀវភៅចំណងដៃ */
+    .list-head { display: flex; gap: 8px; align-items: center; margin: 24px 0 10px; flex-wrap: wrap; }
+    .list-head .field { flex: 1 1 200px; padding: 9px 12px; font-size: .95rem; }
+    .filters { display: flex; gap: 6px; }
+    .filters button { border: 1px solid rgba(235,211,155,.3); background: transparent; color: var(--gold-soft); border-radius: 999px; padding: 5px 12px; font-size: .82rem; cursor: pointer; }
+    .filters button[aria-pressed="true"] { background: rgba(235,211,155,.18); color: var(--gold-text); border-color: var(--gold-text); }
+
+    .book { border-top: 1px solid rgba(184,138,68,.55); }
+    .item {
+      display: grid; grid-template-columns: 2.4em 1fr auto; gap: 0 10px; align-items: baseline;
+      padding: 11px 6px; border-bottom: 1px solid var(--line); cursor: pointer; border-left: 3px solid transparent;
+    }
+    .item:hover { background: rgba(235,211,155,.05); }
+    .item.groom { border-left-color: var(--groom); }
+    .item.bride { border-left-color: var(--bride); }
+    .item.flash { animation: flash 1.6s ease; }
+    @keyframes flash { 0%, 30% { background: rgba(235,211,155,.2); } 100% { background: transparent; } }
+    .no { color: rgba(209,184,138,.6); font-size: .8rem; text-align: right; font-variant-numeric: tabular-nums; }
+    .who { line-height: 1.6; }
+    .who small { color: var(--gold-soft); margin-right: 4px; }
+    .who .meta { display: block; font-size: .76rem; color: rgba(209,184,138,.7); }
+    .money { font-weight: 700; font-size: 1.05rem; white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+    .money.usd { color: #f3e2ad; }
+    .pending { color: var(--warn); font-size: .72rem; display: block; text-align: right; font-weight: 400; }
+    .empty { padding: 34px 12px; text-align: center; color: var(--gold-soft); border: 1px dashed rgba(235,211,155,.3); border-radius: 14px; margin-top: 10px; line-height: 1.9; }
+
+    .tools { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+
+    /* ស្ថានភាពភ្ជាប់ */
+    .sync { font-size: .75rem; color: var(--gold-soft); }
+    .sync.off { color: var(--warn); }
+    .sync.ok::before { content: "● "; color: var(--ok); }
+    .sync.off::before { content: "● "; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px);
+      background: #f3e2ad; color: #2b1b0d; padding: 10px 18px; border-radius: 999px; font-size: .9rem; font-weight: 700;
+      box-shadow: 0 6px 20px rgba(0,0,0,.5); opacity: 0; pointer-events: none; transition: .25s; z-index: 50; max-width: 90vw; text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ចូល */
+    .gate { max-width: 380px; margin: 24px auto 0; text-align: center; }
+    .gate p { color: var(--gold-soft); font-size: .9rem; line-height: 1.8; }
+    .gate .field { margin-bottom: 10px; text-align: center; }
+    .gate .err { color: #ff9a8a; min-height: 1.5em; font-size: .85rem; }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+    /* បោះពុម្ព */
+    .print-only { display: none; }
+    @media print {
+      body { background: #fff; color: #000; padding: 0; }
+      .kbach-left, .kbach-right, .entry, .list-head, .tools, .top-row, .toast, .flower-line, .gate { display: none !important; }
+      .page { max-width: none; padding: 0; }
+      h1, .couple, .tot b, .tot span, .tot.wide, .tot.wide em { color: #000; text-shadow: none; }
+      .totals { background: #000; border-color: #000; box-shadow: none; }
+      .tot { background: #fff; }
+      .item { cursor: default; break-inside: avoid; border-bottom-color: #bbb; border-left: 0; padding: 6px 0; }
+      .no, .who small, .who .meta, .money, .money.usd { color: #000; }
+      .print-only { display: block; text-align: center; font-size: .8rem; margin: 6px 0 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="kbach-left" aria-hidden="true"></div>
+  <div class="kbach-right" aria-hidden="true"></div>
+
+  <main class="page">
+    <header>
+      <div class="top-row">
+        <a class="pill" href="../">‹ ធៀប</a>
+        <span id="sync" class="sync" aria-live="polite"></span>
+        <button id="logout" class="pill" type="button" hidden>ចាកចេញ</button>
+      </div>
+      <h1>បញ្ជីចំណងដៃ</h1>
+      <p class="couple">វ៉ាន ច័ន្ទគ្រឹស្នា &amp; មិន ស្រីលក្ខ</p>
+      <p class="print-only" id="printDate"></p>
+      <div class="flower-line"><img src="../flower.png" alt=""></div>
+    </header>
+
+    <!-- ចូលប្រើ -->
+    <section id="gate" class="gate" hidden>
+      <p>ទំព័រនេះសម្រាប់គ្រួសារកត់ឈ្មោះភ្ញៀវដែលចងដៃ។ សូមបញ្ចូលពាក្យសម្ងាត់ (ADMIN_KEY ដដែលនឹងទំព័រគ្រប់គ្រងពាក្យជូនពរ)។</p>
+      <form id="gateForm" autocomplete="off">
+        <label class="sr" for="keyIn">ពាក្យសម្ងាត់</label>
+        <input id="keyIn" class="field" type="password" placeholder="ពាក្យសម្ងាត់" required>
+        <label class="sr" for="byIn">ឈ្មោះអ្នកកត់</label>
+        <input id="byIn" class="field" type="text" maxlength="30" placeholder="ឈ្មោះអ្នកកត់ (មិនចាំបាច់)">
+        <button class="save" type="submit" style="width:100%">ចូល</button>
+        <p class="err" id="gateErr"></p>
+      </form>
+    </section>
+
+    <div id="app" hidden>
+      <section class="totals" aria-label="សរុប">
+        <div class="tot"><span>ប្រាក់រៀល</span><b id="sumKHR">0 ៛</b></div>
+        <div class="tot"><span>ប្រាក់ដុល្លារ</span><b id="sumUSD">$0</b></div>
+        <div class="tot wide">
+          <span>ភ្ញៀវសរុប <em id="sumCount">0</em> នាក់</span>
+          <span><i class="dot groom"></i>ខាងប្រុស <em id="sumGroom">0</em></span>
+          <span><i class="dot bride"></i>ខាងស្រី <em id="sumBride">0</em></span>
+        </div>
+      </section>
+
+      <form id="entry" class="entry" autocomplete="off">
+        <h2 id="entryTitle">កត់ចំណងដៃថ្មី</h2>
+        <div class="row">
+          <label class="sr" for="hon">ការគោរព</label>
+          <select id="hon" class="field"></select>
+          <label class="sr" for="name">ឈ្មោះភ្ញៀវ</label>
+          <input id="name" class="field" type="text" list="guestList" maxlength="80" placeholder="ឈ្មោះភ្ញៀវ" required>
+          <datalist id="guestList"></datalist>
+        </div>
+        <p class="hint" id="dupHint" aria-live="polite"></p>
+        <div class="row">
+          <label class="sr" for="amount">ចំនួនប្រាក់</label>
+          <input id="amount" class="field amount" type="text" inputmode="decimal" placeholder="0">
+          <div class="seg" role="group" aria-label="រូបិយប័ណ្ណ">
+            <button type="button" data-cur="KHR" aria-pressed="true">៛</button>
+            <button type="button" data-cur="USD" aria-pressed="false">$</button>
+          </div>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="row">
+          <div class="seg sides" role="group" aria-label="ភ្ញៀវខាង">
+            <button type="button" data-side="groom" aria-pressed="false">ខាងប្រុស</button>
+            <button type="button" data-side="bride" aria-pressed="false">ខាងស្រី</button>
+          </div>
+        </div>
+        <div class="row">
+          <label class="sr" for="note">កំណត់សម្គាល់</label>
+          <input id="note" class="field" type="text" maxlength="200" placeholder="កំណត់សម្គាល់ ឧ. ភូមិ, ទំនាក់ទំនង, មាស/អំណោយ (មិនចាំបាច់)">
+        </div>
+        <div class="actions">
+          <button class="save" type="submit" id="saveBtn">រក្សាទុក</button>
+          <button class="ghost" type="button" id="cancelBtn" hidden>បោះបង់</button>
+          <button class="ghost danger" type="button" id="delBtn" hidden>លុប</button>
+        </div>
+      </form>
+
+      <div class="list-head">
+        <label class="sr" for="search">ស្វែងរក</label>
+        <input id="search" class="field" type="search" placeholder="ស្វែងរកឈ្មោះ…">
+        <div class="filters" role="group" aria-label="បង្ហាញ">
+          <button type="button" data-f="" aria-pressed="true">ទាំងអស់</button>
+          <button type="button" data-f="groom" aria-pressed="false">ប្រុស</button>
+          <button type="button" data-f="bride" aria-pressed="false">ស្រី</button>
+        </div>
+      </div>
+
+      <div class="book" id="book"></div>
+
+      <div class="tools">
+        <button class="pill" type="button" id="csvBtn">ទាញយក Excel (CSV)</button>
+        <button class="pill" type="button" id="printBtn">បោះពុម្ព</button>
+        <button class="pill" type="button" id="sortBtn">តម្រៀប៖ តាមលំដាប់មក</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  (function () {
+    'use strict';
+    var HL = ["លោក លោកស្រី","លោក","លោកស្រី","អ្នកនាង","កញ្ញា","លោកគ្រូ","អ្នកគ្រូ","ឯកឧត្តម លោកជំទាវ","បងប្អូន","Mr.","Ms.","Mrs.","Mr. & Mrs.","សម្លាញ់",""];
+    var CHIPS = { KHR: [50000, 100000, 200000, 400000], USD: [20, 30, 50, 100] };
+    var API = '/api/gifts';
+    var LS = { key: 'gifts.key', by: 'gifts.by', cache: 'gifts.cache', queue: 'gifts.queue', side: 'gifts.side', cur: 'gifts.cur' };
+
+    var $ = function (id) { return document.getElementById(id); };
+    function lsGet(k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }
+    function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+    function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+
+    var state = {
+      key: lsGet(LS.key, ''), by: lsGet(LS.by, ''),
+      gifts: lsGet(LS.cache, {}),        // id → gift (ពី server)
+      queue: lsGet(LS.queue, []),        // ការផ្លាស់ប្ដូរដែលមិនទាន់ផ្ញើ
+      guests: [], cur: lsGet(LS.cur, 'KHR'), side: lsGet(LS.side, ''),
+      editId: null, filter: '', q: '', sort: 'time', online: false,
+    };
+
+    // ---------- ទម្រង់លេខ ----------
+    function fmt(n, cur) {
+      if (cur === 'USD') return '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 });
+      return Math.round(n).toLocaleString('en-US') + ' ៛';
+    }
+    function parseAmt(s) { var n = parseFloat(String(s).replace(/[^\d.]/g, '')); return isFinite(n) ? n : 0; }
+    function newId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+    function norm(s) { return String(s || '').replace(/\s+/g, '').toLowerCase(); }
+    function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.h); toast.h = setTimeout(function () { t.classList.remove('show'); }, 2200); }
+
+    // ---------- ទិន្នន័យ (server + ជួរមិនទាន់ផ្ញើ) ----------
+    function view() {
+      var m = {}; Object.keys(state.gifts).forEach(function (k) { m[k] = state.gifts[k]; });
+      state.queue.forEach(function (op) {
+        if (op.op === 'save') { m[op.gift.id] = Object.assign({}, op.gift, { _pending: true }); }
+        else if (op.op === 'del') delete m[op.id];
+      });
+      return Object.keys(m).map(function (k) { return m[k]; }).sort(function (a, b) { return a.t - b.t; });
+    }
+
+    function api(method, body) {
+      return fetch(API, {
+        method: method,
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': state.key },
+        body: body ? JSON.stringify(body) : undefined,
+        cache: 'no-store',
+      }).then(function (r) {
+        if (r.status === 403) { var e = new Error('key'); e.key = true; throw e; }
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      });
+    }
+
+    function setSync(ok, txt) {
+      state.online = ok;
+      var s = $('sync'); s.className = 'sync ' + (ok ? 'ok' : 'off');
+      s.textContent = txt || (ok ? (state.queue.length ? 'កំពុងផ្ញើ…' : 'បានរក្សាទុក') : 'គ្មានអ៊ីនធឺណិត — រក្សាទុកក្នុងទូរស័ព្ទសិន');
+    }
+
+    var flushing = false;
+    function flush() {
+      if (flushing || !state.queue.length) return Promise.resolve();
+      flushing = true;
+      var op = state.queue[0];
+      return api('POST', op).then(function (d) {
+        if (op.op === 'save' && d.gift) state.gifts[d.gift.id] = d.gift;
+        if (op.op === 'del') delete state.gifts[op.id];
+        state.queue.shift(); lsSet(LS.queue, state.queue); lsSet(LS.cache, state.gifts);
+        flushing = false; setSync(true); render();
+        return flush();
+      }).catch(function (e) {
+        flushing = false;
+        if (e.key) return logout('ពាក្យសម្ងាត់ត្រូវបានផ្លាស់ប្ដូរ សូមចូលម្ដងទៀត');
+        setSync(false);
+      });
+    }
+
+    function pull() {
+      return flush().then(function () {
+        if (state.queue.length) return;          // រង់ចាំផ្ញើរួចសិន កុំឲ្យទិន្នន័យថ្មីបាត់
+        return api('GET').then(function (d) {
+          var m = {}; (d.gifts || []).forEach(function (g) { m[g.id] = g; });
+          state.gifts = m; lsSet(LS.cache, m);
+          state.guests = d.guests || []; fillGuests();
+          setSync(true); render();
+        });
+      }).catch(function (e) {
+        if (e && e.key) return logout('ពាក្យសម្ងាត់មិនត្រឹមត្រូវ');
+        setSync(false);
+      });
+    }
+
+    function queue(op) {
+      // បើកែធាតុដែលនៅក្នុងជួររួចហើយ ជំនួសវាចោល កុំឲ្យផ្ញើច្រើនដង
+      var id = op.op === 'save' ? op.gift.id : op.id;
+      state.queue = state.queue.filter(function (q) { return (q.op === 'save' ? q.gift.id : q.id) !== id; });
+      if (!(op.op === 'del' && !state.gifts[id])) state.queue.push(op);
+      lsSet(LS.queue, state.queue);
+      render(); flush();
+    }
+
+    // ---------- គូរ ----------
+    function render() {
+      var all = view();
+      var sum = { KHR: 0, USD: 0, groom: 0, bride: 0 };
+      var no = {};
+      all.forEach(function (g, i) {
+        sum[g.cur] += g.amount || 0; if (g.side) sum[g.side]++; no[g.id] = i + 1;
+      });
+      $('sumKHR').textContent = fmt(sum.KHR, 'KHR');
+      $('sumUSD').textContent = fmt(sum.USD, 'USD');
+      $('sumCount').textContent = all.length;
+      $('sumGroom').textContent = sum.groom;
+      $('sumBride').textContent = sum.bride;
+
+      var q = norm(state.q);
+      var list = all.filter(function (g) {
+        return (!state.filter || g.side === state.filter) &&
+          (!q || norm(g.hon + g.name + g.note).indexOf(q) > -1);
+      });
+      if (state.sort === 'name') list.sort(function (a, b) { return a.name.localeCompare(b.name, 'km'); });
+      else if (state.sort === 'amount') list.sort(function (a, b) { return toUsd(b) - toUsd(a); });
+      else list.reverse(); // ថ្មីបំផុតនៅលើ
+
+      var book = $('book'); book.textContent = '';
+      if (!list.length) {
+        var e = document.createElement('div'); e.className = 'empty';
+        e.textContent = all.length ? 'រកមិនឃើញឈ្មោះនេះទេ' : 'មិនទាន់មានឈ្មោះទេ — វាយឈ្មោះភ្ញៀវ និងចំនួនប្រាក់ខាងលើ រួចចុច «រក្សាទុក»';
+        book.appendChild(e); return;
+      }
+      var frag = document.createDocumentFragment();
+      list.forEach(function (g) {
+        var r = document.createElement('div');
+        r.className = 'item ' + (g.side || ''); r.tabIndex = 0; r.dataset.id = g.id;
+        r.setAttribute('role', 'button');
+        var n = document.createElement('span'); n.className = 'no'; n.textContent = no[g.id];
+        var w = document.createElement('span'); w.className = 'who';
+        if (g.hon) { var h = document.createElement('small'); h.textContent = g.hon; w.appendChild(h); }
+        w.appendChild(document.createTextNode(g.name));
+        var metaTxt = [g.side === 'groom' ? 'ខាងប្រុស' : g.side === 'bride' ? 'ខាងស្រី' : '', g.note].filter(Boolean).join(' • ');
+        if (metaTxt) { var mt = document.createElement('span'); mt.className = 'meta'; mt.textContent = metaTxt; w.appendChild(mt); }
+        var mo = document.createElement('span'); mo.className = 'money' + (g.cur === 'USD' ? ' usd' : '');
+        mo.textContent = g.amount ? fmt(g.amount, g.cur) : '—';
+        if (g._pending) { var p = document.createElement('span'); p.className = 'pending'; p.textContent = 'មិនទាន់ផ្ញើ'; mo.appendChild(p); }
+        r.appendChild(n); r.appendChild(w); r.appendChild(mo);
+        frag.appendChild(r);
+      });
+      book.appendChild(frag);
+    }
+    function toUsd(g) { return g.cur === 'USD' ? g.amount : g.amount / 4000; }
+
+    function fillGuests() {
+      var dl = $('guestList'); dl.textContent = '';
+      var seen = {};
+      state.guests.forEach(function (g) {
+        if (seen[g.name]) return; seen[g.name] = 1;
+        var o = document.createElement('option'); o.value = g.name; dl.appendChild(o);
+      });
+    }
+
+    // ---------- ទម្រង់ ----------
+    HL.forEach(function (h) { var o = document.createElement('option'); o.value = h; o.textContent = h || '— គ្មាន —'; $('hon').appendChild(o); });
+
+    function setCur(c) {
+      state.cur = c; lsSet(LS.cur, c);
+      document.querySelectorAll('[data-cur]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.cur === c); });
+      var ch = $('chips'); ch.textContent = '';
+      CHIPS[c].forEach(function (v) {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = fmt(v, c);
+        b.addEventListener('click', function () { $('amount').value = fmtInput(String(v)); $('amount').focus(); });
+        ch.appendChild(b);
+      });
+      $('amount').value = fmtInput($('amount').value);
+    }
+    function setSide(s) {
+      state.side = s;
+      document.querySelectorAll('[data-side]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.side === s); });
+    }
+    function fmtInput(v) {
+      var s = String(v).replace(/[^\d.]/g, '');
+      if (state.cur === 'KHR') s = s.replace(/\..*/, '');
+      var parts = s.split('.'); parts[0] = parts[0].replace(/^0+(?=\d)/, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return parts.slice(0, 2).join('.');
+    }
+
+    document.querySelectorAll('[data-cur]').forEach(function (b) { b.addEventListener('click', function () { setCur(b.dataset.cur); }); });
+    document.querySelectorAll('[data-side]').forEach(function (b) {
+      b.addEventListener('click', function () { setSide(state.side === b.dataset.side ? '' : b.dataset.side); lsSet(LS.side, state.side); });
+    });
+    $('amount').addEventListener('input', function () { this.value = fmtInput(this.value); });
+
+    // ពេលជ្រើសឈ្មោះពីបញ្ជីធៀប → បំពេញការគោរពឲ្យ
+    $('name').addEventListener('input', function () {
+      var v = this.value.trim();
+      var g = state.guests.filter(function (x) { return x.name === v; })[0];
+      if (g && HL.indexOf(g.hon) > -1) $('hon').value = g.hon;
+      var dup = v && view().filter(function (x) { return x.id !== state.editId && norm(x.name) === norm(v); })[0];
+      $('dupHint').textContent = dup ? 'ឈ្មោះនេះមានក្នុងបញ្ជីរួចហើយ (' + fmt(dup.amount, dup.cur) + ') — ពិនិត្យកុំឲ្យកត់ពីរដង' : '';
+    });
+
+    function resetForm() {
+      state.editId = null;
+      $('entry').classList.remove('editing');
+      $('entryTitle').textContent = 'កត់ចំណងដៃថ្មី';
+      $('saveBtn').textContent = 'រក្សាទុក';
+      $('cancelBtn').hidden = $('delBtn').hidden = true;
+      $('name').value = $('amount').value = $('note').value = '';
+      $('hon').value = HL[0]; $('dupHint').textContent = '';
+      setSide(lsGet(LS.side, ''));
+    }
+
+    function startEdit(id) {
+      var g = view().filter(function (x) { return x.id === id; })[0]; if (!g) return;
+      state.editId = id;
+      $('entry').classList.add('editing');
+      $('entryTitle').textContent = 'កែប្រែ៖ ' + g.name;
+      $('saveBtn').textContent = 'រក្សាទុកការកែ';
+      $('cancelBtn').hidden = $('delBtn').hidden = false;
+      $('hon').value = HL.indexOf(g.hon) > -1 ? g.hon : '';
+      $('name').value = g.name; $('note').value = g.note || '';
+      setCur(g.cur); $('amount').value = fmtInput(String(g.amount || ''));
+      setSide(g.side || ''); $('dupHint').textContent = '';
+      $('entry').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    $('entry').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = $('name').value.trim();
+      if (!name) { $('name').focus(); return; }
+      var old = state.editId ? view().filter(function (x) { return x.id === state.editId; })[0] : null;
+      var g = {
+        id: state.editId || newId(), hon: $('hon').value, name: name,
+        amount: parseAmt($('amount').value), cur: state.cur, side: state.side,
+        note: $('note').value.trim(), by: old ? old.by : state.by, t: old ? old.t : Date.now(),
+      };
+      queue({ op: 'save', gift: g });
+      toast((old ? 'បានកែ៖ ' : 'បានកត់៖ ') + name + (g.amount ? ' — ' + fmt(g.amount, g.cur) : ''));
+      resetForm();
+      var row = document.querySelector('.item[data-id="' + g.id + '"]'); if (row) row.classList.add('flash');
+      $('name').focus();
+    });
+    $('cancelBtn').addEventListener('click', resetForm);
+    $('delBtn').addEventListener('click', function () {
+      var g = view().filter(function (x) { return x.id === state.editId; })[0];
+      if (!g || !confirm('លុប «' + g.name + '» ចេញពីបញ្ជី?')) return;
+      queue({ op: 'del', id: g.id }); toast('បានលុប៖ ' + g.name); resetForm();
+    });
+
+    $('book').addEventListener('click', function (e) { var r = e.target.closest('.item'); if (r) startEdit(r.dataset.id); });
+    $('book').addEventListener('keydown', function (e) { if (e.key === 'Enter') { var r = e.target.closest('.item'); if (r) startEdit(r.dataset.id); } });
+    $('search').addEventListener('input', function () { state.q = this.value; render(); });
+    document.querySelectorAll('[data-f]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.filter = b.dataset.f;
+        document.querySelectorAll('[data-f]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        render();
+      });
+    });
+    var SORTS = { time: 'តាមលំដាប់មក', name: 'តាមឈ្មោះ', amount: 'តាមចំនួនប្រាក់' };
+    $('sortBtn').addEventListener('click', function () {
+      state.sort = state.sort === 'time' ? 'name' : state.sort === 'name' ? 'amount' : 'time';
+      this.textContent = 'តម្រៀប៖ ' + SORTS[state.sort]; render();
+    });
+
+    // ---------- ទាញយក / បោះពុម្ព ----------
+    $('csvBtn').addEventListener('click', function () {
+      var rows = [['ល.រ', 'ការគោរព', 'ឈ្មោះ', 'ប្រាក់រៀល', 'ប្រាក់ដុល្លារ', 'ខាង', 'កំណត់សម្គាល់', 'អ្នកកត់', 'ម៉ោង']];
+      var all = view();
+      all.forEach(function (g, i) {
+        rows.push([i + 1, g.hon, g.name, g.cur === 'KHR' ? g.amount : '', g.cur === 'USD' ? g.amount : '',
+          g.side === 'groom' ? 'ខាងប្រុស' : g.side === 'bride' ? 'ខាងស្រី' : '', g.note || '', g.by || '', new Date(g.t).toLocaleString()]);
+      });
+      var k = 0, u = 0; all.forEach(function (g) { if (g.cur === 'USD') u += g.amount; else k += g.amount; });
+      rows.push([]); rows.push(['', '', 'សរុប', k, u]);
+      var csv = '\ufeff' + rows.map(function (r) {
+        return r.map(function (c) { c = String(c == null ? '' : c); return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(',');
+      }).join('\r\n');
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = 'chong-dai-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+    $('printBtn').addEventListener('click', function () {
+      $('printDate').textContent = 'បោះពុម្ពថ្ងៃ ' + new Date().toLocaleString();
+      var keep = state.filter, keepQ = state.q, keepS = state.sort;
+      state.filter = ''; state.q = ''; state.sort = 'name'; render();
+      window.print();
+      state.filter = keep; state.q = keepQ; state.sort = keepS; render();
+    });
+
+    // ---------- ចូល / ចេញ ----------
+    function logout(msg) {
+      state.key = ''; lsDel(LS.key);
+      $('app').hidden = true; $('logout').hidden = true; $('gate').hidden = false;
+      $('sync').textContent = '';
+      $('gateErr').textContent = msg || ''; $('keyIn').focus();
+    }
+    function enter() {
+      $('gate').hidden = true; $('app').hidden = false; $('logout').hidden = false;
+      setCur(state.cur); resetForm(); render();
+      setSync(navigator.onLine, 'កំពុងភ្ជាប់…');
+      pull();
+    }
+    $('gateForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var k = $('keyIn').value.trim(); if (!k) return;
+      $('gateErr').textContent = 'កំពុងពិនិត្យ…';
+      state.key = k;
+      api('GET').then(function () {
+        state.by = $('byIn').value.trim(); lsSet(LS.by, state.by); lsSet(LS.key, k);
+        $('keyIn').value = ''; $('gateErr').textContent = ''; enter();
+      }).catch(function (err) {
+        state.key = '';
+        $('gateErr').textContent = err.key ? 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ' : 'ភ្ជាប់ server មិនបាន — ពិនិត្យអ៊ីនធឺណិត ឬការកំណត់ Redis';
+      });
+    });
+    $('logout').addEventListener('click', function () {
+      if (state.queue.length && !confirm('មាន ' + state.queue.length + ' ឈ្មោះមិនទាន់ផ្ញើទៅ server។ ចាកចេញនឹងមិនលុបវាទេ ប៉ុន្តែត្រូវចូលវិញដើម្បីផ្ញើ។ បន្ត?')) return;
+      logout();
+    });
+
+    window.addEventListener('online', pull);
+    window.addEventListener('offline', function () { setSync(false); });
+    setInterval(function () { if (state.key && !document.hidden) pull(); }, 20000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden && state.key) pull(); });
+    window.addEventListener('beforeunload', function (e) { if (state.queue.length) { e.preventDefault(); e.returnValue = ''; } });
+
+    if (state.key) enter(); else logout();
+  })();
+  </script>
+</body>
+</html>
