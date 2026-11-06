@@ -8,9 +8,11 @@
 //
 // GET  /api/wishes                     → ពរដែលបានអនុម័ត (JSON)
 // POST /api/wishes {name, message}     → ផ្ញើពរថ្មី (ជំនួស /api/send-wish ចាស់ផង)
-// GET  /api/wishes?admin=ADMIN_KEY     → ទំព័រគ្រប់គ្រង (អនុម័ត / លុប)
+// GET  /api/wishes?manage=1 + header x-admin-key        → {pending, live} សម្រាប់ទំព័រគ្រប់គ្រង
+// POST /api/wishes {op:"approve"|"unapprove"|"del", id, from} + header x-admin-key
+// ទំព័រគ្រប់គ្រង៖ /list-name/#wishes
 
-const { redis, hasRedis, ipOf, allow, checkAdmin, bodyOf, clean, hasLink, esc, tellTelegram } = require('./_lib');
+const { redis, hasRedis, ipOf, allow, checkAdmin, bodyOf, clean, hasLink, tellTelegram } = require('./_lib');
 
 const LIVE = 'wishes';            // បង្ហាញជាសាធារណៈ
 const PENDING = 'wishes_pending'; // រង់ចាំអនុម័ត
@@ -26,6 +28,22 @@ module.exports = async (req, res) => {
 
   try {
     // ---------- ផ្ញើពរថ្មី ----------
+    // ---------- អនុម័ត / លុប (header x-admin-key) ----------
+    if (req.method === 'POST' && req.headers['x-admin-key'] !== undefined) {
+      res.setHeader('Cache-Control', 'no-store');
+      if (!(await checkAdmin(req, String(req.headers['x-admin-key'])))) return res.status(403).json({ ok: false, error: 'key' });
+      const b = bodyOf(req), id = String(b.id || '');
+      if (!['approve', 'unapprove', 'del'].includes(b.op) || !id) return res.status(400).json({ ok: false });
+      const from = b.op === 'approve' ? PENDING : b.op === 'unapprove' ? LIVE : (b.from === 'pending' ? PENDING : LIVE);
+      const found = (await list(from)).find(x => x.w.id === id);
+      if (found) {
+        await redis(['LREM', from, 1, found.raw]);
+        if (b.op === 'approve') await redis(['LPUSH', LIVE, found.raw]);
+        if (b.op === 'unapprove') await redis(['LPUSH', PENDING, found.raw]);
+      }
+      return res.status(200).json({ ok: true, found: !!found });
+    }
+
     if (req.method === 'POST') {
       const ip = ipOf(req);
       // IP មួយ ១០ ដង/ម៉ោង (ភ្ញៀវច្រើនអាចប្រើ Wi-Fi តែមួយ), ទាំងអស់គ្នា ១២០ ដង/ម៉ោង (ការពារការវាយប្រហារពី IP ច្រើន)
@@ -46,7 +64,7 @@ module.exports = async (req, res) => {
       // សារ Telegram ផ្គុំនៅ server (browser មិនអាចសរសេរសារចូល Telegram ដោយផ្ទាល់ទៀតទេ)
       await tellTelegram(
         `💌 មានសារជូនពរថ្មីពីភ្ញៀវកិត្តិយស!\n\n👤 ឈ្មោះ: ${name || '-'}\n💬 ពាក្យជូនពរ: ${msg}` +
-        (MODERATE ? '\n\n⏳ រង់ចាំអ្នកអនុម័តនៅទំព័រគ្រប់គ្រង' : '')
+        (MODERATE ? '\n\n⏳ រង់ចាំអ្នកអនុម័តនៅ /list-name/#wishes' : '')
       );
       return res.status(200).json({ ok: true, wish, pending: MODERATE });
     }
@@ -54,43 +72,19 @@ module.exports = async (req, res) => {
     if (req.method !== 'GET') return res.status(405).json({ ok: false });
     const q = req.query || {};
 
-    // ---------- ទំព័រគ្រប់គ្រង ----------
-    if (q.admin !== undefined) {
-      const key = String(q.admin);
-      if (!(await checkAdmin(req, key))) return res.status(403).send('Forbidden');
-      const K = encodeURIComponent(key);
-
-      // សកម្មភាព: approve / del
-      if (q.approve || q.del) {
-        const from = q.from === 'pending' ? PENDING : LIVE;
-        const id = String(q.approve || q.del);
-        const found = (await list(q.approve ? PENDING : from)).find(x => x.w.id === id);
-        if (found) {
-          await redis(['LREM', q.approve ? PENDING : from, 1, found.raw]);
-          if (q.approve) await redis(['LPUSH', LIVE, found.raw]);
-        }
-        res.setHeader('Location', `/api/wishes?admin=${K}`);
-        return res.status(302).end();
-      }
-
-      const pend = await list(PENDING), live = await list(LIVE);
-      const card = (w, from) => `<div class="w"><b>${esc(w.name || 'ភ្ញៀវកិត្តិយស')}</b> <small>${esc(new Date(w.t).toLocaleString())}</small>
-        <p>${esc(w.msg)}</p>
-        ${from === 'pending' ? `<a class="ok" href="/api/wishes?admin=${K}&approve=${encodeURIComponent(w.id)}">✅ អនុម័ត</a> · ` : ''}
-        <a href="/api/wishes?admin=${K}&del=${encodeURIComponent(w.id)}&from=${from}" onclick="return confirm('លុបពរនេះ?')">🗑 លុប</a></div>`;
-
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    // ---------- ទំព័រគ្រប់គ្រង (/list-name/) ----------
+    if (q.manage !== undefined) {
       res.setHeader('Cache-Control', 'no-store');
-      res.setHeader('Referrer-Policy', 'no-referrer');
       res.setHeader('X-Robots-Tag', 'noindex');
-      return res.status(200).send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>គ្រប់គ្រងពាក្យជូនពរ</title>
-        <style>body{font-family:system-ui,sans-serif;background:#1f2913;color:#efe2b8;padding:16px;max-width:640px;margin:auto}
-        .w{background:rgba(0,0,0,.3);border-left:3px solid #b39246;border-radius:8px;padding:10px 12px;margin:10px 0}
-        p{white-space:pre-wrap;margin:6px 0}a{color:#ff9a8a}a.ok{color:#9be29b}small{opacity:.6}h2{margin-top:28px}</style>
-        <p>ការអនុម័ត: <b>${MODERATE ? 'បើក (ពរថ្មីត្រូវរង់ចាំអនុម័ត)' : 'បិទ (ពរថ្មីបង្ហាញភ្លាម)'}</b></p>
-        <h2>⏳ រង់ចាំអនុម័ត (${pend.length})</h2>${pend.map(x => card(x.w, 'pending')).join('') || '<p>គ្មាន</p>'}
-        <h2>🌸 កំពុងបង្ហាញ (${live.length})</h2>${live.map(x => card(x.w, 'live')).join('') || '<p>គ្មាន</p>'}`);
+      if (!(await checkAdmin(req, String(req.headers['x-admin-key'] || '')))) return res.status(403).json({ ok: false, error: 'key' });
+      const pend = await list(PENDING), live = await list(LIVE);
+      return res.status(200).json({ ok: true, moderate: MODERATE, pending: pend.map(x => x.w), live: live.map(x => x.w) });
+    }
+
+    // របៀបចាស់ ?admin=KEY ត្រូវបានបិទ (ពាក្យសម្ងាត់លេចក្នុង URL)
+    if (q.admin !== undefined) {
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      return res.status(410).send('<meta charset="utf-8">ទំព័រនេះបានផ្លាស់ទៅ <a href="/list-name/#wishes">/list-name/</a>');
     }
 
     // ---------- បញ្ជីសម្រាប់ធៀប ----------

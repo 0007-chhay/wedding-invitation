@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#2b1b0d">
-  <title>បញ្ជីចំណងដៃ | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
+  <title>គ្រប់គ្រងកម្មវិធី | វ៉ាន ច័ន្ទគ្រឹស្នា & មិន ស្រីលក្ខ</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -183,13 +183,56 @@
     .gate .field { margin-bottom: 10px; text-align: center; }
     .gate .err { color: #ff9a8a; min-height: 1.5em; font-size: .85rem; }
 
+    /* tab */
+    .tabs {
+      position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; margin: 0 0 18px;
+      background: rgba(28,17,10,.92); border: 1px solid rgba(184,138,68,.55); border-radius: 999px;
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 4px 12px rgba(0,0,0,.45);
+    }
+    body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 19; background: #1c110a; }
+    .tabs a {
+      text-align: center; text-decoration: none; color: var(--gold-soft); border-radius: 999px;
+      padding: 8px 4px; font-size: .9rem; white-space: nowrap; position: relative;
+    }
+    .tabs a[aria-current="page"] { background: linear-gradient(135deg, var(--gold-text), var(--gold-accent)); color: #351f0f; font-weight: 700; }
+    .badge {
+      display: inline-block; min-width: 1.4em; padding: 0 5px; margin-left: 4px; border-radius: 999px;
+      background: #c0392b; color: #fff; font-size: .72rem; line-height: 1.5; font-weight: 700; vertical-align: 1px;
+    }
+    .badge:empty { display: none; }
+
+    .sec-title { font-family: 'Moul', serif; font-weight: normal; font-size: 1rem; line-height: 1.8; margin: 22px 0 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .sec-title small { font-family: 'Battambang', sans-serif; font-size: .8rem; color: var(--gold-soft); }
+    .note-line { font-size: .82rem; color: var(--gold-soft); line-height: 1.8; margin: 0 0 6px; }
+
+    /* ពាក្យជូនពរ */
+    .wish { padding: 12px 12px 10px; border-bottom: 1px solid var(--line); border-left: 3px solid var(--gold-accent); }
+    .wish.wait { border-left-color: var(--warn); background: rgba(255,178,122,.05); }
+    .wish b { font-weight: 700; }
+    .wish time { font-size: .74rem; color: rgba(209,184,138,.7); margin-left: 6px; }
+    .wish p { margin: 4px 0 8px; white-space: pre-wrap; line-height: 1.8; overflow-wrap: anywhere; }
+    .btns { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mini { border: 1px solid rgba(235,211,155,.35); background: transparent; color: var(--gold-text); border-radius: 999px; padding: 3px 12px; font-size: .8rem; cursor: pointer; }
+    .mini.ok { border-color: rgba(155,226,155,.6); color: var(--ok); }
+    .mini.danger { border-color: rgba(255,120,110,.55); color: #ff9a8a; }
+    .mini:disabled { opacity: .4; pointer-events: none; }
+
+    /* ភ្ញៀវធៀប */
+    .link-out { display: flex; gap: 6px; align-items: center; margin-top: 10px; padding: 8px 10px; border-radius: 10px; background: rgba(155,226,155,.08); border: 1px solid rgba(155,226,155,.35); }
+    .link-out code { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .82rem; color: var(--ok); }
+    .guest { display: grid; grid-template-columns: 3.4em 1fr auto; gap: 0 10px; align-items: center; padding: 10px 6px; border-bottom: 1px solid var(--line); }
+    .guest .code { font-size: .78rem; color: rgba(209,184,138,.7); font-variant-numeric: tabular-nums; }
+    .guest .meta { display: block; font-size: .74rem; color: rgba(209,184,138,.7); }
+    .guest .btns { flex-wrap: nowrap; }
+
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 
     /* បោះពុម្ព */
     .print-only { display: none; }
     @media print {
       body { background: #fff; color: #000; padding: 0; }
-      .kbach-left, .kbach-right, .entry, .list-head, .tools, .top-row, .toast, .flower-line, .gate { display: none !important; }
+      .kbach-left, .kbach-right, .entry, .list-head, .tools, .top-row, .toast, .flower-line, .gate, .tabs, #tab-wishes, #tab-guests { display: none !important; }
       .page { max-width: none; padding: 0; }
       h1, .couple, .tot b, .tot span, .tot.wide, .tot.wide em { color: #000; text-shadow: none; }
       .totals { background: #000; border-color: #000; box-shadow: none; }
@@ -211,7 +254,7 @@
         <span id="sync" class="sync" aria-live="polite"></span>
         <button id="logout" class="pill" type="button" hidden>ចាកចេញ</button>
       </div>
-      <h1>បញ្ជីចំណងដៃ</h1>
+      <h1 id="pageTitle">បញ្ជីចំណងដៃ</h1>
       <p class="couple">វ៉ាន ច័ន្ទគ្រឹស្នា &amp; មិន ស្រីលក្ខ</p>
       <p class="print-only" id="printDate"></p>
       <div class="flower-line"><img src="../flower.png" alt=""></div>
@@ -219,7 +262,7 @@
 
     <!-- ចូលប្រើ -->
     <section id="gate" class="gate" hidden>
-      <p>ទំព័រនេះសម្រាប់គ្រួសារកត់ឈ្មោះភ្ញៀវដែលចងដៃ។ សូមបញ្ចូលពាក្យសម្ងាត់ (ADMIN_KEY ដដែលនឹងទំព័រគ្រប់គ្រងពាក្យជូនពរ)។</p>
+      <p>ទំព័រនេះសម្រាប់គ្រួសារ៖ កត់ចំណងដៃ អនុម័តពាក្យជូនពរ និងបង្កើត link ធៀប។ សូមបញ្ចូលពាក្យសម្ងាត់ (ADMIN_KEY)។</p>
       <form id="gateForm" autocomplete="off">
         <label class="sr" for="keyIn">ពាក្យសម្ងាត់</label>
         <input id="keyIn" class="field" type="password" placeholder="ពាក្យសម្ងាត់" required>
@@ -231,6 +274,13 @@
     </section>
 
     <div id="app" hidden>
+      <nav class="tabs" aria-label="ផ្នែក">
+        <a href="#gifts" data-tab="gifts">ចំណងដៃ</a>
+        <a href="#wishes" data-tab="wishes">ពាក្យជូនពរ<span class="badge" id="wishBadge"></span></a>
+        <a href="#guests" data-tab="guests">ភ្ញៀវធៀប</a>
+      </nav>
+
+      <div id="tab-gifts">
       <section class="totals" aria-label="សរុប">
         <div class="tot"><span>ប្រាក់រៀល</span><b id="sumKHR">0 ៛</b></div>
         <div class="tot"><span>ប្រាក់ដុល្លារ</span><b id="sumUSD">$0</b></div>
@@ -293,6 +343,41 @@
         <button class="pill" type="button" id="csvBtn">ទាញយក Excel (CSV)</button>
         <button class="pill" type="button" id="printBtn">បោះពុម្ព</button>
         <button class="pill" type="button" id="sortBtn">តម្រៀប៖ តាមលំដាប់មក</button>
+      </div>
+      </div><!-- /tab-gifts -->
+
+      <!-- ពាក្យជូនពរ -->
+      <div id="tab-wishes" hidden>
+        <p class="note-line" id="modLine"></p>
+        <h2 class="sec-title">រង់ចាំអនុម័ត <small id="pendCount"></small></h2>
+        <div id="pendList"></div>
+        <h2 class="sec-title">កំពុងបង្ហាញលើធៀប <small id="liveCount"></small></h2>
+        <div id="liveList"></div>
+      </div>
+
+      <!-- ភ្ញៀវធៀប -->
+      <div id="tab-guests" hidden>
+        <form id="guestForm" class="entry" autocomplete="off">
+          <h2>បង្កើត link ធៀបសម្រាប់ភ្ញៀវ</h2>
+          <div class="row">
+            <label class="sr" for="gHon">ការគោរព</label>
+            <select id="gHon" class="field"></select>
+            <label class="sr" for="gName">ឈ្មោះភ្ញៀវ</label>
+            <input id="gName" class="field" type="text" maxlength="80" placeholder="ឈ្មោះភ្ញៀវ" required>
+          </div>
+          <div class="actions"><button class="save" type="submit" id="gSave">បង្កើត link</button></div>
+          <div class="link-out" id="gOut" hidden>
+            <code id="gLink"></code>
+            <button class="mini ok" type="button" id="gCopy">ចម្លង</button>
+            <button class="mini" type="button" id="gShare" hidden>ផ្ញើ</button>
+          </div>
+        </form>
+        <div class="list-head">
+          <label class="sr" for="gSearch">ស្វែងរកភ្ញៀវ</label>
+          <input id="gSearch" class="field" type="search" placeholder="ស្វែងរកឈ្មោះ…">
+          <small id="gCount" class="sync"></small>
+        </div>
+        <div class="book" id="gList"></div>
       </div>
     </div>
   </main>
@@ -507,7 +592,7 @@
       $('saveBtn').textContent = 'រក្សាទុក';
       $('cancelBtn').hidden = $('delBtn').hidden = true;
       $('name').value = $('amount').value = $('note').value = '';
-      $('hon').value = HL[0]; $('dupHint').textContent = '';
+      $('hon').selectedIndex = 0; $('dupHint').textContent = '';
       setSide(lsGet(LS.side, ''));
     }
 
@@ -590,6 +675,157 @@
       state.filter = keep; state.q = keepQ; state.sort = keepS; render();
     });
 
+    // ---------- ទំព័រគ្រប់គ្រងផ្សេងៗ (ពាក្យសម្ងាត់ផ្ញើតាម header មិនមែន URL) ----------
+    function adm(url, body) {
+      return fetch(url, {
+        method: body ? 'POST' : 'GET', cache: 'no-store',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': state.key },
+        body: body ? JSON.stringify(body) : undefined,
+      }).then(function (r) {
+        if (r.status === 403) { var e = new Error('key'); e.key = true; throw e; }
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      });
+    }
+    function failed(e) {
+      if (e && e.key) return logout('ពាក្យសម្ងាត់មិនត្រឹមត្រូវ');
+      toast('ភ្ជាប់ server មិនបាន — សូមព្យាយាមម្ដងទៀត');
+    }
+    function el(tag, cls, text) { var x = document.createElement(tag); if (cls) x.className = cls; if (text != null) x.textContent = text; return x; }
+    function when(t) { try { return new Date(t).toLocaleString('km-KH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
+
+    // ពាក្យជូនពរ
+    var W = { pending: [], live: [], moderate: true };
+    function loadWishes() {
+      return adm('/api/wishes?manage=1').then(function (d) {
+        W = d; renderWishes();
+      }).catch(failed);
+    }
+    function wishCard(w, from) {
+      var c = el('div', 'wish' + (from === 'pending' ? ' wait' : ''));
+      c.appendChild(el('b', '', w.name || 'ភ្ញៀវកិត្តិយស'));
+      var tm = el('time', '', when(w.t)); c.appendChild(tm);
+      c.appendChild(el('p', '', w.msg));
+      var bs = el('div', 'btns');
+      function act(label, cls, op, confirmMsg) {
+        var b = el('button', 'mini ' + cls, label); b.type = 'button';
+        b.addEventListener('click', function () {
+          if (confirmMsg && !confirm(confirmMsg)) return;
+          b.disabled = true;
+          adm('/api/wishes', { op: op, id: w.id, from: from }).then(function () {
+            toast(op === 'approve' ? 'បានអនុម័ត — បង្ហាញលើធៀបហើយ' : op === 'unapprove' ? 'បានលាក់ពីធៀប' : 'បានលុប');
+            return loadWishes();
+          }).catch(function (e) { b.disabled = false; failed(e); });
+        });
+        bs.appendChild(b);
+      }
+      if (from === 'pending') act('អនុម័ត', 'ok', 'approve');
+      else act('លាក់ពីធៀប', '', 'unapprove');
+      act('លុប', 'danger', 'del', 'លុបពាក្យជូនពររបស់ «' + (w.name || 'ភ្ញៀវកិត្តិយស') + '»?');
+      c.appendChild(bs);
+      return c;
+    }
+    function renderWishes() {
+      $('modLine').textContent = W.moderate
+        ? 'ពាក្យជូនពរថ្មីត្រូវរង់ចាំអនុម័តសិន ទើបបង្ហាញលើធៀប។'
+        : 'ពាក្យជូនពរថ្មីបង្ហាញលើធៀបភ្លាម (WISHES_MODERATION = off)។';
+      $('wishBadge').textContent = W.pending.length || '';
+      $('pendCount').textContent = W.pending.length + ' សារ';
+      $('liveCount').textContent = W.live.length + ' សារ';
+      [['pendList', W.pending, 'pending', 'គ្មានសាររង់ចាំទេ'], ['liveList', W.live, 'live', 'មិនទាន់មានសារបង្ហាញលើធៀបទេ']].forEach(function (x) {
+        var box = $(x[0]); box.textContent = '';
+        if (!x[1].length) { box.appendChild(el('div', 'empty', x[3])); return; }
+        x[1].forEach(function (w) { box.appendChild(wishCard(w, x[2])); });
+      });
+    }
+
+    // ភ្ញៀវធៀប
+    var G = [];
+    HL.forEach(function (h) { var o = document.createElement('option'); o.value = h; o.textContent = h || '— គ្មាន —'; $('gHon').appendChild(o); });
+    function guestLink(id) { return location.origin + '/#g=' + id; }
+    function copy(text) {
+      var done = function () { toast('បានចម្លង link'); };
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).then(done).catch(function () { prompt('ចម្លង link នេះ៖', text); });
+      prompt('ចម្លង link នេះ៖', text);
+    }
+    function loadGuests() {
+      return adm('/api/guest?list=1').then(function (d) { G = d.guests || []; renderGuests(); }).catch(failed);
+    }
+    function renderGuests() {
+      var q = norm($('gSearch').value);
+      var list = G.filter(function (g) { return !q || norm(g.hon + g.name).indexOf(q) > -1; }).slice().reverse();
+      $('gCount').textContent = 'សរុប ' + G.length + ' នាក់';
+      var box = $('gList'); box.textContent = '';
+      if (!list.length) { box.appendChild(el('div', 'empty', G.length ? 'រកមិនឃើញឈ្មោះនេះទេ' : 'មិនទាន់មានភ្ញៀវទេ — វាយឈ្មោះខាងលើ ដើម្បីបង្កើត link ធៀបដំបូង')); return; }
+      var frag = document.createDocumentFragment();
+      list.forEach(function (g) {
+        var r = el('div', 'guest');
+        r.appendChild(el('span', 'code', '#' + g.id));
+        var w = el('span', 'who');
+        if (g.hon) w.appendChild(el('small', '', g.hon));
+        w.appendChild(document.createTextNode(g.name));
+        w.appendChild(el('span', 'meta', [g.t ? new Date(g.t).toLocaleDateString() : '', g.src || ''].filter(Boolean).join(' • ')));
+        r.appendChild(w);
+        var bs = el('div', 'btns');
+        var c = el('button', 'mini ok', 'ចម្លង'); c.type = 'button';
+        c.addEventListener('click', function () { copy(guestLink(g.id)); });
+        var d = el('button', 'mini danger', 'លុប'); d.type = 'button';
+        d.addEventListener('click', function () {
+          if (!confirm('លុប «' + (g.hon ? g.hon + ' ' : '') + g.name + '»? Link របស់គាត់នឹងបង្ហាញ «ភ្ញៀវកិត្តិយស» ជំនួសឈ្មោះ')) return;
+          d.disabled = true;
+          adm('/api/guest', { op: 'del', id: g.id }).then(function () { toast('បានលុប៖ ' + g.name); return loadGuests(); })
+            .catch(function (e) { d.disabled = false; failed(e); });
+        });
+        bs.appendChild(c); bs.appendChild(d); r.appendChild(bs);
+        frag.appendChild(r);
+      });
+      box.appendChild(frag);
+    }
+    $('gSearch').addEventListener('input', renderGuests);
+    $('guestForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = $('gName').value.trim(); if (!name) return;
+      $('gSave').disabled = true;
+      fetch('/api/guest', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hon: $('gHon').value, name: name, src: 'list-name' }) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status === 429 ? 'too_many' : 'http'); return r.json(); })
+        .then(function (d) {
+          var link = guestLink(d.id);
+          $('gLink').textContent = link; $('gOut').hidden = false;
+          $('gOut').dataset.link = link; $('gOut').dataset.name = ($('gHon').value ? $('gHon').value + ' ' : '') + name;
+          $('gName').value = ''; $('gName').focus();
+          loadGuests();
+        })
+        .catch(function (err) { toast(err.message === 'too_many' ? 'បង្កើតច្រើនពេក សូមរង់ចាំបន្តិច' : 'បង្កើតមិនបាន — ពិនិត្យអ៊ីនធឺណិត'); })
+        .then(function () { $('gSave').disabled = false; });
+    });
+    $('gCopy').addEventListener('click', function () { copy($('gOut').dataset.link); });
+    if (navigator.share) {
+      $('gShare').hidden = false;
+      $('gShare').addEventListener('click', function () {
+        navigator.share({ title: 'សំបុត្រអញ្ជើញ', text: 'សូមគោរពអញ្ជើញ ' + $('gOut').dataset.name, url: $('gOut').dataset.link }).catch(function () {});
+      });
+    }
+
+    // tab
+    var TABS = { gifts: 'បញ្ជីចំណងដៃ', wishes: 'ពាក្យជូនពរ', guests: 'ភ្ញៀវធៀប' };
+    var tab = 'gifts';
+    function showTab() {
+      var t = location.hash.slice(1); if (!TABS[t]) t = 'gifts';
+      tab = t;
+      Object.keys(TABS).forEach(function (k) { $('tab-' + k).hidden = k !== t; });
+      document.querySelectorAll('[data-tab]').forEach(function (a) { if (a.dataset.tab === t) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+      $('pageTitle').textContent = TABS[t];
+      if (!state.key) return;
+      if (t === 'wishes') loadWishes();
+      if (t === 'guests') loadGuests();
+    }
+    window.addEventListener('hashchange', showTab);
+    function refreshTab() {
+      if (!state.key || document.hidden) return;
+      if (tab === 'gifts') pull(); else if (tab === 'wishes') loadWishes(); else loadGuests();
+    }
+
     // ---------- ចូល / ចេញ ----------
     function logout(msg) {
       state.key = ''; lsDel(LS.key);
@@ -601,7 +837,8 @@
       $('gate').hidden = true; $('app').hidden = false; $('logout').hidden = false;
       setCur(state.cur); resetForm(); render();
       setSync(navigator.onLine, 'កំពុងភ្ជាប់…');
-      pull();
+      pull(); showTab();
+      if (tab !== 'wishes') loadWishes();   // សម្រាប់លេខរង់ចាំលើ tab
     }
     $('gateForm').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -623,8 +860,8 @@
 
     window.addEventListener('online', pull);
     window.addEventListener('offline', function () { setSync(false); });
-    setInterval(function () { if (state.key && !document.hidden) pull(); }, 20000);
-    document.addEventListener('visibilitychange', function () { if (!document.hidden && state.key) pull(); });
+    setInterval(function () { if (tab === 'gifts') refreshTab(); }, 20000);
+    document.addEventListener('visibilitychange', refreshTab);
     window.addEventListener('beforeunload', function (e) { if (state.queue.length) { e.preventDefault(); e.returnValue = ''; } });
 
     if (state.key) enter(); else logout();
